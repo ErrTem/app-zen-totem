@@ -1,0 +1,55 @@
+@import '../../../sass/constants'
+@import '../../../sass/mixins'
+
+header
+  @include flex(row, center, space-between)
+  padding: 15px
+  background-color: $color-default
+
+  .header__left
+
+    &__logo
+      @include  size(50px, 50px)
+
+  .header__right
+    @include  flex(row, center, space-between)
+
+    &__user
+      margin-right: 40px
+
+      a
+        @include flex(row, center, center)
+        font-size: $default
+        margin: 0 20px 0 20px
+
+        .icon
+          margin: 0 0 0 10px
+
+    &__login
+      @include flex(row, center, center)
+      margin: 5px 10px 5px 10px
+
+      .icon
+        margin: 0 0 0 10px
+
+    .link
+      text-decoration: none
+      color: $color-links
+      font-weight: bold
+      transition: color 0.3s
+
+      &:hover
+        color: $color-secondary-complimentary
+
+    button
+      font-size: $default
+      font-weight: bold
+      color: $color-links
+      background-color: transparent
+      border: solid 2px $color-links
+      border-radius: 3px
+      transition: .4s
+
+      &:hover
+        color: $color-secondary-complimentary
+        background-color: $color-links

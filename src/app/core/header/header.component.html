@@ -1,0 +1,29 @@
+<header>
+
+  <div class="header__left">
+    <div class="header__left__logo">
+      <a routerLink="app/home">
+        <img ngSrc="../../../assets/totem.png" width="50" height="50" priority>
+      </a>
+    </div>
+  </div>
+
+  <div class="header__right">
+
+      <div class="header__right__user">
+        <a class="link" routerLink="app/profile">
+          <span>{{ firstName }} {{ lastName }}</span>
+          <img class="icon" ngSrc="../../../assets/user.png" width="20" height="20" priority>
+        </a>
+      </div>
+
+    <button (click)="login()">
+      <div class="header__right__login">
+          <span>Logout</span>
+          <img class="icon" ngSrc="../../../assets/enter.png" width="20" height="20" priority>
+      </div>
+    </button>
+
+  </div>
+
+</header>

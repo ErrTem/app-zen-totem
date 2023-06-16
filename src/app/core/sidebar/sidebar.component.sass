@@ -1,0 +1,30 @@
+@import '../../../sass/mixins'
+@import '../../../sass/constants'
+
+.sidebar
+  width: 150px
+  height: calc(100vh - 80px)
+  background-color: $color-secondary
+  transition: width 0.5s
+
+  &:hover
+    width: 250px
+
+  ul
+    list-style-type: none
+    padding: 0
+    margin: 0
+
+  li
+    padding: 20px
+    cursor: pointer
+    color: $color-secondary-complimentary
+    transition: background-color 0.3s, color 0.3s
+
+    &.active
+      background-color: $color-default
+      color: $color-links
+
+    &:hover
+      background-color: $color-default
+      color: $color-secondary-complimentary
