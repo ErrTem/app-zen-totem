@@ -20,10 +20,10 @@ const routes: Routes = [
     canActivate: [AuthUserGuard],
     loadChildren: () => import('./features/app-common/app-common.module').then(m => m.AppCommonModule)
   },
-  // {
-  //   path: '**',
-  //   component: ErrorComponent,
-  // },
+  {
+    path: '**',
+    redirectTo: 'auth/login',
+  },
 ];
 
 @NgModule({

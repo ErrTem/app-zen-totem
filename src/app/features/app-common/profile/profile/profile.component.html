@@ -1,1 +1,32 @@
-<p>profile works!</p>
+<h2>Edit Profile</h2>
+
+<form [formGroup]="profileForm" (ngSubmit)="saveProfile()">
+
+  <div>
+    <label>Email:</label>
+    <input type="email" formControlName="email" readonly>
+  </div>
+
+  <div>
+    <label>First Name:</label>
+    <input type="text" formControlName="firstName">
+  </div>
+
+  <div>
+    <label>Last Name:</label>
+    <input type="text" formControlName="lastName">
+  </div>
+
+  <div>
+    <label>Phone Number:</label>
+    <input type="text" formControlName="phoneNumber" (input)="formatPhoneNumber()">
+  </div>
+
+  <div>
+    <label>Website URL:</label>
+    <input type="text" formControlName="websiteUrl">
+  </div>
+
+  <button type="submit" [disabled]="profileForm.invalid">Save</button>
+
+</form>

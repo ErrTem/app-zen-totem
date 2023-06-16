@@ -16,7 +16,7 @@ import { AppCommonRoutingModule } from './app-common-routing.module';
     InventoryModule,
     ReportsModule,
     BillingModule,
-    ProfileModule
+    ProfileModule,
   ]
 })
 export class AppCommonModule { }
