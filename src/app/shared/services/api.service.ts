@@ -7,9 +7,9 @@ import { Observable } from 'rxjs';
 })
 export class ApiService { //todo вынести в shared?
 
-  constructor(
-    private http: HttpClient,
-  ) {}
+  // constructor(
+  //   private http: HttpClient,
+  // ) {}
 //todo fakeAPI
   // public get(url: string, params?: HttpParams | any, options?: any): Observable<any> {
   //   const param = params ? `?${params.toString()}` : '';

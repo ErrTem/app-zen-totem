@@ -9,16 +9,18 @@ import { UserInfoInterface } from '../../../shared/interfaces/user.interface';
   providedIn: 'root'
 })
 export class ProfileService {
-  //
-  // private apiUrl = '' //todo FAKE API
-  //
-  // constructor(private http: HttpClient) { }
-  //
-  // public getUserInfo(): Observable<UserInfoInterface> {
-  //   return this.http.get<UserInfoInterface>(`${this.apiUrl}/userinfo`);
-  // }
-  //
-  // public updateUserInfo(userInfo: UserInfoInterface): Observable<any> {
-  //   return this.http.put(`${this.apiUrl}/userinfo`, userInfo);
-  // }
+
+  private apiUrl = 'https://jsonplaceholder.typicode.com'
+
+  constructor(private http: HttpClient) { }
+
+  public getUserInfo(): Observable<UserInfoInterface> {
+    return this.http.get<UserInfoInterface>(`${this.apiUrl}/users`);
+  }
+
+  public updateUserInfo(userInfo: UserInfoInterface): Observable<any> {
+    const a = this.http.put(`${this.apiUrl}/posts/1`, userInfo);
+    console.log(a)
+    return a
+  }
 }

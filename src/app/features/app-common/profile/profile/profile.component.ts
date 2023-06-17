@@ -104,20 +104,26 @@ export class ProfileComponent implements OnInit {
   public updateUserInfo(): void {
     const userInfo: UserInfoInterface = this.generateUserInfo();
 
-    // this.profileService.updateUserInfo(userInfo).subscribe(
-    //   () => {
-    //     this.showSuccessMessage();
-    //   },
-    //   () => {
-    //     this.showErrorMessage();
-    //   }
-    // );
+    this.profileService.updateUserInfo(userInfo).subscribe(
+      () => {
+        this.showSuccessMessage();
+      },
+      () => {
+        this.showErrorMessage();
+      }
+    );
   }
 
   private showSuccessMessage(): void {
   }
 
   private showErrorMessage(): void {
+  }
+
+  public getSome() {
+    this.profileService.getUserInfo().subscribe((data)=>{
+      console.log(data);
+    })
   }
 
   // public updateUserInfo(userInfo: UserInfoInterface): Observable<any> {

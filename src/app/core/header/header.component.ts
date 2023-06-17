@@ -13,8 +13,8 @@ import { UserInfoInterface } from '../../shared/interfaces/user.interface';
 })
 export class HeaderComponent {
 
-  isSuccessMessage = false;
-  isErrorMessage = false;
+  isSuccessMessage = true;
+  isErrorMessage = true;
   firstName: string = 'John';
   lastName: string = 'Doe';
 
