@@ -2,12 +2,15 @@
 @import '../../../sass/constants'
 
 .sidebar
+  position: fixed
   width: 150px
   height: calc(100vh - 80px)
   background-color: $color-secondary
   transition: width 0.5s
+  z-index: 99
 
   &:hover
+    position: fixed
     width: 250px
 
   ul

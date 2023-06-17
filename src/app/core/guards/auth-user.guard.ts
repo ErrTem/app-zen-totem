@@ -7,7 +7,7 @@ import { Observable } from "rxjs";
   providedIn: 'root'
 })
 
-export class AuthUserGuard implements CanActivate {
+export class AuthUserGuard implements CanActivate { //todo how to implement correctly, make call to API
   constructor(private router: Router) {}
 
   canActivate(): Observable<boolean> | Promise<boolean> | boolean {

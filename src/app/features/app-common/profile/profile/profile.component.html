@@ -1,32 +1,41 @@
-<h2>Edit Profile</h2>
+<div class="profile-container">
 
-<form [formGroup]="profileForm" (ngSubmit)="saveProfile()">
+  <div class="title">Edit Profile</div>
 
-  <div>
-    <label>Email:</label>
-    <input type="email" formControlName="email" readonly>
-  </div>
+  <form [formGroup]="profileForm" (ngSubmit)="updateUserInfo()">
 
-  <div>
-    <label>First Name:</label>
-    <input type="text" formControlName="firstName">
-  </div>
+    <div>
+      <label>Email:</label>
+      <input type="email" formControlName="email" readonly>
+    </div>
 
-  <div>
-    <label>Last Name:</label>
-    <input type="text" formControlName="lastName">
-  </div>
+    <div>
+      <label>First Name:</label>
+      <input type="text" formControlName="firstName" placeholder="{{(userInfo$ | async)?.firstName}}">
+      <div *ngIf="isFieldInvalid('firstName')" class="error-message">Please enter a valid first name.</div>
+    </div>
 
-  <div>
-    <label>Phone Number:</label>
-    <input type="text" formControlName="phoneNumber" (input)="formatPhoneNumber()">
-  </div>
+    <div>
+      <label>Last Name:</label>
+      <input type="text" formControlName="lastName" placeholder="{{(userInfo$ | async)?.lastName}}">
+      <div *ngIf="isFieldInvalid('lastName')" class="error-message">Please enter a valid last name.</div>
+    </div>
 
-  <div>
-    <label>Website URL:</label>
-    <input type="text" formControlName="websiteUrl">
-  </div>
+    <div>
+      <label>Phone Number:</label>
+      <div>{{(userInfo$ | async)?.phoneNumber}}</div>
+      <input type="text" formControlName="phoneNumber" (input)="formatPhoneNumber($event)" placeholder="{{(userInfo$ | async)?.phoneNumber}}">
+      <div *ngIf="isFieldInvalid('phoneNumber')" class="error-message">Please enter a valid phone number.</div>
+    </div>
 
-  <button type="submit" [disabled]="profileForm.invalid">Save</button>
+    <div>
+      <label>Website URL:</label>
+      <input type="url" formControlName="websiteUrl" placeholder="{{(userInfo$ | async)?.websiteUrl}}">
+      <div *ngIf="isFieldInvalid('websiteUrl')" class="error-message">Please enter a valid URL.</div>
+    </div>
 
-</form>
+    <button type="submit" [disabled]="profileForm.invalid">Save</button>
+
+  </form>
+
+</div>

@@ -6,5 +6,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./login.component.sass']
 })
 export class LoginComponent {
-
 }
