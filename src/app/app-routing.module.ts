@@ -17,7 +17,6 @@ const routes: Routes = [
   },
   {
     path: 'app',
-    canActivate: [AuthUserGuard],
     loadChildren: () => import('./features/app-common/app-common.module').then(m => m.AppCommonModule)
   },
   {

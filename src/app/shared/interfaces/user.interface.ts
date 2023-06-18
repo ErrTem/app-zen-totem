@@ -1,7 +1,7 @@
 export interface UserInfoInterface {
-  email: string;
+  email?: string;
   firstName: string;
   lastName: string;
-  phoneNumber: string;
-  websiteUrl: string;
+  phoneNumber?: string;
+  websiteUrl?: string;
 }

@@ -8,11 +8,11 @@ export interface ProfileStateModel {
 }
 
 @State<ProfileStateModel>({
-  name: 'PROFILE_STATE_MODEL',
+  name: 'PROFILE_STATE_MODEL', //todo naming
   defaults: {
     userInfo: {
       email: '',
-      firstName: 'bEBRA',
+      firstName: '',
       lastName: '',
       phoneNumber: '',
       websiteUrl: '',
@@ -42,22 +42,5 @@ export class ProfileState {
     patchState({
       userInfo: userInfo
     });
-  }
-
-  @Action(ValidateUserInfo)
-  validateUserInfo (
-    { dispatch}: StateContext<ProfileStateModel>,
-    { userInfo } : ValidateUserInfo
-  ) : void {
-    const { firstName : firstName} = userInfo;
-
-    if (firstName.length < 2) {
-      console.log('failed')
-      // dispatch(new ShowAlert())
-
-    } else {
-      // dispatch(new ShowSuccess()) //todo how and where?
-      dispatch(new SetUserInfo(userInfo))
-    }
   }
 }

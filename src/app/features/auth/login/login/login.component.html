@@ -1,12 +1,23 @@
 <div class="login-container">
 
-  <div class="title">
-    Login Page
-  </div>
+  <div class="title">Who are you?</div>
 
-  <div class="content">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur delectus doloribus eum fugit, ipsum maxime, nihil numquam odio odit perferendis possimus quibusdam, quisquam recusandae reprehenderit velit veritatis vero. Nostrum, quibusdam.
-    </p>
-  </div>
+  <form [formGroup]="userForm" (ngSubmit)="login()">
+
+    <div>
+      <label>First Name:</label>
+      <input type="text" formControlName="firstName" placeholder="Adam">
+      <div *ngIf="isFieldInvalid('firstName')" class="error-message">Please enter a valid first name.</div>
+    </div>
+
+    <div>
+      <label>Last Name:</label>
+      <input type="text" formControlName="lastName" placeholder="Jensen">
+      <div *ngIf="isFieldInvalid('lastName')" class="error-message">Please enter a valid last name.</div>
+    </div>
+
+    <button type="submit" [disabled]="userForm.invalid">Save</button>
+
+  </form>
 
 </div>

@@ -11,19 +11,18 @@
 
     <div>
       <label>First Name:</label>
-      <input type="text" formControlName="firstName" placeholder="{{(userInfo$ | async)?.firstName}}">
+      <input type="text" formControlName="firstName" placeholder="{{(userInfo$ | async)?.firstName || 'Adam'}}">
       <div *ngIf="isFieldInvalid('firstName')" class="error-message">Please enter a valid first name.</div>
     </div>
 
     <div>
       <label>Last Name:</label>
-      <input type="text" formControlName="lastName" placeholder="{{(userInfo$ | async)?.lastName}}">
+      <input type="text" formControlName="lastName" placeholder="{{(userInfo$ | async)?.lastName || 'Jensen'}}">
       <div *ngIf="isFieldInvalid('lastName')" class="error-message">Please enter a valid last name.</div>
     </div>
 
     <div>
       <label>Phone Number:</label>
-      <div>{{(userInfo$ | async)?.phoneNumber}}</div>
       <input type="text" formControlName="phoneNumber" (input)="formatPhoneNumber($event)" placeholder="{{(userInfo$ | async)?.phoneNumber}}">
       <div *ngIf="isFieldInvalid('phoneNumber')" class="error-message">Please enter a valid phone number.</div>
     </div>
@@ -37,5 +36,5 @@
     <button type="submit" [disabled]="profileForm.invalid">Save</button>
 
   </form>
-<button (click)="getSome()">Jmak</button>
+
 </div>

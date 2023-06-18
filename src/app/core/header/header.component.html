@@ -8,8 +8,11 @@
     </div>
   </div>
 
-  <app-success-message *ngIf="isSuccessMessage"></app-success-message>
-  <app-error-message *ngIf="isErrorMessage"></app-error-message>
+  <app-notify-message
+    *ngIf="successMessage || errorMessage"
+    [message]="errorMessage ? errorMessage : successMessage"
+    (close)="closeBanner()"
+  ></app-notify-message>
 
   <div class="header__right">
 

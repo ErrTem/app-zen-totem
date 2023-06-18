@@ -6,10 +6,12 @@ import { Observable } from 'rxjs';
 
 import { UserInfoInterface } from '../../../../shared/interfaces/user.interface';
 import { ProfileState } from '../ngxs/profile.state';
-import { ValidateUserInfo } from '../ngxs/profile.actions';
 import { emailValidationPattern } from '../../../../shared/constants/email-validation';
-import { ProfileService } from "../profile.service";
-
+import { ProfileService } from '../profile.service';
+import { NotificationService } from "../../../../shared/services/notification.service";
+import { SetUserInfo } from "../ngxs/profile.actions";
+//todo замена всех совпадений на
+//todo linter
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -23,12 +25,29 @@ export class ProfileComponent implements OnInit {
     private readonly formBuilder: FormBuilder,
     private readonly store: Store,
     private readonly profileService: ProfileService,
+    private readonly notificationService: NotificationService,
   ) { }
 
   @Select (ProfileState.getUserInfo) userInfo$!: Observable<UserInfoInterface>
 
   ngOnInit(): void {
     this.initNewProductForm();
+  }
+
+  public updateUserInfo(): void {
+    const userInfo: UserInfoInterface = this.generateUserInfo();
+    this.profileForm.reset();
+
+    if (userInfo.firstName.length === 1 ) {
+      // simulate error from API
+      this.notificationService.notifyError('error: An error occurred');
+    } else {
+      this.profileService.updateUserInfo(userInfo, 1)
+        .subscribe(data => {
+          this.store.dispatch(new SetUserInfo(data));
+          localStorage.setItem('userInfo', JSON.stringify(data));
+      })
+    }
   }
 
   public initNewProductForm() {
@@ -58,6 +77,17 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  public generateUserInfo(): UserInfoInterface {
+
+    return {
+      email: this.profileForm.get('email')?.value,
+      firstName: this.profileForm.get('firstName')?.value,
+      lastName: this.profileForm.get('lastName')?.value,
+      phoneNumber: this.profileForm.get('phoneNumber')?.value,
+      websiteUrl: this.profileForm.get('websiteUrl')?.value || '',
+    }
+  }
+
   isFieldInvalid(fieldName: string): boolean {
     const control : AbstractControl<any> | null = this.profileForm.get(fieldName);
 
@@ -67,7 +97,7 @@ export class ProfileComponent implements OnInit {
       return false
   }
 
-  // jQuery plugin https://github.com/jackocnr/intl-tel-input
+  // todo jQuery plugin https://github.com/jackocnr/intl-tel-input
   formatPhoneNumber(event: Event): void {
     const phoneNumberControl = this.profileForm.get('phoneNumber');
     if (phoneNumberControl) {
@@ -89,49 +119,4 @@ export class ProfileComponent implements OnInit {
       phoneNumberControl.setValue(phoneNumber);
     }
   }
-
-  public generateUserInfo(): UserInfoInterface {
-
-    return {
-      email: this.profileForm.get('email')?.value,
-      firstName: this.profileForm.get('firstName')?.value,
-      lastName: this.profileForm.get('lastName')?.value,
-      phoneNumber: this.profileForm.get('phoneNumber')?.value,
-      websiteUrl: this.profileForm.get('websiteUrl')?.value || '',
-    }
-  }
-
-  public updateUserInfo(): void {
-    const userInfo: UserInfoInterface = this.generateUserInfo();
-
-    this.profileService.updateUserInfo(userInfo).subscribe(
-      () => {
-        this.showSuccessMessage();
-      },
-      () => {
-        this.showErrorMessage();
-      }
-    );
-  }
-
-  private showSuccessMessage(): void {
-  }
-
-  private showErrorMessage(): void {
-  }
-
-  public getSome() {
-    this.profileService.getUserInfo().subscribe((data)=>{
-      console.log(data);
-    })
-  }
-
-  // public updateUserInfo(userInfo: UserInfoInterface): Observable<any> {
-  //   if (userInfo.firstName === 'A') {
-  //     // error from API
-  //     return throwError('Error updating profile');
-  //   } else {
-  //     return this.http.put(`${this.apiUrl}/userinfo`, userInfo);
-  //   }
-  // }
 }

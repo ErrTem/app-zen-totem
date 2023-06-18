@@ -1,44 +1,51 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Select } from '@ngxs/store';
 
 import { Observable } from 'rxjs';
 
 import { ProfileState } from '../../features/app-common/profile/ngxs/profile.state';
 import { UserInfoInterface } from '../../shared/interfaces/user.interface';
+import { NotificationService } from '../../shared/services/notification.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.sass']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 
-  isSuccessMessage = true;
-  isErrorMessage = true;
   firstName: string = 'John';
   lastName: string = 'Doe';
+  errorMessage: string | null = null;
+  successMessage: string | null = null;
 
-  @Select (ProfileState.getUserNames) userInfo$!: Observable<UserInfoInterface> //todo корректно вывести в темплейт get as
-  private showSuccessMessage(): void {
-    this.isSuccessMessage = true;
-    setTimeout(() => {
-      this.closeSuccessMessage();
-    }, 30000);
+  @Select (ProfileState.getUserNames) userInfo$!: Observable<UserInfoInterface> //todo корректно вывести в темплейт number
+
+  constructor(private notificationService: NotificationService) {
   }
 
-  private closeSuccessMessage(): void {
-    this.isSuccessMessage = false;
-  }
+  ngOnInit(): void {
+    this.notificationService.error$.subscribe(errorMessage => {
+      this.errorMessage = errorMessage;
+      setTimeout(() => {
+        this.errorMessage = null;
+      }, 30000);
+    });
 
-  private showErrorMessage(): void {
-    this.isErrorMessage = true;
-  }
-
-  private closeErrorMessage(): void {
-    this.isErrorMessage = false;
+    this.notificationService.success$.subscribe(successMessage => {
+      this.successMessage = successMessage;
+      setTimeout(() => {
+        this.successMessage = null;
+      }, 30000);
+    });
   }
 
   public login(): void {
     console.log('login');
+  }
+
+  closeBanner(): void {
+    this.errorMessage = null;
+    this.successMessage = null;
   }
 }
