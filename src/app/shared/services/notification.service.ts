@@ -10,7 +10,7 @@ export class NotificationService {
   private successSubject = new Subject<string>();
   constructor() { }
 
-  error$ = this.errorSubject.asObservable(); //todo ?
+  error$ = this.errorSubject.asObservable();
   success$ = this.successSubject.asObservable();
 
   notifyError(message: string): void {

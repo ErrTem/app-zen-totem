@@ -14,16 +14,16 @@
     (close)="closeBanner()"
   ></app-notify-message>
 
-  <div class="header__right">
+  <div class="header__right" *ngIf="isLoggedIn()">
 
       <div class="header__right__user">
         <a class="link" routerLink="app/profile">
-          <span>{{ firstName }} {{ lastName }}</span>
+          <span>{{ (userInfo$ | async)?.firstName }} {{ (userInfo$ | async)?.lastName }}</span>
           <img class="icon" ngSrc="../../../assets/user.png" width="20" height="20" priority alt="">
         </a>
       </div>
 
-    <button (click)="login()">
+    <button (click)="logout()">
       <div class="header__right__login">
           <span>Logout</span>
           <img class="icon" ngSrc="../../../assets/enter.png" width="20" height="20" priority alt="">

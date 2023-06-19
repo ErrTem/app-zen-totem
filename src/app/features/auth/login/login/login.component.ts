@@ -5,6 +5,7 @@ import { Store } from "@ngxs/store";
 import { UserInfoInterface } from "../../../../shared/interfaces/user.interface";
 import { SetUserInfo } from "../../../app-common/profile/ngxs/profile.actions";
 import { AuthService } from "../../auth.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
     private readonly formBuilder: FormBuilder,
     private readonly store: Store,
     private readonly authService: AuthService,
+    private readonly router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -37,6 +39,8 @@ export class LoginComponent implements OnInit {
     const userData: UserInfoInterface = this.generateUserData();
     this.authService.setUserInfo(userData);
     this.store.dispatch(new SetUserInfo(userData));
+
+    this.router.navigate(['app/home']); // todo is that ok?
   }
 
   public initNewUserForm() {

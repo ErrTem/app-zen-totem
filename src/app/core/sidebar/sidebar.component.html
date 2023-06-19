@@ -1,4 +1,4 @@
-<div class="sidebar">
+<div class="sidebar" *ngIf="isLoggedIn()">
   <ul>
     <li routerLink="app/home" routerLinkActive="active">Home</li>
     <li routerLink="app/profile" routerLinkActive="active">Profile</li>

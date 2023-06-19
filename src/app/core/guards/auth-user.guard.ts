@@ -1,19 +1,21 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, Router } from '@angular/router';
 import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
-
-export class AuthUserGuard implements CanActivate { //todo how to implement correctly
+export class AuthUserGuard implements CanActivateChild {
   constructor(private router: Router) {}
 
-  canActivate(route: ActivatedRouteSnapshot) : Observable<boolean> | Promise<boolean> | boolean {
-    if ( localStorage.getItem('userInfo')) {
-      return true
+  canActivateChild(route: ActivatedRouteSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    const userInfo = localStorage.getItem('userInfo');
+
+    if (userInfo) {
+      return true;
     } else {
-      return  false
+      this.router.navigate(['auth/login']);
+      return false;
     }
   }
 }

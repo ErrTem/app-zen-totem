@@ -14,8 +14,8 @@ export class ProfileService {
   private apiUrl = 'https://jsonplaceholder.typicode.com'
 
   constructor(
-    private http: HttpClient,
-    private notificationService: NotificationService,
+    private readonly http: HttpClient,
+    private readonly notificationService: NotificationService,
   ) {
   }
 

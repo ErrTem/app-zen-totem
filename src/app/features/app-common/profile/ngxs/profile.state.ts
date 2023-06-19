@@ -8,7 +8,7 @@ export interface ProfileStateModel {
 }
 
 @State<ProfileStateModel>({
-  name: 'PROFILE_STATE_MODEL', //todo naming
+  name: 'PROFILE_STATE_MODEL', //todo name
   defaults: {
     userInfo: {
       email: '',
@@ -20,16 +20,11 @@ export interface ProfileStateModel {
   }
 })
 
-@Injectable() //todo зачем и почему без него не работает?
+@Injectable()
 export class ProfileState {
 
   @Selector()
   static getUserInfo({userInfo}: ProfileStateModel): UserInfoInterface {
-    return userInfo;
-  }
-
-  @Selector()
-  static getUserNames({userInfo}: ProfileStateModel): UserInfoInterface { //todo сделать деструктуризацию и вернуть first/last name
     return userInfo;
   }
 
