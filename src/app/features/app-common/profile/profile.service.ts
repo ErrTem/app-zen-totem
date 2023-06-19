@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
-import { catchError, Observable, tap, throwError } from 'rxjs';
+import {catchError, Observable, tap, throwError} from 'rxjs';
 
-import { UserInfoInterface } from '../../../shared/interfaces/user.interface';
-import { NotificationService } from '../../../shared/services/notification.service';
+import {UserInfoInterface} from '../../../shared/interfaces/user.interface';
+import {NotificationService} from '../../../shared/services/notification.service';
 
 @Injectable({
   providedIn: 'root'
@@ -29,8 +29,8 @@ export class ProfileService {
           this.notificationService.notifyError('error: An error occurred');
 
           return throwError(error);
-      }),
-    );
+        }),
+      );
   }
 
   public updateUserInfo(userInfo: UserInfoInterface, userId: number): Observable<any> {
@@ -43,8 +43,8 @@ export class ProfileService {
           this.notificationService.notifyError('error: An error occurred');
 
           return throwError(error);
-      }),
-    );
+        }),
+      );
   }
 
   //todo errorInterceptor

@@ -10,8 +10,7 @@ import { emailValidationPattern } from '../../../../shared/constants/email-valid
 import { ProfileService } from '../profile.service';
 import { NotificationService } from "../../../../shared/services/notification.service";
 import { SetUserInfo } from "../ngxs/profile.actions";
-//todo замена всех совпадений на
-//todo linter
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
