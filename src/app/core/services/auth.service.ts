@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { UserInfoInterface } from "../../shared/interfaces/user.interface";
-import { Router } from "@angular/router";
+import { UserInfoInterface } from "@core/interfaces/user.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +9,7 @@ export class AuthService {
   private loggedInRole: string | null = null;
   private userInfo: any | null = null;
 
-  constructor(private readonly router: Router)  {
+  constructor()  {
     // if user info
     this.loadUserInfo();
   }
@@ -29,7 +28,7 @@ export class AuthService {
 
   setLoggedInRole(role: string): void {
     this.loggedInRole = role;
-    localStorage.setItem('loggedInRole', role);
+    localStorage.setItem('loggedInRole', role); //todo replace strings to constants names
   }
 
   getLoggedInRole(): string | null {
@@ -55,6 +54,6 @@ export class AuthService {
     localStorage.removeItem('loggedInRole');
     localStorage.removeItem('userInfo');
 
-    this.router.navigate(['auth/login']); //todo acceptable to use in service or better call in component?
+    // this.router.navigate(['auth/login']); //todo acceptable to use in service or better call in component?
   }
 }

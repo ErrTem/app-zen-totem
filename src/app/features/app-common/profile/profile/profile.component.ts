@@ -4,12 +4,12 @@ import { Select, Store } from '@ngxs/store';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 
-import { UserInfoInterface } from '../../../../shared/interfaces/user.interface';
-import { ProfileState } from '../ngxs/profile.state';
-import { emailValidationPattern } from '../../../../shared/constants/email-validation';
+import { UserInfoInterface } from '@core/interfaces/user.interface';
+import { ProfileState } from '@ngxs/profile.state';
+import { emailValidationPattern } from '@shared/constants/validations/email-validation';
 import { ProfileService } from '../profile.service';
-import { NotificationService } from "../../../../shared/services/notification.service";
-import { SetUserInfo } from "../ngxs/profile.actions";
+import { NotificationService } from "../../../../core/services/notification.service";
+import { SetUserInfo } from "@ngxs/profile.actions";
 
 @Component({
   selector: 'app-profile',
@@ -18,7 +18,7 @@ import { SetUserInfo } from "../ngxs/profile.actions";
 })
 export class ProfileComponent implements OnInit {
 
-  public profileForm!: FormGroup
+  public profileForm!: FormGroup;
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -27,7 +27,7 @@ export class ProfileComponent implements OnInit {
     private readonly notificationService: NotificationService,
   ) { }
 
-  @Select (ProfileState.getUserInfo) userInfo$!: Observable<UserInfoInterface>
+  @Select (ProfileState.getUserInfo) userInfo$!: Observable<UserInfoInterface>;
 
   ngOnInit(): void {
     this.initNewProductForm();
@@ -45,7 +45,7 @@ export class ProfileComponent implements OnInit {
         .subscribe(data => {
           this.store.dispatch(new SetUserInfo(data));
           localStorage.setItem('userInfo', JSON.stringify(data));
-      })
+      });
     }
   }
 
@@ -84,7 +84,7 @@ export class ProfileComponent implements OnInit {
       lastName: this.profileForm.get('lastName')?.value,
       phoneNumber: this.profileForm.get('phoneNumber')?.value,
       websiteUrl: this.profileForm.get('websiteUrl')?.value || '',
-    }
+    };
   }
 
   isFieldInvalid(fieldName: string): boolean {
@@ -93,7 +93,7 @@ export class ProfileComponent implements OnInit {
     if (control) {
       return control.invalid && (control.dirty || control.touched);
     } else
-      return false
+      return false;
   }
 
   // todo jQuery plugin https://github.com/jackocnr/intl-tel-input

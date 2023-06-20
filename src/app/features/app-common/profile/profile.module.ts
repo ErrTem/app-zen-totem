@@ -5,7 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgxsModule } from '@ngxs/store';
 
 import { ProfileComponent } from './profile/profile.component';
-import { ProfileState } from './ngxs/profile.state';
+import { ProfileState } from '@ngxs/profile.state';
 
 @NgModule({
   declarations: [

@@ -3,7 +3,7 @@
   <div class="header__left">
     <div class="header__left__logo">
       <a routerLink="app/home">
-        <img ngSrc="../../../assets/totem.png" width="50" height="50" priority alt="">
+        <img ngSrc="../../../../assets/totem.png" width="50" height="50" priority alt="">
       </a>
     </div>
   </div>
@@ -19,14 +19,14 @@
       <div class="header__right__user">
         <a class="link" routerLink="app/profile">
           <span>{{ (userInfo$ | async)?.firstName }} {{ (userInfo$ | async)?.lastName }}</span>
-          <img class="icon" ngSrc="../../../assets/user.png" width="20" height="20" priority alt="">
+          <img class="icon" ngSrc="../../../../assets/user.png" width="20" height="20" priority alt="">
         </a>
       </div>
 
     <button (click)="logout()">
       <div class="header__right__login">
           <span>Logout</span>
-          <img class="icon" ngSrc="../../../assets/enter.png" width="20" height="20" priority alt="">
+          <img class="icon" ngSrc="../../../../assets/enter.png" width="20" height="20" priority alt="">
       </div>
     </button>
 

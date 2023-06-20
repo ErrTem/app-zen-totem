@@ -2,27 +2,28 @@ import { NgModule } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { RouterLink, RouterModule } from '@angular/router';
 
-import { HeaderComponent } from './header/header.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { NotifyMessageComponent } from './notify-message/notify-message.component';
+import { NotifyMessageComponent, HeaderComponent, SidebarComponent } from './components';
+import { ReactiveFormsModule } from "@angular/forms";
 
-
+const COMPONENTS = [
+  HeaderComponent,
+  SidebarComponent,
+  NotifyMessageComponent,
+];
 @NgModule({
   declarations: [
-    HeaderComponent,
-    SidebarComponent,
-    NotifyMessageComponent,
+    ...COMPONENTS,
   ],
   imports: [
     CommonModule,
     RouterLink,
     RouterModule,
     NgOptimizedImage,
+    ReactiveFormsModule,
   ],
   exports: [
-    HeaderComponent,
-    SidebarComponent,
-    NotifyMessageComponent,
+    ...COMPONENTS,
+    ReactiveFormsModule,
   ]
 })
 export class CoreModule { }

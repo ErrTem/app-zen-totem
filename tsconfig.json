@@ -2,7 +2,13 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "src/app",
+    "paths": {
+      "@core/*": ["core/*"],
+      "@features/*": ["features/*"],
+      "@shared/*": ["shared/*"],
+      "@ngxs/*": ["ngxs/*"]
+    },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,

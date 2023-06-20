@@ -4,4 +4,5 @@ export interface UserInfoInterface {
   lastName: string;
   phoneNumber?: string;
   websiteUrl?: string;
+  role?: string;
 }

@@ -1,17 +1,18 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
-import {catchError, Observable, tap, throwError} from 'rxjs';
+import { catchError, Observable, tap, throwError } from 'rxjs';
 
-import {UserInfoInterface} from '../../../shared/interfaces/user.interface';
-import {NotificationService} from '../../../shared/services/notification.service';
+import { UserInfoInterface } from '@core/interfaces/user.interface';
+import { NotificationService } from '@core/services'; //todo how to write aliace
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileService {
 
-  private apiUrl = 'https://jsonplaceholder.typicode.com'
+  private apiUrl = 'https://jsonplaceholder.typicode.com';
+
 
   constructor(
     private readonly http: HttpClient,
@@ -54,10 +55,9 @@ export class ProfileService {
       tap(() => console.log('API call success')),
       catchError((error) => {
         console.log('API call error:', error);
+
         return throwError(error);
       })
     );
   }
 }
-
-

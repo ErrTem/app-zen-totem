@@ -3,11 +3,11 @@ import { Select, Store } from '@ngxs/store';
 
 import { Observable } from 'rxjs';
 
-import { ProfileState } from '../../features/app-common/profile/ngxs/profile.state';
-import { UserInfoInterface } from '../../shared/interfaces/user.interface';
-import { NotificationService } from '../../shared/services/notification.service';
-import { AuthService } from "../../features/auth/auth.service";
-import { SetUserInfo } from "../../features/app-common/profile/ngxs/profile.actions";
+import { ProfileState } from '@ngxs/profile.state';
+import { UserInfoInterface } from '@core/interfaces/user.interface';
+import { NotificationService } from '../../services/notification.service';
+import { AuthService } from "@core/services/auth.service";
+import { SetUserInfo } from "@ngxs/profile.actions";
 
 @Component({
   selector: 'app-header',
@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit { //todo unsubscribe or use subsc
   public errorMessage: string | null = null;
   public successMessage: string | null = null;
 
-  @Select (ProfileState.getUserInfo) userInfo$!: Observable<UserInfoInterface>
+  @Select (ProfileState.getUserInfo) userInfo$!: Observable<UserInfoInterface>;
 
   constructor(
     private readonly notificationService: NotificationService,
@@ -42,20 +42,10 @@ export class HeaderComponent implements OnInit { //todo unsubscribe or use subsc
         this.successMessage = null;
       }, 30000);
     });
-
-    this.getUserInfoFromLocalStorage() //todo is that ok?
-  }
-
-
-  public getUserInfoFromLocalStorage(): any {
-    const userInfo = localStorage.getItem('userInfo');
-    if (userInfo) {
-      this.store.dispatch(new SetUserInfo(JSON.parse(userInfo)))
-    }
   }
 
   public logout(): void {
-    this.authService.userLogout()
+    this.authService.userLogout();
   }
 
   public isLoggedIn(): boolean {
