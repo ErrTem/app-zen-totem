@@ -1,17 +1,18 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { BillingComponent } from './billing/billing.component';
+import {BillingComponent} from './billing/billing.component';
 
 @NgModule({
   declarations: [
-    BillingComponent,
+    BillingComponent
   ],
   imports: [
-    CommonModule,
+    CommonModule
   ],
   exports: [
-    BillingComponent,
+    BillingComponent
   ]
 })
-export class BillingModule { }
+export class BillingModule {
+}
