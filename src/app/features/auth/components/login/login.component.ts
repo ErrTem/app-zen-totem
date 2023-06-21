@@ -6,6 +6,7 @@ import { ClearUserInfo, SetUserInfo } from "@ngxs/profile.actions";
 
 import { AuthService } from "@core/services/auth.service";
 import { UserInfoInterface } from "@core/interfaces/user.interface";
+import { USER_INFO } from "@shared/constants/localstorage-names";
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const isUserLoggedIn  = !!localStorage.getItem('userInfo');
+    const isUserLoggedIn  = !!localStorage.getItem(USER_INFO);
 
     if (!isUserLoggedIn) {
       this.store.dispatch(new ClearUserInfo());
@@ -38,6 +39,6 @@ export class LoginComponent implements OnInit {
     this.authService.setUserInfo(userData);
     this.store.dispatch(new SetUserInfo(userData));
 
-    this.router.navigate(['app/home']);
+    console.log(this.router.navigate(['app/home']));
   }
 }

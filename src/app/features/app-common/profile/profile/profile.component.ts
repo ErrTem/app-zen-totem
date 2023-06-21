@@ -10,6 +10,7 @@ import { emailValidationPattern } from '@shared/constants/validations/email-vali
 import { ProfileService } from '../profile.service';
 import { NotificationService } from "@core/services";
 import { SetUserInfo } from "@ngxs/profile.actions";
+import { USER_INFO } from "@shared/constants/localstorage-names";
 
 @Component({
   selector: 'app-profile',
@@ -44,7 +45,7 @@ export class ProfileComponent implements OnInit {
       this.profileService.updateUserInfo(userInfo, 1)
         .subscribe(data => {
           this.store.dispatch(new SetUserInfo(data));
-          localStorage.setItem('userInfo', JSON.stringify(data));
+          localStorage.setItem(USER_INFO, JSON.stringify(data));
       });
     }
   }

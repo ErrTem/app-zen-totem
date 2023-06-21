@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from "@ngxs/store";
 
 import { SetUserInfo } from "@ngxs/profile.actions";
+import { USER_INFO } from "@shared/constants/localstorage-names";
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,7 @@ export class AppComponent implements OnInit {
   }
 
   private setUserInfoToStore(): void {
-    const userInfo = localStorage.getItem('userInfo');
+    const userInfo = localStorage.getItem(USER_INFO);
     if (userInfo) {
       this.store.dispatch(new SetUserInfo(JSON.parse(userInfo)));
     }
