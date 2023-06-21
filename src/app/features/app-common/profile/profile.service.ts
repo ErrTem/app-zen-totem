@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, Observable, tap, throwError } from 'rxjs';
 
 import { UserInfoInterface } from '@core/interfaces/user.interface';
-import { NotificationService } from '@core/services'; //todo how to write aliace
+import { NotificationService } from '@core/services';
 
 @Injectable({
   providedIn: 'root'
@@ -49,7 +49,6 @@ export class ProfileService {
   }
 
   //todo errorInterceptor
-  //todo catch error if call dont start
   public test(): Observable<any> {
     return this.http.put(`${this.apiUrl}/posts/1`, 'uncorrectBody').pipe(
       tap(() => console.log('API call success')),

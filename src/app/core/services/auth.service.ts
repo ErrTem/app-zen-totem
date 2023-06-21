@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { UserInfoInterface } from "@core/interfaces/user.interface";
+import { USER_INFO, USER_ROLE } from "@shared/constants/localstorage-names";
 
 @Injectable({
   providedIn: 'root'
@@ -15,12 +16,12 @@ export class AuthService {
   }
 
   private loadUserInfo(): void {
-    const loggedInRole = localStorage.getItem('loggedInRole');
+    const loggedInRole = localStorage.getItem(USER_ROLE);
     if (loggedInRole) {
       this.loggedInRole = loggedInRole;
     }
 
-    const userInfo = localStorage.getItem('userInfo');
+    const userInfo = localStorage.getItem(USER_INFO);
     if (userInfo) {
       this.userInfo = JSON.parse(userInfo);
     }
@@ -28,7 +29,7 @@ export class AuthService {
 
   setLoggedInRole(role: string): void {
     this.loggedInRole = role;
-    localStorage.setItem('loggedInRole', role); //todo replace strings to constants names
+    localStorage.setItem(USER_ROLE, role);
   }
 
   getLoggedInRole(): string | null {
@@ -37,7 +38,7 @@ export class AuthService {
 
   setUserInfo(userInfo: UserInfoInterface): void {
     this.userInfo = userInfo;
-    localStorage.setItem('userInfo', JSON.stringify(userInfo));
+    localStorage.setItem(USER_INFO, JSON.stringify(userInfo));
   }
 
   getUserInfo(): any | null {
@@ -51,9 +52,7 @@ export class AuthService {
   userLogout(): void {
     this.loggedInRole = null;
     this.userInfo = null;
-    localStorage.removeItem('loggedInRole');
-    localStorage.removeItem('userInfo');
-
-    // this.router.navigate(['auth/login']); //todo acceptable to use in service or better call in component?
+    localStorage.removeItem(USER_ROLE);
+    localStorage.removeItem(USER_INFO);
   }
 }

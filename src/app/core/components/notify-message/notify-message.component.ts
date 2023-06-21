@@ -21,6 +21,7 @@ export class NotifyMessageComponent {
         return this.message.replace('success:', '');
       }
     }
+
     return null;
   }
 
@@ -33,6 +34,5 @@ export class NotifyMessageComponent {
   }
   closeBanner(): void {
     this.close.emit();
-    console.log('close')
   }
 }

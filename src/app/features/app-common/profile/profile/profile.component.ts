@@ -8,7 +8,7 @@ import { UserInfoInterface } from '@core/interfaces/user.interface';
 import { ProfileState } from '@ngxs/profile.state';
 import { emailValidationPattern } from '@shared/constants/validations/email-validation';
 import { ProfileService } from '../profile.service';
-import { NotificationService } from "../../../../core/services/notification.service";
+import { NotificationService } from "@core/services";
 import { SetUserInfo } from "@ngxs/profile.actions";
 
 @Component({
@@ -64,7 +64,6 @@ export class ProfileComponent implements OnInit {
         Validators.minLength(2),
         Validators.maxLength(255)
       ]],
-      //todo +7 covers data from store
       phoneNumber: ['+7', [
         Validators.required,
         Validators.pattern(/^7\d{10}$/)
