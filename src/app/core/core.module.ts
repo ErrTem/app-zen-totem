@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { RouterLink, RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from "@angular/forms";
 
 import { NotifyMessageComponent, HeaderComponent, SidebarComponent } from './components';
-import { ReactiveFormsModule } from "@angular/forms";
 
 const COMPONENTS = [
   HeaderComponent,
