@@ -11,6 +11,7 @@ import { ProfileService } from '../profile.service';
 import { NotificationService } from "@core/services";
 import { SetUserInfo } from "@ngxs/profile.actions";
 import { USER_INFO } from "@shared/constants/localstorage-names";
+import { EMPTY_STRING } from "@shared/constants/empty-string";
 
 @Component({
   selector: 'app-profile',
@@ -55,12 +56,12 @@ export class ProfileComponent implements OnInit {
       email: [{
         value: 'example@example.com', disabled: true
       }],
-      firstName: ['',[
+      firstName: [EMPTY_STRING,[
         Validators.required,
         Validators.minLength(1),
         Validators.maxLength(255)
       ]],
-      lastName: ['', [
+      lastName: [EMPTY_STRING, [
         Validators.required,
         Validators.minLength(2),
         Validators.maxLength(255)
@@ -69,7 +70,7 @@ export class ProfileComponent implements OnInit {
         Validators.required,
         Validators.pattern(/^7\d{10}$/)
       ]],
-      websiteUrl: ['', [
+      websiteUrl: [EMPTY_STRING, [
         Validators.pattern(emailValidationPattern
         )
       ]]
@@ -83,7 +84,7 @@ export class ProfileComponent implements OnInit {
       firstName: this.profileForm.get('firstName')?.value,
       lastName: this.profileForm.get('lastName')?.value,
       phoneNumber: this.profileForm.get('phoneNumber')?.value,
-      websiteUrl: this.profileForm.get('websiteUrl')?.value || '',
+      websiteUrl: this.profileForm.get('websiteUrl')?.value || EMPTY_STRING,
     };
   }
 
@@ -103,7 +104,7 @@ export class ProfileComponent implements OnInit {
       let phoneNumber = phoneNumberControl.value;
 
       // Remove any non-digit characters
-      phoneNumber = phoneNumber.replace(/\D/g, '');
+      phoneNumber = phoneNumber.replace(/\D/g, EMPTY_STRING);
 
       // Ensure that the country code is at the beginning
       if (!phoneNumber.startsWith('7')) {

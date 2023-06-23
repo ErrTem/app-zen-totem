@@ -2,17 +2,18 @@ import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { ClearUserInfo, SetUserInfo } from "./profile.actions";
 import { Injectable } from "@angular/core";
 import { UserInfoInterface } from "@core/interfaces/user.interface";
+import { EMPTY_STRING } from "@shared/constants/empty-string";
 
 export interface ProfileStateModel {
  userInfo: UserInfoInterface;
 }
 
 const defaultUserInfo: UserInfoInterface = {
-  email: '',
-  firstName: '',
-  lastName: '',
-  phoneNumber: '',
-  websiteUrl: '',
+  email: EMPTY_STRING,
+  firstName: EMPTY_STRING,
+  lastName: EMPTY_STRING,
+  phoneNumber: EMPTY_STRING,
+  websiteUrl: EMPTY_STRING,
 };
 //todo constant for empty string
 @State<ProfileStateModel>({

@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 import { UserInfoInterface } from "@core/interfaces/user.interface";
+import { EMPTY_STRING } from "@shared/constants/empty-string";
 //todo install node-sass-alias-importer
 
 @Component({
@@ -29,12 +30,12 @@ export class LoginFormComponent implements OnInit {
 
   public initNewUserForm() {
     this.userForm = this.formBuilder.group({
-      firstName: ['',[
+      firstName: [EMPTY_STRING,[
         Validators.required,
         Validators.minLength(2),
         Validators.maxLength(255)
       ]],
-      lastName: ['', [
+      lastName: [EMPTY_STRING, [
         Validators.required,
         Validators.minLength(2),
         Validators.maxLength(255)

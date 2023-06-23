@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { EMPTY_STRING } from "@shared/constants/empty-string";
 
 @Component({
   selector: 'app-notify-message',
@@ -16,9 +17,9 @@ export class NotifyMessageComponent {
   getMessage(): string | null {
     if (this.message !== null) {
       if (this.isError()) {
-        return this.message.replace('error:', '');
+        return this.message.replace('error:', EMPTY_STRING);
       } else if (this.isSuccess()) {
-        return this.message.replace('success:', '');
+        return this.message.replace('success:', EMPTY_STRING);
       }
     }
 

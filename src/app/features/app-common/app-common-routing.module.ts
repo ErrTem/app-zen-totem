@@ -6,10 +6,11 @@ import { InventoryComponent } from './inventory/inventory/inventory.component';
 import { ReportsComponent } from './reports/reports/reports.component';
 import { BillingComponent } from './billing/billing/billing.component';
 import { ProfileComponent } from './profile/profile/profile.component';
+import { EMPTY_STRING } from "@shared/constants/empty-string";
 
 const routes: Routes = [
   {
-    path: '',
+    path: EMPTY_STRING,
     redirectTo: 'home',
     pathMatch: 'full'
   },
