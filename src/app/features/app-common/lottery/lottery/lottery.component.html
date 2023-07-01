@@ -1,0 +1,24 @@
+<div class="lottery-container">
+
+  <div class="title">
+    Home Page
+  </div>
+
+  <div class="content">
+    <div class="content-card">
+      <div class="content-card__participants">Total participants: {{ participantCount$ | async }}</div>
+
+      <button (click)="participate(); isLotteryStarted = true">Take part</button>
+
+      <ng-container class="content-card__message" *ngIf="isLotteryStarted">
+        <div class="content-card__message-success" *ngIf="isWinnerDetermined$ | async; else looser">
+          You win!
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<ng-template #looser >
+  <div class="content-card__message-loose">You loose !</div>
+</ng-template>

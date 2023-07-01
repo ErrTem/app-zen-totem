@@ -1,0 +1,49 @@
+@import 'src/app/sass/constants'
+@import 'src/app/sass/mixins'
+
+.lottery-container
+  @include flex(column, center, center)
+  margin-left: 250px
+  text-align: center
+
+  .title
+    font-size: $medium
+    font-weight: bold
+    margin: 16px 120px 0 0
+
+  .content
+    margin: 50px 120px 16px 0
+
+    .content-card
+      @include size(400px, 150px)
+      @include flex(column, center,center)
+      padding: 20px
+      border: 1px solid $dark-grey
+      border-radius: 4px
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)
+      background-color: $light-grey
+
+      button
+        @include size(100px, 40px)
+        font-size: medium
+        font-weight: bold
+        margin: 20px
+
+
+      &__participants
+        font-size: $medium
+        font-weight: $medium
+
+      &__message-success
+        width: 120px
+        background-color: greenyellow
+        color: black
+        padding: 10px
+
+      &__message-loose
+        width: 120px
+        background-color: #ff5555
+        color: red
+        padding: 10px
+
+
