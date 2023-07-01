@@ -1,14 +1,14 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-import {HomeModule} from './home/home.module';
-import {InventoryModule} from './inventory/inventory.module';
-import {ReportsModule} from './reports/reports.module';
-import {BillingModule} from './billing/billing.module';
-import {ProfileModule} from './profile/profile.module';
+import { HomeModule } from './home/home.module';
+import { InventoryModule } from './inventory/inventory.module';
+import { ReportsModule } from './reports/reports.module';
+import { BillingModule } from './billing/billing.module';
+import { ProfileModule } from './profile/profile.module';
+import { LotteryModule } from "@features/app-common/lottery/lottery.module";
 
-import {AppCommonRoutingModule} from './app-common-routing.module';
-
+import { AppCommonRoutingModule } from './app-common-routing.module';
 
 @NgModule({
   imports: [
@@ -19,7 +19,8 @@ import {AppCommonRoutingModule} from './app-common-routing.module';
     ReportsModule,
     BillingModule,
     ProfileModule,
-  ]
+    LotteryModule,
+  ],
 })
 export class AppCommonModule {
 }

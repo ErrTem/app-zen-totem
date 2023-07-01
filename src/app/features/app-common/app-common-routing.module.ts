@@ -6,12 +6,13 @@ import { InventoryComponent } from './inventory/inventory/inventory.component';
 import { ReportsComponent } from './reports/reports/reports.component';
 import { BillingComponent } from './billing/billing/billing.component';
 import { ProfileComponent } from './profile/profile/profile.component';
+import { LotteryComponent } from "@features/app-common/lottery/lottery/lottery.component";
 import { EMPTY_STRING } from "@shared/constants/empty-string";
 
 const routes: Routes = [
   {
     path: EMPTY_STRING,
-    redirectTo: 'home',
+    redirectTo: 'lottery',
     pathMatch: 'full'
   },
   {
@@ -34,6 +35,10 @@ const routes: Routes = [
     path: 'profile',
     component: ProfileComponent
   },
+  {
+    path: 'lottery',
+    component: LotteryComponent
+  }
 ];
 
 @NgModule({
