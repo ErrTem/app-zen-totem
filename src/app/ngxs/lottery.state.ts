@@ -9,6 +9,8 @@ const maxUsers = 10000;
 export interface LotteryStateModel {
   participantCount: number;
   isWinnerDetermined: boolean;
+  isMaxParticipantsReached: boolean;
+  weHaveWinner: boolean;
 }
 
 @State<LotteryStateModel>({
@@ -16,6 +18,8 @@ export interface LotteryStateModel {
   defaults: {
       participantCount: 0,
       isWinnerDetermined: false,
+      isMaxParticipantsReached: false,
+       weHaveWinner: false,
   }
 })
 
@@ -29,6 +33,11 @@ export class LotteryState {
   @Selector()
   static getIsWinnerDetermined({ isWinnerDetermined } : LotteryStateModel): boolean  {
     return isWinnerDetermined;
+  }
+
+  @Selector()
+  static getIsMaxParticipantsReached({ isMaxParticipantsReached } : LotteryStateModel): boolean  {
+    return isMaxParticipantsReached;
   }
 
   @Action(SetParticipantCount)
@@ -55,15 +64,22 @@ export class LotteryState {
         participantCount : newParticipantCount
     });
 
+    if (newParticipantCount >= maxUsers) {
+      patchState({
+        isMaxParticipantsReached: true
+      });
+    }
+
     dispatch(new DetermineWinner());
   }
 
   @Action(DetermineWinner)
   determineWinner(
-    { patchState }: StateContext<LotteryStateModel>
+    { patchState, getState }: StateContext<LotteryStateModel>
   ): void {
+    const state = getState();
     //prevent multiple users from winning
-    let weHaveWinner = false;
+    let { weHaveWinner } = state;
 
     if (!weHaveWinner) {
       // chance of win = 1/participantCount
@@ -75,7 +91,8 @@ export class LotteryState {
       if (!randomNumber) {
         weHaveWinner = true;
         patchState({
-          isWinnerDetermined: true
+          isWinnerDetermined: true,
+          weHaveWinner: true,
         });
       }
     } else {
