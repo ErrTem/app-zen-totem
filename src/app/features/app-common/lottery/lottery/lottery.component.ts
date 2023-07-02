@@ -12,7 +12,7 @@ import { LotteryState } from "@ngxs/lottery.state";
 export class LotteryComponent implements OnInit {
   public isLotteryStarted = false;
 
-  @Select (LotteryState.getIsWinnerDetermined) isWinnerDetermined$!: Observable<boolean>;
+  @Select (LotteryState.getIsWin) isWinnerDetermined$!: Observable<boolean>;
   @Select (LotteryState.getIsMaxParticipantsReached) isMaxParticipantsReached$!: Observable<boolean>;
   @Select (LotteryState.getParticipantCount) participantCount$!: Observable<number>;
 

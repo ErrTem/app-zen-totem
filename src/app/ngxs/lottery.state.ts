@@ -8,18 +8,18 @@ const maxUsers = 10000;
 
 export interface LotteryStateModel {
   participantCount: number;
-  isWinnerDetermined: boolean;
+  isWin: boolean;
   isMaxParticipantsReached: boolean;
-  weHaveWinner: boolean;
+  isWinnerDetermined: boolean;
 }
 
 @State<LotteryStateModel>({
   name: 'LOTTERY_STATE_MODEL',
   defaults: {
-      participantCount: 0,
-      isWinnerDetermined: false,
-      isMaxParticipantsReached: false,
-       weHaveWinner: false,
+    participantCount: 0,
+    isWin: false,
+    isMaxParticipantsReached: false,
+    isWinnerDetermined: false,
   }
 })
 
@@ -31,8 +31,8 @@ export class LotteryState {
     return participantCount;
   }
   @Selector()
-  static getIsWinnerDetermined({ isWinnerDetermined } : LotteryStateModel): boolean  {
-    return isWinnerDetermined;
+  static getIsWin({ isWin } : LotteryStateModel): boolean  {
+    return isWin;
   }
 
   @Selector()
@@ -44,7 +44,7 @@ export class LotteryState {
   setParticipantCount(
     { patchState }: StateContext<LotteryStateModel>
   ): void {
-    const generatedParticipantCount = Math.floor(Math.random() * (maxUsers - minUsers + 1)) + minUsers;
+    const generatedParticipantCount = Math.floor(Math.random() * (maxUsers - minUsers)) + minUsers;
 
     patchState({
         participantCount: generatedParticipantCount,
@@ -61,16 +61,17 @@ export class LotteryState {
     newParticipantCount += 1;
 
     patchState({
-        participantCount : newParticipantCount
+      participantCount : newParticipantCount
     });
+
+    dispatch(new DetermineWinner());
+
 
     if (newParticipantCount >= maxUsers) {
       patchState({
         isMaxParticipantsReached: true
       });
     }
-
-    dispatch(new DetermineWinner());
   }
 
   @Action(DetermineWinner)
@@ -79,9 +80,9 @@ export class LotteryState {
   ): void {
     const state = getState();
     //prevent multiple users from winning
-    let { weHaveWinner } = state;
+    const { isWinnerDetermined } = state;
 
-    if (!weHaveWinner) {
+    if (!isWinnerDetermined) {
       // chance of win = 1/participantCount
       // since you want to provide equal chances to win to each user and show will go on
       // we can not use Math.random() * participantCount since for next user chance of win
@@ -89,15 +90,14 @@ export class LotteryState {
       const randomNumber = Math.floor(Math.random() * maxUsers);
 
       if (!randomNumber) {
-        weHaveWinner = true;
         patchState({
+          isWin: true,
           isWinnerDetermined: true,
-          weHaveWinner: true,
         });
       }
     } else {
       patchState({
-        isWinnerDetermined: false
+        isWin: false
       });
     }
   }

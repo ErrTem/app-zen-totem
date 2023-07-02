@@ -38,7 +38,5 @@ export class LoginComponent implements OnInit {
     const userData: UserInfoInterface = { ...loginData, role: randomRole };
     this.authService.setUserInfo(userData);
     this.store.dispatch(new SetUserInfo(userData));
-
-    console.log(this.router.navigate(['app/home']));
   }
 }

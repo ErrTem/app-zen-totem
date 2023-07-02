@@ -4,12 +4,6 @@ export class SetParticipantCount {
   }
 }
 
-export class StartNewLottery {
-  static readonly type = '[Lottery] StartNewLottery';
-  constructor() {
-  }
-}
-
 export class AddNewParticipant {
   static readonly type = '[Lottery] AddNewParticipant';
   constructor() {

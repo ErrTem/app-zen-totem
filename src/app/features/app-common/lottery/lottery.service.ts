@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from "@ngxs/store";
-import { AddNewParticipant, SetParticipantCount, StartNewLottery } from "@ngxs/lottery.actions";
+import { AddNewParticipant, SetParticipantCount } from "@ngxs/lottery.actions";
 
 @Injectable({
   providedIn: 'root'
