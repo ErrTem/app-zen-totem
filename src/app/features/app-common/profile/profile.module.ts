@@ -14,7 +14,6 @@ import { ProfileState } from '@ngxs/profile.state';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    NgxsModule.forRoot([ProfileState]),
   ],
   exports: [
     ProfileComponent,

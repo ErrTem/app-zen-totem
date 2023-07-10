@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { NgxsModule } from '@ngxs/store';
+import { ProfileState } from '@ngxs/profile.state';
+import { LotteryState } from '@ngxs/lottery.state';
 import { HomeModule } from './home/home.module';
 import { InventoryModule } from './inventory/inventory.module';
 import { ReportsModule } from './reports/reports.module';
@@ -20,6 +23,7 @@ import { AppCommonRoutingModule } from './app-common-routing.module';
     BillingModule,
     ProfileModule,
     LotteryModule,
+    NgxsModule.forRoot([ProfileState, LotteryState]),
   ],
 })
 export class AppCommonModule {

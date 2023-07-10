@@ -13,7 +13,6 @@ import { LotteryState } from "@ngxs/lottery.state";
   ],
   imports: [
     CommonModule,
-    NgxsModule.forRoot([LotteryState]),
   ],
   exports: [
     LotteryComponent,
