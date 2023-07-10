@@ -10,7 +10,7 @@ import { USER_INFO } from "@shared/constants/localstorage-names";
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent implements OnInit {
-  title = 'app-zen-totem';
+  title = 'app-codezilla';
   constructor(private readonly store: Store) {
   }
   ngOnInit(): void {
