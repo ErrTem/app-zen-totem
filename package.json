@@ -1,6 +1,6 @@
 {
-  "name": "app-zen-totem",
-  "version": "1.0.1",
+  "name": "codezilla",
+  "version": "1.0.2",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
