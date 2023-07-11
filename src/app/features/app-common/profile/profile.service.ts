@@ -5,6 +5,7 @@ import { catchError, Observable, tap, throwError } from 'rxjs';
 
 import { UserInfoInterface } from '@core/interfaces/user.interface';
 import { NotificationService } from '@core/services';
+import { ProductInterface } from '@core/interfaces/product.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,6 @@ import { NotificationService } from '@core/services';
 export class ProfileService {
 
   private apiUrl = 'https://jsonplaceholder.typicode.com';
-
 
   constructor(
     private readonly http: HttpClient,

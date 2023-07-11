@@ -3,7 +3,6 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/fo
 
 import { UserInfoInterface } from "@core/interfaces/user.interface";
 import { EMPTY_STRING } from "@shared/constants/empty-string";
-//todo install node-sass-alias-importer
 
 @Component({
   selector: 'app-login-form',

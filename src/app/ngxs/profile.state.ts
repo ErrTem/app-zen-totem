@@ -15,7 +15,7 @@ const defaultUserInfo: UserInfoInterface = {
   phoneNumber: EMPTY_STRING,
   websiteUrl: EMPTY_STRING,
 };
-//todo constant for empty string
+
 @State<ProfileStateModel>({
   name: 'PROFILE_STATE_MODEL',
   defaults: {

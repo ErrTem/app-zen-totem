@@ -1,12 +1,31 @@
 <div class="home-container">
 
-  <div class="title">
-    Home Page
-  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xxl-3" *ngFor="let product of products">
 
-  <div class="content">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur delectus doloribus eum fugit, ipsum maxime, nihil numquam odio odit perferendis possimus quibusdam, quisquam recusandae reprehenderit velit veritatis vero. Nostrum, quibusdam.
-    </p>
-  </div>
+      <mat-card class="product-card">
+        <mat-card-title class="title">{{product.title}}</mat-card-title>
+        <img class="image" mat-card-image src="{{product.image}}">
 
+        <mat-card-content class="content">
+          <p class="price">Цена: <span>{{product.price | currency}}</span></p>
+          <p class="ingredients">{{product.description}}</p>
+        </mat-card-content>
+
+        <span class="spacer"></span>
+
+        <mat-card-actions class="actions">
+          <button
+            class="button"
+            mat-button
+            (click)="addToBasket(product)"
+            type="button"
+          >
+            В корзину
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
 </div>
+
