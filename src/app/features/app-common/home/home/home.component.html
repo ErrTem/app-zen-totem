@@ -1,22 +1,17 @@
 <div class="home-container">
-
-  <div class="row">
-    <div class="col-sm-12 col-md-6 col-lg-4 col-xxl-3" *ngFor="let product of products">
-
+  <div class="home-container__row">
+    <div class="home-container__product col-sm-12 col-md-6 col-lg-4 col-xxl-3" *ngFor="let product of products">
       <mat-card class="product-card">
-        <mat-card-title class="title">{{product.title}}</mat-card-title>
-        <img class="image" mat-card-image src="{{product.image}}">
-
-        <mat-card-content class="content">
-          <p class="price">Цена: <span>{{product.price | currency}}</span></p>
-          <p class="ingredients">{{product.description}}</p>
+        <mat-card-title class="product-card__title">{{product.title}}</mat-card-title>
+        <img class="product-card__image" mat-card-image src="{{product.image}}">
+        <mat-card-content class="product-card__content">
+          <p class="product-card__price">Цена: <span>{{product.price | currency}}</span></p>
+          <p class="product-card__ingredients">{{product.description}}</p>
         </mat-card-content>
-
-        <span class="spacer"></span>
-
-        <mat-card-actions class="actions">
+        <span class="product-card__spacer"></span>
+        <mat-card-actions class="product-card__actions">
           <button
-            class="button"
+            class="product-card__button"
             mat-button
             (click)="addToBasket(product)"
             type="button"
@@ -28,4 +23,3 @@
     </div>
   </div>
 </div>
-

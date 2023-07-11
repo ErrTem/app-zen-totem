@@ -6,56 +6,50 @@
   margin-left: 250px
   text-align: center
 
-  .title
-    font-size: $medium
-    font-weight: bold
-    margin: 16px 120px 0 0
+  &__row
 
-  .content
-    margin: 0 120px 16px 0
+  &__product
+    @include flex(column, center, center)
 
+    .product-card
+      min-width: 350px
+      max-width: 500px
+      height: 550px
+      display: flex
+      flex-direction: column
+      background-color: #FFCA86
+      align-items: center
+      margin: 20px
+      text-align: center
 
-.mdc-card.product-card
-  min-width: 350px
-  max-width: 500px
-  height: 550px
-  display: flex
-  flex-direction: column
-  background-color: #FFCA86
-  align-items: center
-  margin: 20px
-  text-align: center
+      &__title
+        margin: 10px 0
 
-  .title
-    margin: 10px 0px 10px 0px
+      &__image
+        width: 300px
+        height: 300px
+        margin-bottom: 10px
 
+      &__content
+        margin: 0 120px 16px 0
 
-  .image
-    width: 300px
-    height: 300px
-    margin-bottom: 10px
+      &__ingredients
+        margin: 20px 10px 0
 
+      &__price
+        margin: 10px
+        font-size: $medium
 
-  .ingredients
-    margin: 20px 10px 0px 10px
-
-
-
-  .price
-    margin: 10px
-    font-size: large
+      &__spacer
 
 
-
-.mdc-card.product-single-card
-  margin: 0
-
+      &__actions
+        .product-card__button
 
 .mat-toolbar-row
   &.toolbar-editor
     background-color: #FFCA86
     width: 100%
-
 
   &.toolbar-price
     background-color: #FFCA86
@@ -63,6 +57,5 @@
 
     p
       margin-top: 12px
-      font:
-        weight: bold
-        size: large
+      font-weight: bold
+      font-size: $medium
