@@ -23,6 +23,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private successSubscription!: Subscription;
 
   @Select (ProfileState.getUserInfo) userInfo$!: Observable<UserInfoInterface>;
+  //todo логика для отображения цены, изменить css если есть цена
+  public totalPrice: number = 1;
+
+  public isCustomerButtonClicked: boolean = false;
+  public customerNameAbbreviation: string | undefined = '';
 
   constructor(
     private readonly notificationService: NotificationService,
@@ -47,6 +52,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.successMessage = null;
       }, 30000);
     });
+
+    this.userInfo$.subscribe((res)=> {
+      this.customerNameAbbreviation = res.firstName
+        .substring(0, 2)
+        .toUpperCase();
+    })
+
+
   }
 
   public logout(): void {
@@ -67,5 +80,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.errorSubscription.unsubscribe();
     this.successSubscription.unsubscribe();
+  }
+
+  openDialog() {
+//жи есть открой корзину
+  }
+
+  login() {
+    this.router.navigate(['auth/login']);
   }
 }

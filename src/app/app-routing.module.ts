@@ -14,7 +14,6 @@ const routes: Routes = [
   {
     path: 'app',
     loadChildren: () => import('./features/app-common/app-common.module').then(m => m.AppCommonModule),
-    canActivateChild: [AuthUserGuard]
   },
   {
     path: 'auth',
@@ -28,7 +27,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'auth/login',
+    redirectTo: 'app/home',
   },
 ];
 

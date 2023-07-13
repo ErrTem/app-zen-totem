@@ -4,6 +4,7 @@ import { RouterLink, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from "@angular/forms";
 
 import { NotifyMessageComponent, HeaderComponent, SidebarComponent } from './components';
+import { MatButtonModule } from '@angular/material/button';
 
 const COMPONENTS = [
   HeaderComponent,
@@ -14,13 +15,14 @@ const COMPONENTS = [
   declarations: [
     ...COMPONENTS,
   ],
-  imports: [
-    CommonModule,
-    RouterLink,
-    RouterModule,
-    NgOptimizedImage,
-    ReactiveFormsModule,
-  ],
+    imports: [
+        CommonModule,
+        RouterLink,
+        RouterModule,
+        NgOptimizedImage,
+        ReactiveFormsModule,
+        MatButtonModule,
+    ],
   exports: [
     ...COMPONENTS,
     ReactiveFormsModule,

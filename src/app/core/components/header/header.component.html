@@ -2,33 +2,101 @@
   <div class="header__left">
     <div class="header__left__logo">
       <a routerLink="app/home">
-        <img ngSrc="../../../../assets/totem.png" width="50" height="50" priority alt="">
+        <img ngSrc="../../../../assets/codezilla.png" width="70" height="70" priority alt="">
       </a>
     </div>
   </div>
 
-  <app-notify-message
-    *ngIf="successMessage || errorMessage"
-    [message]="errorMessage ? errorMessage : successMessage"
-    (close)="closeBanner()"
-  ></app-notify-message>
+  <div class="header__right">
 
-  <div class="header__right" *ngIf="isLoggedIn()">
+    <div class="header__right__search">
+      <input type="text" class="search-box" placeholder="search brand, product">
+      <button
+        class="search-btn button-header"
+      >
+        <img class="header-icon" ngSrc="../../../../assets/magnifier.png" width="25" height="25" priority alt="">
+      </button>
+    </div>
 
-      <div class="header__right__user">
-        <a class="link" routerLink="app/profile">
-          <span>{{ (userInfo$ | async)?.firstName }} {{ (userInfo$ | async)?.lastName }}</span>
-          <img class="icon" ngSrc="../../../../assets/user.png" width="20" height="20" priority alt="">
-        </a>
-      </div>
+    <div
+      class="header__right__cart"
+    >
+      <button
+        class="button-header"
+        (click)="openDialog()"
+        [ngClass]="{'default-button': !totalPrice, 'links-button': totalPrice}"
+      >
+        <div class="menu-button">
+          <img class="header-icon" ngSrc="../../../../assets/basket.png" width="30" height="30" priority alt="">
+          <div
+            class="menu-button__text"
+            *ngIf="totalPrice; else emptyCart"
+          >
+            $ {{ totalPrice }}
+          </div>
+          <ng-template #emptyCart>
+            <div class="menu-button__text">
+              $ 00.00
+            </div>
+          </ng-template>
+        </div>
+      </button>
+    </div>
 
-    <button (click)="logout()">
-      <div class="header__right__login">
-          <span>Logout</span>
-          <img class="icon" ngSrc="../../../../assets/enter.png" width="20" height="20" priority alt="">
-      </div>
-    </button>
 
+    <div *ngIf="!((userInfo$ | async)?.firstName)" class="header__right__login">
+      <button class="button-header">
+        <div class="menu-button" (click)="login()">
+          <img class="icon" ngSrc="../../../../assets/enter.png" width="25" height="25" priority alt="">
+          <span class="menu-button__text">Login</span>
+        </div>
+      </button>
+    </div>
+
+    <div
+      class="header__right__user"
+      *ngIf="((userInfo$ | async)?.firstName)"
+    >
+      <button
+        class="button-user"
+        [ngClass]="{ clicked: isCustomerButtonClicked }"
+        (click)="isCustomerButtonClicked = true"
+      >
+        <p>
+          {{ customerNameAbbreviation }}
+        </p>
+      </button>
+    </div>
+
+    <ng-container *ngIf="isCustomerButtonClicked; then backdropTemplate"></ng-container>
   </div>
-
 </header>
+
+<ng-template #backdropTemplate>
+  <div class="backdrop" (click)="isCustomerButtonClicked = false"></div>
+  <div class="user-logout">
+
+    <div class="user-logout_top"></div>
+
+    <div class="user-logout_bottom">
+      <div class="user-logout_bottom__profile" [routerLink]="['/feed/customer-account/profile']">
+        <div>
+          <img
+            class="header-icon"
+            ngSrc="../../../../assets/user.png" width="20" height="20" priority alt="">
+        </div>
+        <span>My profile</span>
+      </div>
+
+      <div class="user-logout_bottom__logout" (click)="logout()">
+        <div>
+          <img
+            class="header-icon"
+            ngSrc="../../../../assets/enter.png" width="20" height="20" priority alt="">
+        </div>
+        <span>Log out</span>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
