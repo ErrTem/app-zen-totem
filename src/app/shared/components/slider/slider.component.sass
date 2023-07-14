@@ -1,0 +1,33 @@
+@import 'src/app/sass/constants'
+@import 'src/app/sass/mixins'
+
+.custom-arrow
+  position: absolute
+  top: 50%
+  transform: translateY(-50%)
+
+  button
+    size: inherit
+    background-color: transparent
+    border: none
+    border-radius: 5px
+    cursor: pointer
+
+    img
+      width: 25px
+      height: 25px
+
+    img:hover
+      border-radius: 25px
+      background-color: $color-error
+
+  &.custom-arrow-left
+    width: 25px
+    height: 25px
+    left: 2.5%
+
+  &.custom-arrow-right
+    width: 25px
+    height: 25px
+    right: 2.5%
+

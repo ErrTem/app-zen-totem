@@ -31,7 +31,9 @@
             ],
             "styles": [
               "src/styles.sass",
-              "src/custom-styles.scss"
+              "src/custom-styles.scss",
+              "node_modules/@glidejs/glide/src/assets/sass/glide.core.scss",
+              "node_modules/@glidejs/glide/src/assets/sass/glide.theme.scss"
             ],
             "scripts": []
           },

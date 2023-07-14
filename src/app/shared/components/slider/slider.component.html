@@ -1,0 +1,26 @@
+<ngx-glide
+  [arrowLeftTemplate]="arrowLeftTemplate"
+  [arrowRightTemplate]="arrowRightTemplate"
+  [gap]="0"
+  type="carousel"
+>
+  <img src="assets/slider/1.jpg">
+  <img src="assets/slider/3.jpg">
+  <img src="assets/slider/6.jpg">
+</ngx-glide>
+
+<ng-template #arrowLeftTemplate>
+  <div class="custom-arrow custom-arrow-left">
+    <button>
+      <img src="assets/slider/arrow-left.png">
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #arrowRightTemplate>
+  <div class="custom-arrow custom-arrow-right">
+    <button>
+      <img src="assets/slider/arrow-right.png">
+    </button>
+  </div>
+</ng-template>

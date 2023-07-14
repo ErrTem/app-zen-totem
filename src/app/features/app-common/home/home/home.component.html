@@ -1,6 +1,12 @@
 <div class="home-container">
-  <div class="home-container__row">
-    <div class="home-container__product col-sm-12 col-md-6 col-lg-4 col-xxl-3" *ngFor="let product of products">
+
+  <app-slider></app-slider>
+
+  <div class="search-bar">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus enim ex minima similique voluptate. Alias amet consequuntur eius quam tenetur.
+  </div>
+
+    <div class="home-container__product" *ngFor="let product of products">
       <mat-card class="product-card">
         <mat-card-title class="product-card__title">{{product.title}}</mat-card-title>
         <img class="product-card__image" mat-card-image src="{{product.image}}">
@@ -21,5 +27,6 @@
         </mat-card-actions>
       </mat-card>
     </div>
-  </div>
+
 </div>
+

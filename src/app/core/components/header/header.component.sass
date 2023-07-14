@@ -3,6 +3,7 @@
 
 header
   @include flex(row, center, space-between)
+  min-width: 740px
   padding: 15px
   border-radius: 0 0 15px 15px
   background-color: $color-default
@@ -10,12 +11,32 @@ header
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15)
 
   .header__left
-
     &__logo
       @include  size(50px, 50px)
-      margin-left: 10px
       position: fixed
       top: 10px
+      margin-left: 10px
+
+      img.logo-image
+        position: absolute
+        top: 0
+        left: 0
+        z-index: 1
+        transition: opacity 0.6s ease-in-out
+
+      img.hover-image
+        position: absolute
+        top: 0
+        left: 0
+        z-index: 2
+        opacity: 0
+        transition: opacity 0.6s ease-in-out
+
+      a:hover img.logo-image
+        opacity: 0
+
+      a:hover img.hover-image
+        opacity: 1
 
   .header__right
     @include  flex(row, center, space-between)
@@ -37,7 +58,7 @@ header
     &__search
       width: 400px
       display: flex
-      margin-right: 20px
+      margin: 0 20px 0 90px
 
       .search-box
         @include size(88%, 18px)

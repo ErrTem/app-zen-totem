@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
+import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { MatMenuModule } from '@angular/material/menu';
     CommonModule,
     MatCardModule,
     MatMenuModule,
+    SharedModule,
   ],
   exports: [
     HomeComponent,

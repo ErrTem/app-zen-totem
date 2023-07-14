@@ -4,9 +4,14 @@
 .home-container
   @include flex(column, center, center)
   text-align: center
-  background-color: $color-secondary
 
-  &__row
+  app-slider
+    width: 100vw
+
+  .search-bar
+    @include size(75vw, 50px)
+    margin: 0 20px
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15)
 
   &__product
     @include flex(column, center, center)

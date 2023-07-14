@@ -10,6 +10,7 @@ import { ProductInterface } from '@core/interfaces/product.interface';
 export class HomeComponent implements OnInit {
 
   public products: ProductInterface[] = [];
+
   constructor(
     private readonly productService: ProductService
   ) {
@@ -22,8 +23,5 @@ export class HomeComponent implements OnInit {
   }
 
   addToBasket(product: ProductInterface) {
-
   }
-
-
 }
