@@ -4,76 +4,12 @@
 .home-container
   @include flex(column, center, center)
   text-align: center
+  background-color: $light-grey
 
   app-slider
     width: 100vw
 
   .search-bar
     @include size(75vw, 50px)
+    @include shadow
     margin: 0 20px
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15)
-
-  .product-grid
-    display: grid
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))
-    grid-gap: 20px
-    width: 100%
-    max-width: 1200px
-    margin-top: 20px
-
-
-  .product-card
-    display: flex
-    flex-direction: column
-    background-color: #FFCA86
-    align-items: center
-    text-align: center
-
-    &__ingredients
-      margin: 20px 10px 0
-      overflow: hidden
-      text-overflow: ellipsis
-      display: -webkit-box
-      -webkit-line-clamp: 3 /* Limit to 3 lines */
-      -webkit-box-orient: vertical
-
-    mat-card
-      min-width: 350px
-      height: 550px
-      display: flex
-      flex-direction: column
-      justify-content: space-between
-
-
-    .product-card__title
-      margin: 10px 0
-
-
-    .product-card__image
-      width: 300px
-      height: 300px
-      margin-bottom: 10px
-
-
-    .product-card__content
-      margin: 0 120px 16px 0
-
-
-    .product-card__price
-      margin: 10px
-      font-size: $medium
-
-
-    .product-card__ingredients
-      margin: 20px 10px 0
-
-
-    .product-card__actions
-      display: flex
-      justify-content: center
-      gap: 10px
-
-
-    .product-card__button
-      width: 100px
-

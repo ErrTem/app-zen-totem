@@ -2,22 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { HomeComponent } from './home/home.component';
-import { MatCardModule } from '@angular/material/card';
-import { MatMenuModule } from '@angular/material/menu';
 import { SharedModule } from '@shared/shared.module';
+import { ProductCardComponent } from '@shared/components';
 
 @NgModule({
-  declarations: [
-    HomeComponent,
-  ],
-  imports: [
-    CommonModule,
-    MatCardModule,
-    MatMenuModule,
-    SharedModule,
-  ],
-  exports: [
-    HomeComponent,
-  ]
+  declarations: [HomeComponent],
+  imports: [CommonModule, SharedModule, ProductCardComponent],
+  exports: [HomeComponent],
 })
-export class HomeModule { }
+export class HomeModule {}

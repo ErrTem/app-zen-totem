@@ -1,41 +1,43 @@
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 @include mat.core();
 
-$codezilla-orange: (
-     50: #ffffff,
-     100: #FAF3D1,
-     200: #FAEB9B,
-     300: #F9B763,
-     400: #F3983C,
-     500: #EB6A00,
-     600: #EB6A00,
-     700: #A93900,
-     contrast: (
-         50: #ffffff,
-         100: #ffffff,
-         200: #ffffff,
-         300: #ffffff,
-         400: #ffffff,
-         500: white,
-     )
- );
+$codezilla-theme: (
+  50: #9ea1d4,
+  100: #9ea1d4,
+  200: #9ea1d4,
+  300: #9ea1d4,
+  400: #9ea1d4,
+  500: #9ea1d4,
+  600: #9ea1d4,
+  700: #9ea1d4,
+  contrast: (
+    50: #ffffff,
+    100: #ffffff,
+    200: #ffffff,
+    300: #ffffff,
+    400: #ffffff,
+    500: white,
+  ),
+);
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$codezilla-primary: mat.define-palette($codezilla-orange);
+$codezilla-primary: mat.define-palette($codezilla-theme);
 $codezilla-accent: mat.define-palette(mat.$grey-palette, A200);
 // The warn palette is optional (defaults to red).
 $codezilla-warn: mat.define-palette(mat.$red-palette);
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$codezilla-theme: mat.define-light-theme((
-  color: (
-    primary: $codezilla-primary,
-    accent: $codezilla-accent,
-    warn: $codezilla-warn,
+$codezilla-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $codezilla-primary,
+      accent: $codezilla-accent,
+      warn: $codezilla-warn,
+    ),
   )
-));
+);
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.

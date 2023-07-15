@@ -1,0 +1,39 @@
+<div class="product-container">
+  <mat-card class="product-card" *ngFor="let product of products">
+    <mat-card-title class="product-card__title">{{
+      product.title
+    }}</mat-card-title>
+    <img
+      mat-card-image
+      class="product-card__image"
+      mat-card-image
+      src="{{ product.image }}"
+    />
+
+    <mat-card-content class="product-card__content">
+      <p class="product-card__price">
+        Цена: <span>{{ product.price | currency }}</span>
+      </p>
+      <p class="product-card__ingredients">{{ product.description }}</p>
+    </mat-card-content>
+    <mat-card-actions class="product-card__actions">
+      <button
+        class="product-card__button"
+        mat-raised-button
+        color="primary"
+        (click)="addToBasket(product)"
+        type="button"
+      >
+        В корзину
+      </button>
+      <button
+        class="product-card__button"
+        mat-raised-button
+        color="primary"
+        type="button"
+      >
+        Details
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
