@@ -23,9 +23,6 @@ import { MatIconModule } from '@angular/material/icon';
     AuthModule,
     CoreModule,
     HttpClientModule,
-    MatSnackBarModule,
-    MatBadgeModule,
-    MatIconModule,
     BrowserAnimationsModule,
     NoopAnimationsModule,
 

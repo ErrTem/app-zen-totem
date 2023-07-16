@@ -9,6 +9,8 @@ import {
   SidebarComponent,
 } from './components';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 const COMPONENTS = [HeaderComponent, SidebarComponent, NotifyMessageComponent];
 @NgModule({
@@ -19,6 +21,9 @@ const COMPONENTS = [HeaderComponent, SidebarComponent, NotifyMessageComponent];
     RouterModule,
     NgOptimizedImage,
     ReactiveFormsModule,
+    MatBadgeModule,
+    MatIconModule,
+    MatSnackBarModule,
   ],
   exports: [...COMPONENTS, ReactiveFormsModule],
 })
