@@ -12,6 +12,8 @@ import { ProfileModule } from './profile/profile.module';
 import { LotteryModule } from '@features/app-common/lottery/lottery.module';
 
 import { AppCommonRoutingModule } from './app-common-routing.module';
+import { BasketComponent } from './basket/basket.component';
+import { BasketState } from '@ngxs/basket.state';
 
 @NgModule({
   imports: [
@@ -23,7 +25,10 @@ import { AppCommonRoutingModule } from './app-common-routing.module';
     BillingModule,
     ProfileModule,
     LotteryModule,
-    NgxsModule.forRoot([ProfileState, LotteryState]),
+    NgxsModule.forRoot([ProfileState, LotteryState, BasketState]),
+  ],
+  declarations: [
+    BasketComponent
   ],
 })
 export class AppCommonModule {}

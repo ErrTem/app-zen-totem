@@ -11,7 +11,6 @@ export class HomeComponent implements OnInit {
   public products: ProductInterface[] = [];
 
   constructor(
-    //todo смысл?
     @Inject(PRODUCT_SERVICE_TOKEN) private readonly productService: ProductService,
   ) {}
 
