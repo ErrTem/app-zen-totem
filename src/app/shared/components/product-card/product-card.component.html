@@ -11,28 +11,20 @@
     />
 
     <mat-card-content class="product-card__content">
-      <p class="product-card__price">
-        Цена: <span>{{ product.price | currency }}</span>
-      </p>
-      <p class="product-card__ingredients">{{ product.description }}</p>
+      <div class="product-card__description">{{ product.description }}</div>
     </mat-card-content>
     <mat-card-actions class="product-card__actions">
+      <div class="product-card__actions-price">
+        Price: <span>{{ product.price | currency }}</span>
+      </div>
       <button
-        class="product-card__button"
+        class="product-card__actions-button"
         mat-raised-button
         color="primary"
         (click)="addToBasket(product)"
         type="button"
       >
-        В корзину
-      </button>
-      <button
-        class="product-card__button"
-        mat-raised-button
-        color="primary"
-        type="button"
-      >
-        Details
+        Add to basket
       </button>
     </mat-card-actions>
   </mat-card>

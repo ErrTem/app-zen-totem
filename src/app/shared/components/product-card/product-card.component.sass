@@ -9,35 +9,35 @@
     margin-top: 20px
 
     .product-card
+      @include flex (column, stretch, space-between)
+      padding: 20px
+      
       &__title
+        margin-bottom: 20px
         font-size: $medium
-        font-weight: $regular
+        font-weight: $bold
 
       &__image
         @include size(300px,300px)
         align-self: center
 
-      &__ingredients
-        margin: 20px 10px 0
+      &__description
+        color: $dark-grey
+        text-color: red
+        margin: 10px 0
         overflow: hidden
         text-overflow: ellipsis
         display: -webkit-box
         -webkit-line-clamp: 3 /* Limit to 3 lines */
         -webkit-box-orient: vertical
 
-      // .product-card__title
-      //   margin: 10px 0
-      // .product-card__content
-      //   margin: 0 120px 16px 0
-      // .product-card__price
-      //   margin: 10px
-      //   font-size: $medium
-      // .product-card__ingredients
-      //   margin: 20px 10px 0
-      // .product-card__actions
-      //   display: flex
-      //   justify-content: center
-      //   gap: 10px
-      // .product-card__button
-      //   width: 100px
+      &__actions
+        @include flex(row, center, space-between)
 
+      &__actions-price
+        font-weight: $bold
+
+      &__actions-button
+        white-space: nowrap
+        font-weight: $medium
+        font-size: $medium

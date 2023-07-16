@@ -1,9 +1,11 @@
 @use "@angular/material" as mat;
+
 @include mat.core();
 
-$codezilla-theme: (
+$codezilla-primary: (
   50: #e8e8f5,
   100: #c4c6e5,
+  //main
   200: #9ea1d4,
   300: #797cc2,
   400: #5e60b5,
@@ -20,15 +22,50 @@ $codezilla-theme: (
   ),
 );
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$codezilla-primary: mat.define-palette($codezilla-theme);
-$codezilla-accent: mat.define-palette(mat.$grey-palette, A200);
-// The warn palette is optional (defaults to red).
-$codezilla-warn: mat.define-palette(mat.$red-palette);
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
+$codezilla-accent: (
+  50: #fafce1,
+  //main
+  100: #f2f7b5,
+  200: #e8f28a,
+  300: #dfec62,
+  400: #d7e740,
+  500: #d1e313,
+  600: #c4d009,
+  700: #b3ba00,
+  contrast: (
+    50: #ffffff,
+    100: #ffffff,
+    200: #ffffff,
+    300: #ffffff,
+    400: #ffffff,
+    500: #ffffff,
+  ),
+);
+
+$codezilla-warn: (
+  50: #ffe8eb,
+  100: #ffc4cb,
+  //main
+  200: #fd8a8a,
+  300: #f25b5e,
+  400: #f72f37,
+  500: #f70a16,
+  600: #e90018,
+  700: #d70014,
+  contrast: (
+    50: #ffffff,
+    100: #ffffff,
+    200: #ffffff,
+    300: #ffffff,
+    400: #ffffff,
+    500: #ffffff,
+  ),
+);
+
+$codezilla-primary: mat.define-palette($codezilla-primary, 200);
+$codezilla-accent: mat.define-palette($codezilla-accent, 100);
+$codezilla-warn: mat.define-palette($codezilla-warn, 200);
+
 $codezilla-theme: mat.define-light-theme(
   (
     color: (
@@ -38,7 +75,5 @@ $codezilla-theme: mat.define-light-theme(
     ),
   )
 );
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
+
 @include mat.all-component-themes($codezilla-theme);
