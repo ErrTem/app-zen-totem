@@ -1,6 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+
+export const PRODUCT_SERVICE_TOKEN = new InjectionToken<ProductService>('product_service_token');
 
 @Injectable({
   providedIn: 'root'

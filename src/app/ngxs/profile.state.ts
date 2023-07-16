@@ -1,4 +1,4 @@
-import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { Action, Selector, State, StateContext, StateToken } from '@ngxs/store';
 import { ClearUserInfo, SetUserInfo } from "./profile.actions";
 import { Injectable } from "@angular/core";
 import { UserInfoInterface } from "@core/interfaces/user.interface";
@@ -15,6 +15,8 @@ const defaultUserInfo: UserInfoInterface = {
   phoneNumber: EMPTY_STRING,
   websiteUrl: EMPTY_STRING,
 };
+
+export const PROFILE_STATE_MODEL = new StateToken<ProfileStateModel>('profile');
 
 @State<ProfileStateModel>({
   name: 'PROFILE_STATE_MODEL',

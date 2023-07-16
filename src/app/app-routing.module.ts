@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { RouterModule, Routes } from '@angular/router';
+import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 
 import { AuthUserGuard, LoginGuard } from '@core/guards';
 import { LoginComponent } from '@features/auth/components/login/login.component';
@@ -31,8 +31,12 @@ const routes: Routes = [
   },
 ];
 
+const extraOptions: ExtraOptions = {
+  onSameUrlNavigation: 'reload'
+}
+
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, extraOptions)],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}

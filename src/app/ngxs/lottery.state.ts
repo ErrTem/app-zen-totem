@@ -1,7 +1,8 @@
-import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { Action, Selector, State, StateContext, StateToken } from '@ngxs/store';
 import { Injectable } from "@angular/core";
 
 import { AddNewParticipant, DetermineWinner, SetParticipantCount } from "@ngxs/lottery.actions";
+import { ProfileStateModel } from '@ngxs/profile.state';
 
 const minUsers = 10;
 const maxUsers = 10000;
@@ -12,6 +13,8 @@ export interface LotteryStateModel {
   isMaxParticipantsReached: boolean;
   isWinnerDetermined: boolean;
 }
+
+export const LOTTERY_STATE_MODEL = new StateToken<LotteryStateModel>('lottery');
 
 @State<LotteryStateModel>({
   name: 'LOTTERY_STATE_MODEL',

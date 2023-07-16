@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductService } from '@core/services';
+import { Component, Inject, OnInit } from '@angular/core';
+import { PRODUCT_SERVICE_TOKEN, ProductService } from '@core/services';
 import { ProductInterface } from '@core/interfaces/product.interface';
-import { ProductCardComponent } from '@shared/components';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +10,10 @@ import { ProductCardComponent } from '@shared/components';
 export class HomeComponent implements OnInit {
   public products: ProductInterface[] = [];
 
-  constructor(private readonly productService: ProductService) {}
+  constructor(
+    //todo смысл?
+    @Inject(PRODUCT_SERVICE_TOKEN) private readonly productService: ProductService,
+  ) {}
 
   ngOnInit(): void {
     this.productService.getAllProducts().subscribe((products) => {
