@@ -8,6 +8,7 @@ import {
   HeaderComponent,
   SidebarComponent,
 } from './components';
+import { MatBadgeModule } from '@angular/material/badge';
 
 const COMPONENTS = [HeaderComponent, SidebarComponent, NotifyMessageComponent];
 @NgModule({

@@ -9,6 +9,7 @@ import { UserInfoInterface } from '@core/interfaces/user.interface';
 import { NotificationService } from '@core/services';
 import { AuthService } from "@core/services/auth.service";
 import { ClearUserInfo } from "@ngxs/profile.actions";
+import { BasketState } from '@ngxs/basket.state';
 
 @Component({
   selector: 'app-header',
@@ -23,6 +24,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private successSubscription!: Subscription;
 
   @Select (ProfileState.getUserInfo) userInfo$!: Observable<UserInfoInterface>;
+  @Select(BasketState.getTotalPrice) totalPrice$!: Observable<number>;
+  @Select(BasketState.getTotalQuantity) totalQuantity$!: Observable<number>;
+
   //todo логика для отображения цены, изменить css если есть цена
   public totalPrice: number = 1;
 

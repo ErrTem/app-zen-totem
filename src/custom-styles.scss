@@ -77,3 +77,8 @@ $codezilla-theme: mat.define-light-theme(
 );
 
 @include mat.all-component-themes($codezilla-theme);
+
+//redefining materialUI styles here because sass does not work
+.snackbar-awesome {
+  --mdc-snackbar-container-color: #9ea1d4;
+}

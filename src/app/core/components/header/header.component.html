@@ -26,18 +26,22 @@
         class="button-header"
         (click)="openDialog()"
         [ngClass]="{'default-button': !totalPrice, 'links-button': totalPrice}"
+        [matBadgeHidden]="totalQuantity$ | async"
+        [matBadge]="totalQuantity$ | async"
+        matBadgeOverlap="true"
+        matBadgeColor="warn"
       >
         <div class="menu-button">
           <img class="header-icon" ngSrc="../../../../assets/basket.png" width="30" height="30" priority alt="">
           <div
             class="menu-button__text"
-            *ngIf="totalPrice; else emptyCart"
+            *ngIf="totalPrice$ | async as totalPrice; else emptyCart"
           >
             $ {{ totalPrice }}
           </div>
           <ng-template #emptyCart>
             <div class="menu-button__text">
-              $ 00.00
+              $ 0
             </div>
           </ng-template>
         </div>
