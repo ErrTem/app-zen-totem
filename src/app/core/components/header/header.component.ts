@@ -11,7 +11,7 @@ import { AuthService } from "@core/services/auth.service";
 import { ClearUserInfo } from "@ngxs/profile.actions";
 import { BasketState } from '@ngxs/basket.state';
 import { MatDialog } from '@angular/material/dialog';
-import { BasketComponent } from '@core/components/basket/basket.component';
+import { BasketComponent } from '@shared/components';
 
 @Component({
   selector: 'app-header',
@@ -85,11 +85,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   openDialog(): void {
-    this.dialog.open(BasketComponent, {
-      width: '512px',
-      height: '100%',
-      panelClass: 'app-cart-dialog',
-    });
+    //todo fix
+
+    // this.dialog.open(BasketComponent, {
+    //   width: '512px',
+    //   height: '100%',
+    //   panelClass: 'app-cart-dialog',
+    // });
   }
 
   login() {

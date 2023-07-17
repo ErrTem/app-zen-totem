@@ -5,3 +5,4 @@ export * from './snack-bar/snack-bar.component';
 export * from './delete-order/delete-order.component';
 export * from './popup/popup.component';
 export * from './cart-item/cart-item.component';
+export * from './basket/basket.component';

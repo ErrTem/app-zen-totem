@@ -7,9 +7,8 @@ import { HeaderComponent, NotifyMessageComponent, SidebarComponent, } from './co
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { BasketComponent } from './components/basket/basket.component';
 
-const COMPONENTS = [HeaderComponent, SidebarComponent, NotifyMessageComponent, BasketComponent];
+const COMPONENTS = [HeaderComponent, SidebarComponent, NotifyMessageComponent];
 
 @NgModule({
   declarations: [...COMPONENTS],

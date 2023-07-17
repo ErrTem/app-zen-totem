@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { CoreModule } from '@core/core.module';
 import { NgxGlideModule } from 'ngx-glide';
 import {
+  BasketComponent,
   CartItemComponent,
   DeleteOrderComponent,
   LoginFormComponent,
@@ -12,7 +13,7 @@ import {
   SnackBarComponent
 } from './components';
 
-const COMPONENTS = [LoginFormComponent, SliderComponent, SnackBarComponent, DeleteOrderComponent, PopupComponent, CartItemComponent];
+const COMPONENTS = [LoginFormComponent, SliderComponent, SnackBarComponent, DeleteOrderComponent, PopupComponent, BasketComponent, CartItemComponent];
 
 @NgModule({
   declarations: [...COMPONENTS],

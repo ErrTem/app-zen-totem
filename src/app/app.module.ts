@@ -22,7 +22,6 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
     HttpClientModule,
     BrowserAnimationsModule,
     NoopAnimationsModule,
-
   ],
   providers: [],
   bootstrap: [AppComponent]
