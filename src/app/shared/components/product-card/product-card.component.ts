@@ -7,11 +7,12 @@ import { ProductInterface } from '@core/interfaces/product.interface';
 import { MatButtonModule } from '@angular/material/button';
 import { SnackBarComponent } from '@shared/components';
 import { SharedModule } from '@shared/shared.module';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-product-card',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatMenuModule, MatButtonModule, SharedModule],
+  imports: [CommonModule, MatCardModule, MatMenuModule, MatButtonModule, SharedModule, MatDialogModule],
   templateUrl: './product-card.component.html',
   styleUrls: ['./product-card.component.sass'],
 })
@@ -20,9 +21,23 @@ export class ProductCardComponent {
 
   @Input() products!: ProductInterface[];
 
-  constructor(private readonly snackBar: MatSnackBar) {}
+  constructor(
+    private readonly snackBar: MatSnackBar,
+    private readonly dialog: MatDialog,
+  ) {}
 
   addToBasket(product: ProductInterface) {
+
+  }
+
+  public openProduct(product: ProductInterface): void {
+    const dialogRef = this.dialog
+      .open(ProductCardComponent, {
+        width: "600px",
+        height: "600px",
+        data: {product},
+        // disableClose: true
+      })
   }
 
   openSnackBar() {

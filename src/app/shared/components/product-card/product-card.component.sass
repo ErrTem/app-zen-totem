@@ -11,7 +11,15 @@
     .product-card
       @include flex (column, stretch, space-between)
       padding: 20px
-      
+      position: relative
+      overflow: hidden
+      transition: transform 0.3s
+
+      &:hover
+        z-index: 2
+        .product-card__description
+          -webkit-line-clamp: unset
+
       &__title
         margin-bottom: 20px
         font-size: $medium
@@ -23,13 +31,13 @@
 
       &__description
         color: $dark-grey
-        text-color: red
         margin: 10px 0
         overflow: hidden
         text-overflow: ellipsis
         display: -webkit-box
         -webkit-line-clamp: 3 /* Limit to 3 lines */
         -webkit-box-orient: vertical
+        transition: -webkit-line-clamp 0.3s
 
       &__actions
         @include flex(row, center, space-between)
@@ -41,3 +49,4 @@
         white-space: nowrap
         font-weight: $medium
         font-size: $medium
+
