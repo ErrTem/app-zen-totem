@@ -1,6 +1,7 @@
 import { Selector, State, StateToken } from '@ngxs/store';
 import { Injectable } from "@angular/core";
 import { ShoppingBasket } from '@core/interfaces/basket.interface';
+import { ProductInterface } from '@core/interfaces/product.interface';
 
 export interface BasketStateModel {
   basketInfo: ShoppingBasket;
@@ -33,6 +34,11 @@ export class BasketState {
   @Selector()
   static getTotalQuantity(state: BasketStateModel): number {
     return state.basketInfo.basketTotalQuantity;
+  }
+
+  @Selector()
+  static getProducts(state: BasketStateModel): ProductInterface[] {
+    return state.basketInfo.products;
   }
 
 }

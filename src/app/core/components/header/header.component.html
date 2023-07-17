@@ -25,7 +25,7 @@
       <button
         class="button-header"
         (click)="openDialog()"
-        [ngClass]="{'default-button': !totalPrice, 'links-button': totalPrice}"
+        [ngClass]="{'default-button': !totalPrice$, 'links-button': totalPrice$}"
         [matBadgeHidden]="!(totalQuantity$ | async)"
         [matBadge]="totalQuantity$ | async"
         matBadgeOverlap="true"

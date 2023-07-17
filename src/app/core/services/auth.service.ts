@@ -36,20 +36,20 @@ export class AuthService {
     return this.loggedInRole;
   }
 
-  setUserInfo(userInfo: UserInfoInterface): void {
+  public setUserInfo(userInfo: UserInfoInterface): void {
     this.userInfo = userInfo;
     localStorage.setItem(USER_INFO, JSON.stringify(userInfo));
   }
 
-  getUserInfo(): any | null {
+  public getUserInfo(): any | null {
     return this.userInfo;
   }
 
-  isLoggedIn(): boolean {
+  public isLoggedIn(): boolean {
     return this.userInfo !== null;
   }
 
-  userLogout(): void {
+  public userLogout(): void {
     this.loggedInRole = null;
     this.userInfo = null;
     localStorage.removeItem(USER_ROLE);

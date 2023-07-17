@@ -1,0 +1,28 @@
+@import 'src/app/sass/constants'
+@import 'src/app/sass/mixins'
+
+.wrapper
+  @include flex(column, center, flex-start)
+  gap: 16px
+
+  .header
+    @include flex(row, flex-start, space-between)
+    width: 100%
+
+    &__text
+      @include flex(column, center, flex-start)
+      gap: 4px
+
+      &_title
+        margin: 0
+        width: 100%
+
+      &_subtitle
+        margin: 0
+
+    &__action_close
+      cursor: pointer
+
+.content
+  width: 100%
+

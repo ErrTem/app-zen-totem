@@ -1,0 +1,24 @@
+@import 'src/app/sass/constants'
+@import 'src/app/sass/mixins'
+
+.buttons
+    @include flex(row, center, flex-end)
+    margin-top: 32px
+
+    &_cancel
+        margin-right: 10px
+        padding: 12px 16px
+        text-align: center
+        &:hover
+            cursor: pointer
+
+    &_delete
+        background-color: $color-default
+        color: $white
+        width: 103px
+        padding: 12px 16px
+        border: none
+        border-radius: 2px
+        text-align: center
+        &:hover
+           cursor: pointer

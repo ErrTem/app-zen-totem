@@ -1,0 +1,14 @@
+  <div class="wrapper">
+      <header class="header">
+        <div class="header__text">
+          <h2 class="header__text_title">{{ title }}</h2>
+          <h4 class="header__text_subtitle">{{ subtitle }}</h4>
+        </div>
+        <div class="header__action">
+          <img class="header__action_close" src="assets/cross.png" width="50" height="50" mat-dialog-close>
+        </div>
+      </header>
+      <content class="content">
+        <ng-content></ng-content>
+      </content>
+  </div>

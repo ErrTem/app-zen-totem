@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
   }
 
 
-  handleLoginSubmit(loginData: UserInfoInterface): void {
+  public handleLoginSubmit(loginData: UserInfoInterface): void {
     const randomRoles = ['Admin', 'User', 'Guest'];
     const randomRole = randomRoles[Math.floor(Math.random() * randomRoles.length)];
 

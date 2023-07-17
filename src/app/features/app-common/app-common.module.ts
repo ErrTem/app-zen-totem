@@ -5,14 +5,10 @@ import { NgxsModule } from '@ngxs/store';
 import { ProfileState } from '@ngxs/profile.state';
 import { LotteryState } from '@ngxs/lottery.state';
 import { HomeModule } from './home/home.module';
-import { InventoryModule } from './inventory/inventory.module';
-import { ReportsModule } from './reports/reports.module';
-import { BillingModule } from './billing/billing.module';
 import { ProfileModule } from './profile/profile.module';
 import { LotteryModule } from '@features/app-common/lottery/lottery.module';
 
 import { AppCommonRoutingModule } from './app-common-routing.module';
-import { BasketComponent } from './basket/basket.component';
 import { BasketState } from '@ngxs/basket.state';
 
 @NgModule({
@@ -20,15 +16,11 @@ import { BasketState } from '@ngxs/basket.state';
     CommonModule,
     AppCommonRoutingModule,
     HomeModule,
-    InventoryModule,
-    ReportsModule,
-    BillingModule,
     ProfileModule,
     LotteryModule,
     NgxsModule.forRoot([ProfileState, LotteryState, BasketState]),
   ],
   declarations: [
-    BasketComponent
   ],
 })
 export class AppCommonModule {}

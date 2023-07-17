@@ -10,6 +10,8 @@ import { NotificationService } from '@core/services';
 import { AuthService } from "@core/services/auth.service";
 import { ClearUserInfo } from "@ngxs/profile.actions";
 import { BasketState } from '@ngxs/basket.state';
+import { MatDialog } from '@angular/material/dialog';
+import { BasketComponent } from '@core/components/basket/basket.component';
 
 @Component({
   selector: 'app-header',
@@ -27,9 +29,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   @Select(BasketState.getTotalPrice) totalPrice$!: Observable<number>;
   @Select(BasketState.getTotalQuantity) totalQuantity$!: Observable<number>;
 
-  //todo логика для отображения цены, изменить css если есть цена
-  public totalPrice: number = 1;
-
   public isCustomerButtonClicked: boolean = false;
   public customerNameAbbreviation: string | undefined = '';
 
@@ -38,6 +37,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private readonly authService: AuthService,
     private readonly store: Store,
     private readonly router: Router,
+    private readonly dialog: MatDialog,
     ) {
   }
 
@@ -62,8 +62,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
         .substring(0, 2)
         .toUpperCase();
     })
-
-
   }
 
   public logout(): void {
@@ -86,8 +84,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.successSubscription.unsubscribe();
   }
 
-  openDialog() {
-//жи есть открой корзину
+  openDialog(): void {
+    this.dialog.open(BasketComponent, {
+      width: '512px',
+      height: '100%',
+      panelClass: 'app-cart-dialog',
+    });
   }
 
   login() {

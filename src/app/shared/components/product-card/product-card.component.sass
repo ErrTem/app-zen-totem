@@ -2,32 +2,24 @@
 @import 'src/app/sass/mixins'
 
 .product-container
-    display: grid
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))
-    grid-gap: 20px
-    max-width: 70vw
-    margin-top: 20px
+  display: grid
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))
+  grid-gap: 20px
+  max-width: 70vw
+  margin-top: 20px
 
-    .product-card
-      @include flex (column, stretch, space-between)
-      padding: 20px
-      position: relative
-      overflow: hidden
-      transition: transform 0.3s
+  .product-card
+    @include flex (column, stretch, space-between)
+    padding: 20px
 
-      &:hover
-        z-index: 2
-        .product-card__description
-          -webkit-line-clamp: unset
+    &__title
+      margin-bottom: 20px
+      font-size: $medium
+      font-weight: $bold
 
-      &__title
-        margin-bottom: 20px
-        font-size: $medium
-        font-weight: $bold
-
-      &__image
-        @include size(300px,300px)
-        align-self: center
+    &__image
+      @include size(300px,300px)
+      align-self: center
 
       &__description
         color: $dark-grey

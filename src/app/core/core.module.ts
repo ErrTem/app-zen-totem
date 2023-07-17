@@ -3,16 +3,14 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { RouterLink, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import {
-  NotifyMessageComponent,
-  HeaderComponent,
-  SidebarComponent,
-} from './components';
+import { HeaderComponent, NotifyMessageComponent, SidebarComponent, } from './components';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { BasketComponent } from './components/basket/basket.component';
 
-const COMPONENTS = [HeaderComponent, SidebarComponent, NotifyMessageComponent];
+const COMPONENTS = [HeaderComponent, SidebarComponent, NotifyMessageComponent, BasketComponent];
+
 @NgModule({
   declarations: [...COMPONENTS],
   imports: [
@@ -27,4 +25,5 @@ const COMPONENTS = [HeaderComponent, SidebarComponent, NotifyMessageComponent];
   ],
   exports: [...COMPONENTS, ReactiveFormsModule],
 })
-export class CoreModule {}
+export class CoreModule {
+}

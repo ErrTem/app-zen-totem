@@ -1,0 +1,82 @@
+@import 'src/app/sass/constants'
+@import 'src/app/sass/mixins'
+
+::ng-deep.app-cart-dialog .mat-dialog-container
+  display: block
+  position: absolute
+  bottom: 0px
+  right: 0px
+  padding: 16px 0px 32px
+  gap: 462px
+  background-color: $white
+  width: 500px
+  border-radius: 0px
+  transform: translate(-50%, 0)
+
+::ng-deep.app-cart-dialog.cdk-overlay-pane
+  width: 0 !important
+
+.cart-header
+  @include flex(row, center, space-between)
+  height: 56px
+  border-bottom: 0.5px solid $color-default
+  padding: 0 32px
+
+  &_title
+    @include flex(row, center, flex-start)
+    color: $color-default
+
+  &_button
+    color: $color-text-grey
+
+    &:hover
+      color: $color-default
+      text-decoration: underline
+      cursor: pointer
+
+
+.cart-items
+  @include flex(column, center, flex-start)
+  padding: 0 32px
+
+  &_item
+    border-bottom: 0.5px solid $color-default-complimentary
+
+.cart-footer
+  @include flex(column, flex-end, center)
+  border-top: 0.5px solid $color-default
+  padding: 22px 32px 32px
+  width: 436px
+
+  &_title
+    @include flex(row, center, space-between)
+    width: 100%
+    margin-bottom: 16px
+
+    &__name
+
+    &__price
+
+  &_button
+    background-color: $color-default
+    color: $white
+    width: 448px
+    border: none
+    border-radius: 2px
+    align-self: stretch
+    flex-grow: 0
+    text-align: center
+    padding: 12px 0
+
+    &:hover
+      cursor: pointer
+
+.emty-cart_content
+  @include flex(column, center, center)
+  text-align: center
+  margin-top: 30vh
+
+  &__text
+    width: 164px
+    color: $color-text-grey
+    margin-top: 20px

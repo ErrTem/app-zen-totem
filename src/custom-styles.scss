@@ -82,3 +82,20 @@ $codezilla-theme: mat.define-light-theme(
 .snackbar-awesome {
   --mdc-snackbar-container-color: #9ea1d4;
 }
+//
+//::ng-deep.app-cart-dialog .mat-dialog-container{
+//  display: block;
+//  position: absolute;
+//  bottom: 0px;
+//  right: 0px;
+//  padding: 16px 0px 32px;
+//  gap: 462px;
+//  background-color: $white;
+//  width: 500px;
+//  border-radius: 0px;
+//  transform: translate(-50%, 0);
+//}
+//
+//::ng-deep.app-cart-dialog.cdk-overlay-pane {
+//  width: 0 !important;
+//}
