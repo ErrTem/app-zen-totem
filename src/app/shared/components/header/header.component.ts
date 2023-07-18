@@ -65,12 +65,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   public openDialog(): void {
-    this.dialog.open(BasketComponent, {
+    const dialogRef = this.dialog.open(BasketComponent, {
       panelClass: 'app-basket-dialog',
       position: {
         top: '0',
         right: '0',
       },
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      console.log('Dialog closed');
     });
   }
 

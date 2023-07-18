@@ -1,7 +1,9 @@
-import { Selector, State, StateToken } from '@ngxs/store';
+import { Action, Selector, State, StateContext, StateToken } from '@ngxs/store';
 import { Injectable } from "@angular/core";
 import { ShoppingBasket } from '@core/interfaces/basket.interface';
 import { ProductInterface } from '@core/interfaces/product.interface';
+import { AddProductToBasket } from '@core/ngxs/basket.actions';
+import { Observable, tap } from 'rxjs';
 
 export interface BasketStateModel {
   basketInfo: ShoppingBasket;
@@ -40,5 +42,13 @@ export class BasketState {
   static getProducts(state: BasketStateModel): ProductInterface[] {
     return state.basketInfo.products;
   }
+
+  @Action(AddProductToBasket)
+  addProductToBasket(
+    { getState, patchState }: StateContext<BasketStateModel>,
+    { product }: AddProductToBasket
+  ): void {
+  }
+
 
 }

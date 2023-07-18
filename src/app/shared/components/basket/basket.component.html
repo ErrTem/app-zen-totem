@@ -4,9 +4,9 @@
       <div class="basket-header_title__name">My order</div>
       <div *ngIf="(products$ | async)?.length" class="basket-header_title__quantity">{{ (products$ | async)?.length }}</div>
     </div>
-    <div class="basket-header_button" *ngIf="(products$ | async)?.length"  mat-dialog-close (click)="openDialog()">Clear all</div>
+    <div class="basket-header_button" *ngIf="(products$ | async)?.length" (click)="openDialog();closeDialog()">Clear all</div>
   </div>
-  <div *ngIf="(products$ | async)?.length;else emptybasket">
+  <div *ngIf="!(products$ | async)?.length;else emptyBasket">
     <div class="basket-items">
       <div class="basket-items_item" *ngFor="let item of products$ | async" >
         <app-basket-item [basketItem]="item"></app-basket-item>
@@ -20,10 +20,11 @@
       <button class="basket-footer_button"  (click)="confirmOrder()">Order</button>
     </div>
   </div>
-  <ng-template #emptybasket>
-    <div class="emty-basket_content">
-      <img class="emty-basket_content__image" src="../../../../assets/box.png" />
-      <div class="emty-basket_content__text">Select products</div>
-    </div>
-  </ng-template>
 </div>
+
+<ng-template #emptyBasket>
+  <div class="empty-basket_content">
+    <img class="empty-basket_content__image" src="../../../../assets/box.png" width="200px" height="200px" />
+    <div class="empty-basket_content__text">No products added</div>
+  </div>
+</ng-template>

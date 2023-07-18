@@ -2,8 +2,6 @@
   <mat-card
     class="product-card"
     *ngFor="let product of products"
-    (click)="openProduct(product)"
-
   >
     <mat-card-title class="product-card__title">{{
       product.title
@@ -25,11 +23,44 @@
         class="product-card__actions-button"
         mat-raised-button
         color="primary"
-        (click)="showSnackBar()"
+        (click)="showSnackBar(); addProductToCart(product)"
+        *ngIf="product.quantity === 0 else updateCountButton"
         type="button"
       >
         Add to basket
       </button>
     </mat-card-actions>
+
+    <ng-template #updateCountButton >
+      <div class="bottom_update-count-container">
+        <button
+          class="bottom_update-count-container__minus"
+          (click)="decreaseProductQuantity(product)"
+        >
+          <img
+            class="minus"
+            src="assets/minus.png"
+            width="10px"
+            height="10px"
+          >
+        </button>
+        <div
+          class="bottom_update-count-container__number"
+        >
+          {{product.quantity}}
+        </div>
+        <button
+          class="bottom_update-count-container__plus"
+          (click)="increaseProductQuantity(product)"
+        >
+          <img
+            class="plus"
+            src="assets/plus.png"
+            width="10px"
+            height="10px"
+          >
+        </button>
+      </div>
+    </ng-template>
   </mat-card>
 </div>

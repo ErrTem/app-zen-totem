@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ComponentType } from '@angular/cdk/overlay';
 import { Router } from '@angular/router';
 
@@ -28,6 +28,7 @@ export class BasketComponent  {
     private router: Router,
     private readonly authService: AuthService,
     private readonly store: Store,
+    private readonly dialogRef: MatDialogRef<BasketComponent>
   ) {
   }
 
@@ -43,10 +44,14 @@ export class BasketComponent  {
 
   public confirmOrder(): void {
     if (!this.authService.getUserInfo()) {
+      this.closeDialog();
       this.router.navigate(['login']);
     } else {
       this.store.dispatch(new RemoveAllProductsFromBasket())
       console.log('success')
     }
+  }
+  public closeDialog(): void {
+    this.dialogRef.close();
   }
 }

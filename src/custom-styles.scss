@@ -84,3 +84,7 @@ $codezilla-theme: mat.define-light-theme(
 .snackbar-awesome {
   --mdc-snackbar-container-color: #9ea1d4;
 }
+
+//::ng-deep.app-basket-dialog.cdk-overlay-pane {
+//  width: 0 !important;
+//}

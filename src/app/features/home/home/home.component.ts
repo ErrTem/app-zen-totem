@@ -20,5 +20,5 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  addToBasket(product: ProductInterface) {}
+  public addToBasket(product: ProductInterface) {}
 }

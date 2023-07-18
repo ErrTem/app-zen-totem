@@ -45,3 +45,35 @@
       font-weight: $medium
       font-size: $medium
 
+  .bottom_update-count-container
+    @include flex(row, center, space-between)
+
+    &__minus
+      @include flex(row, center, center)
+      @include size(20px, 20px)
+      background-color: $color-default
+      border-radius: 100px
+      border: none
+
+      .minus
+        cursor: pointer
+        padding-bottom: 5px
+
+        path
+          fill: $color-default
+
+    &__number
+      margin: 0 2px
+
+    &__plus
+      @include flex(row, center, center)
+      @include size(20px, 20px)
+      background-color: $color-default
+      border-radius: 100px
+      border: none
+
+      .plus
+        cursor: pointer
+
+        path
+          fill: $color-default
