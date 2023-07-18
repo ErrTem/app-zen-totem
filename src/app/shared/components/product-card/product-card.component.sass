@@ -9,8 +9,10 @@
   margin-top: 20px
 
   .product-card
-    @include flex (column, stretch, space-between)
+    @include flex(column, stretch, space-between)
     padding: 20px
+    position: relative
+    overflow: hidden
 
     &__title
       margin-bottom: 20px
@@ -18,27 +20,28 @@
       font-weight: $bold
 
     &__image
-      @include size(300px,300px)
+      @include size(300px, 300px)
       align-self: center
 
-      &__description
-        color: $dark-grey
-        margin: 10px 0
-        overflow: hidden
-        text-overflow: ellipsis
-        display: -webkit-box
-        -webkit-line-clamp: 3 /* Limit to 3 lines */
-        -webkit-box-orient: vertical
-        transition: -webkit-line-clamp 0.3s
+    &__description
+      color: $dark-grey
+      margin: 10px 0
+      overflow: hidden
+      text-overflow: ellipsis
+      display: -webkit-box
+      -webkit-line-clamp: 3
+      /* Limit to 3 lines */
+      -webkit-box-orient: vertical
+      transition: -webkit-line-clamp 0.3s
 
-      &__actions
-        @include flex(row, center, space-between)
+    &__actions
+      @include flex(row, center, space-between)
 
-      &__actions-price
-        font-weight: $bold
+    &__actions-price
+      font-weight: $bold
 
-      &__actions-button
-        white-space: nowrap
-        font-weight: $medium
-        font-size: $medium
+    &__actions-button
+      white-space: nowrap
+      font-weight: $medium
+      font-size: $medium
 

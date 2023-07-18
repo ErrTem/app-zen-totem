@@ -1,28 +1,27 @@
 import { NgModule } from '@angular/core';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { RouterLink, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgxGlideModule } from 'ngx-glide';
+import { RouterModule } from '@angular/router';
+import { CoreNgxsModule } from '@core/ngxs/ngxs.module';
+import { NgOptimizedImage } from '@angular/common';
 
-import { HeaderComponent, NotifyMessageComponent, SidebarComponent, } from './components';
-import { MatBadgeModule } from '@angular/material/badge';
-import { MatIconModule } from '@angular/material/icon';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-
-const COMPONENTS = [HeaderComponent, SidebarComponent, NotifyMessageComponent];
+const CORE_MODULES = [
+  ReactiveFormsModule,
+  NgxGlideModule,
+  RouterModule,
+  NgOptimizedImage,
+];
 
 @NgModule({
-  declarations: [...COMPONENTS],
   imports: [
-    CommonModule,
-    RouterLink,
-    RouterModule,
-    NgOptimizedImage,
-    ReactiveFormsModule,
-    MatBadgeModule,
-    MatIconModule,
-    MatSnackBarModule,
+    ...CORE_MODULES,
+    CoreNgxsModule,
   ],
-  exports: [...COMPONENTS, ReactiveFormsModule],
+  declarations: [],
+  exports: [
+    ...CORE_MODULES,
+    CoreNgxsModule,
+  ],
 })
 export class CoreModule {
 }

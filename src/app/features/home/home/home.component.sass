@@ -1,0 +1,15 @@
+@import '../../../sass/constants'
+@import '../../../sass/mixins'
+
+.home-container
+  @include flex(column, center, center)
+  text-align: center
+  background-color: $light-grey
+
+  app-slider
+    width: 100vw
+
+  .search-bar
+    @include size(75vw, 50px)
+    @include shadow
+    margin: 0 20px

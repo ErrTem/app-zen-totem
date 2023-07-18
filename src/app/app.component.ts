@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from "@ngxs/store";
+import { Store } from '@ngxs/store';
 
-import { SetUserInfo } from "@ngxs/profile.actions";
+import { SetUserInfo } from "@core/ngxs/profile.actions";
 import { USER_INFO } from "@shared/constants/localstorage-names";
 
 @Component({

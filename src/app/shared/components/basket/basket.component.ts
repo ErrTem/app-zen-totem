@@ -5,12 +5,12 @@ import { Router } from '@angular/router';
 
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { BasketState } from '@ngxs/basket.state';
+import { BasketState } from '@core/ngxs/basket.state';
 import { ProductInterface } from '@core/interfaces/product.interface';
 import { getModalConfig } from '@shared/utils/getModalConfig';
 import { DeleteOrderComponent } from '@shared/components';
 import { AuthService } from '@core/services';
-import { RemoveAllProductsFromBasket } from '@ngxs/basket.actions';
+import { RemoveAllProductsFromBasket } from '@core/ngxs/basket.actions';
 
 @Component({
   selector: 'app-basket',

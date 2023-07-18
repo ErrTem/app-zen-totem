@@ -8,7 +8,8 @@ import { USER_INFO } from "@shared/constants/localstorage-names";
   providedIn: 'root'
 })
 export class LoginGuard implements CanActivate {
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+  }
 
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     const userInfo = localStorage.getItem(USER_INFO);
@@ -16,7 +17,7 @@ export class LoginGuard implements CanActivate {
     if (!userInfo) {
       return true;
     } else {
-      this.router.navigate(['app/home']);
+      this.router.navigate(['home']);
 
       return false;
     }

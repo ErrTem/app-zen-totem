@@ -1,24 +1,45 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { CoreModule } from '@core/core.module';
-import { NgxGlideModule } from 'ngx-glide';
 import {
   BasketComponent,
   CartItemComponent,
   DeleteOrderComponent,
+  HeaderComponent,
   LoginFormComponent,
   PopupComponent,
+  SidebarComponent,
   SliderComponent,
   SnackBarComponent
 } from './components';
+import { MaterialModule } from '@shared/UI-kit/material/material.module';
+import { CoreModule } from '@core/core.module';
 
-const COMPONENTS = [LoginFormComponent, SliderComponent, SnackBarComponent, DeleteOrderComponent, PopupComponent, BasketComponent, CartItemComponent];
+const COMPONENTS = [
+  BasketComponent,
+  CartItemComponent,
+  DeleteOrderComponent,
+  HeaderComponent,
+  LoginFormComponent,
+  PopupComponent,
+  SidebarComponent,
+  SliderComponent,
+  SnackBarComponent,
+];
 
 @NgModule({
-  declarations: [...COMPONENTS],
-  exports: [...COMPONENTS],
-  imports: [CommonModule, CoreModule, NgxGlideModule],
+  imports: [
+    MaterialModule,
+    CommonModule,
+    CoreModule,
+  ],
+  declarations: [
+    ...COMPONENTS,
+  ],
+  exports: [
+    MaterialModule,
+    ...COMPONENTS,
+  ],
 })
+
 export class SharedModule {
 }

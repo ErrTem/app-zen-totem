@@ -4,10 +4,18 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AppCommonModule } from '@features/app-common/app-common.module';
-import { AuthModule } from '@features/auth/auth.module';
 import { CoreModule } from '@core/core.module';
-import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from '@shared/shared.module';
+import { HomeModule } from '@features/home/home.module';
+import { ProfileModule } from '@features/profile/profile.module';
+import { LoginModule } from '@features/login/login.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+const FEATURES_MODULES = [
+  HomeModule,
+  LoginModule,
+  ProfileModule
+];
 
 @NgModule({
   declarations: [
@@ -15,15 +23,16 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    AppCommonModule,
-    AuthModule,
-    CoreModule,
-    HttpClientModule,
     BrowserAnimationsModule,
-    NoopAnimationsModule,
+    HttpClientModule,
+    AppRoutingModule,
+    SharedModule,
+    CoreModule,
+    ...FEATURES_MODULES,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
+//     NoopAnimationsModule deleted from imports

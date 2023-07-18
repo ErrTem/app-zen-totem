@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Store } from '@ngxs/store';
-import { RemoveAllProductsFromBasket } from '@ngxs/basket.actions';
+import { Select, Store } from '@ngxs/store';
+import { RemoveAllProductsFromBasket } from '@core/ngxs/basket.actions';
 
 @Component({
   selector: 'app-delete-order',

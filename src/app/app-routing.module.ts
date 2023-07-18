@@ -1,33 +1,22 @@
 import { NgModule } from '@angular/core';
-
 import { ExtraOptions, RouterModule, Routes } from '@angular/router';
-
-import { AuthUserGuard, LoginGuard } from '@core/guards';
-import { LoginComponent } from '@features/auth/components/login/login.component';
-
 
 const routes: Routes = [
   {
-    path: 'app',
-    redirectTo: 'app/home',
+    path: 'home',
+    loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule),
   },
   {
-    path: 'app',
-    loadChildren: () => import('./features/app-common/app-common.module').then(m => m.AppCommonModule),
+    path: 'login',
+    loadChildren: () => import('./features/login/login.module').then(m => m.LoginModule),
   },
   {
-    path: 'auth',
-    redirectTo: 'auth/login',
-    pathMatch: 'full'
-  },
-  {
-    path: 'auth/login',
-    component: LoginComponent,
-    canActivate: [LoginGuard]
+    path: 'profile',
+    loadChildren: () => import('./features/profile/profile.module').then(m => m.ProfileModule),
   },
   {
     path: '**',
-    redirectTo: 'app/home',
+    redirectTo: 'home',
   },
 ];
 
@@ -39,4 +28,5 @@ const extraOptions: ExtraOptions = {
   imports: [RouterModule.forRoot(routes, extraOptions)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

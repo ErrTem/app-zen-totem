@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Store } from '@ngxs/store';
 
 import { ProductInterface } from '@core/interfaces/product.interface';
-import { DecreaseProductQuantity, IncreaseProductQuantity, RemoveProductFromBasket } from '@ngxs/basket.actions';
+import { DecreaseProductQuantity, IncreaseProductQuantity, RemoveProductFromBasket } from '@core/ngxs/basket.actions';
 
 @Component({
   selector: 'app-cart-item',
