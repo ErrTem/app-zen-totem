@@ -16,7 +16,7 @@ import { BasketComponent } from '@shared/components';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.sass']
+  styleUrls: ['./header.component.sass'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
@@ -64,6 +64,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
     })
   }
 
+  public openDialog(): void {
+    this.dialog.open(BasketComponent, {
+      panelClass: 'app-basket-dialog',
+      position: {
+        top: '0',
+        right: '0',
+      },
+    });
+  }
+
   public logout(): void {
     this.authService.userLogout();
     this.router.navigate(['login']);
@@ -82,14 +92,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.errorSubscription.unsubscribe();
     this.successSubscription.unsubscribe();
-  }
-
-  openDialog(): void {
-    this.dialog.open(BasketComponent, {
-      width: '512px',
-      height: '100%',
-      panelClass: 'app-cart-dialog',
-    });
   }
 
   login() {

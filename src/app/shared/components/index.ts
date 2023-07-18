@@ -1,5 +1,5 @@
 export * from './basket/basket.component';
-export * from './cart-item/cart-item.component';
+export * from './basket-item/basket-item.component';
 export * from './login-form/login-form.component';
 export * from './delete-order/delete-order.component';
 export * from './header/header.component';

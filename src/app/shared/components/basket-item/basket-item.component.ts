@@ -1,16 +1,17 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { Store } from '@ngxs/store';
 
 import { ProductInterface } from '@core/interfaces/product.interface';
 import { DecreaseProductQuantity, IncreaseProductQuantity, RemoveProductFromBasket } from '@core/ngxs/basket.actions';
 
 @Component({
-  selector: 'app-cart-item',
-  templateUrl: './cart-item.component.html',
-  styleUrls: ['./cart-item.component.sass']
+  selector: 'app-basket-item',
+  templateUrl: './basket-item.component.html',
+  styleUrls: ['./basket-item.component.sass'],
+  encapsulation: ViewEncapsulation.None,
 })
-export class CartItemComponent {
-  @Input() cartItem!: ProductInterface;
+export class BasketItemComponent {
+  @Input() basketItem!: ProductInterface;
 
   constructor(
     private readonly store: Store,

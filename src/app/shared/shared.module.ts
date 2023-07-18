@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   BasketComponent,
-  CartItemComponent,
+  BasketItemComponent,
   DeleteOrderComponent,
   HeaderComponent,
   LoginFormComponent,
@@ -16,7 +16,7 @@ import { CoreModule } from '@core/core.module';
 
 const COMPONENTS = [
   BasketComponent,
-  CartItemComponent,
+  BasketItemComponent,
   DeleteOrderComponent,
   HeaderComponent,
   LoginFormComponent,

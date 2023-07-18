@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ComponentType } from '@angular/cdk/overlay';
 import { Router } from '@angular/router';
@@ -16,6 +16,7 @@ import { RemoveAllProductsFromBasket } from '@core/ngxs/basket.actions';
   selector: 'app-basket',
   templateUrl: './basket.component.html',
   styleUrls: ['./basket.component.sass'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class BasketComponent  {
 
@@ -31,7 +32,7 @@ export class BasketComponent  {
   }
 
   public openDialog(
-    component: ComponentType<DeleteOrderComponent> = DeleteOrderComponent //todo how it works
+    component: ComponentType<DeleteOrderComponent> = DeleteOrderComponent
   ): void {
     this.dialog.closeAll();
     this.dialog.open(
@@ -42,7 +43,7 @@ export class BasketComponent  {
 
   public confirmOrder(): void {
     if (!this.authService.getUserInfo()) {
-      this.router.navigate(['auth/login']);
+      this.router.navigate(['login']);
     } else {
       this.store.dispatch(new RemoveAllProductsFromBasket())
       console.log('success')
