@@ -2,7 +2,7 @@ import { Action, Selector, State, StateContext, StateToken } from '@ngxs/store';
 import { Injectable } from "@angular/core";
 import { CartItem, ProductInterface } from '@core/interfaces/product.interface';
 import { Observable, tap } from 'rxjs';
-import { GetAllProducts, UpdateProductQuantity } from '@core/ngxs/products.actions';
+import { GetAllProducts, GetProduct, UpdateProductQuantity } from '@core/ngxs/products.actions';
 import { ProductService } from '@core/services';
 
 export interface ProductsStateModel {
@@ -40,10 +40,27 @@ export class ProductsState {
         tap(
           (data: ProductInterface[]) => {
             const productsWithQuantity = data.map(product => ({...product, quantity: 0}))
-            console.log('GetAllProducts');
+
             setState({
               Products: productsWithQuantity,
             });
+          }
+        ))
+  }
+
+  @Action(GetProduct)
+  getProduct(
+    { getState }: StateContext<ProductsStateModel>,
+    {id}: GetProduct
+  ): Observable<ProductInterface> {
+    const { Products } = getState();
+    const quantity = Products.find(item => item.id === id)?.quantity || 0;
+
+    return this.productService.getProductById(String(id))
+      .pipe(
+        tap(
+          (data: ProductInterface) => {
+            const productsWithQuantity = {...data, quantity: quantity }
           }
         ))
   }
