@@ -5,30 +5,30 @@ import { Router } from '@angular/router';
 
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { BasketState } from '@core/ngxs/basket.state';
+import { CartState } from '@core/ngxs/cart.state';
 import { CartItem, ProductInterface } from '@core/interfaces/product.interface';
 import { getModalConfig } from '@shared/utils/getModalConfig';
 import { DeleteOrderComponent } from '@shared/components';
 import { AuthService } from '@core/services';
-import { RemoveAllProductsFromBasket } from '@core/ngxs/basket.actions';
+import { RemoveAllProductsFromCart } from '@core/ngxs/cart.actions';
 
 @Component({
-  selector: 'app-basket',
-  templateUrl: './basket.component.html',
-  styleUrls: ['./basket.component.sass'],
+  selector: 'app-cart',
+  templateUrl: './cart.component.html',
+  styleUrls: ['./cart.component.sass'],
   encapsulation: ViewEncapsulation.None,
 })
-export class BasketComponent  {
+export class CartComponent {
 
-  @Select(BasketState.getProducts) products$!: Observable<CartItem[]>;
-  @Select(BasketState.getTotalPrice) totalPrice$!: Observable<number>;
+  @Select(CartState.getProducts) products$!: Observable<CartItem[]>;
+  @Select(CartState.getTotalPrice) totalPrice$!: Observable<number>;
 
   constructor(
     private dialog: MatDialog,
     private router: Router,
     private readonly authService: AuthService,
     private readonly store: Store,
-    private readonly dialogRef: MatDialogRef<BasketComponent>
+    private readonly dialogRef: MatDialogRef<CartComponent>
   ) {
   }
 
@@ -47,7 +47,7 @@ export class BasketComponent  {
       this.closeDialog();
       this.router.navigate(['login']);
     } else {
-      this.store.dispatch(new RemoveAllProductsFromBasket())
+      this.store.dispatch(new RemoveAllProductsFromCart())
     }
   }
   public closeDialog(): void {

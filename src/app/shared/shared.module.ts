@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
-  BasketComponent,
-  BasketItemComponent,
+  CartComponent,
+  CartItemComponent,
   DeleteOrderComponent,
   HeaderComponent,
   LoginFormComponent,
@@ -15,8 +15,8 @@ import { MaterialModule } from '@shared/UI-kit/material/material.module';
 import { CoreModule } from '@core/core.module';
 
 const COMPONENTS = [
-  BasketComponent,
-  BasketItemComponent,
+  CartComponent,
+  CartItemComponent,
   DeleteOrderComponent,
   HeaderComponent,
   LoginFormComponent,

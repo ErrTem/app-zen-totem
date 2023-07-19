@@ -2,16 +2,16 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { Store } from '@ngxs/store';
 
 import { CartItem, ProductInterface } from '@core/interfaces/product.interface';
-import { DecreaseProductQuantity, IncreaseProductQuantity, RemoveProductFromBasket } from '@core/ngxs/basket.actions';
+import { DecreaseProductQuantity, IncreaseProductQuantity, RemoveProductFromCart } from '@core/ngxs/cart.actions';
 
 @Component({
-  selector: 'app-basket-item',
-  templateUrl: './basket-item.component.html',
-  styleUrls: ['./basket-item.component.sass'],
+  selector: 'app-cart-item',
+  templateUrl: './cart-item.component.html',
+  styleUrls: ['./cart-item.component.sass'],
   encapsulation: ViewEncapsulation.None,
 })
-export class BasketItemComponent {
-  @Input() basketItem!: CartItem;
+export class CartItemComponent {
+  @Input() cartItem!: CartItem;
 
   constructor(
     private readonly store: Store,
@@ -21,7 +21,7 @@ export class BasketItemComponent {
   public decreaseProductQuantity(cartItem: CartItem):void {
     cartItem.quantity! > 1
       ? this.store.dispatch(new DecreaseProductQuantity(cartItem))
-      : this.store.dispatch(new RemoveProductFromBasket(cartItem));
+      : this.store.dispatch(new RemoveProductFromCart(cartItem));
   }
 
   public increaseProductQuantity(cartItem: CartItem): void {
@@ -29,6 +29,6 @@ export class BasketItemComponent {
   }
 
   public removeProductFromCart(product: CartItem): void {
-    this.store.dispatch(new RemoveProductFromBasket(product));
+    this.store.dispatch(new RemoveProductFromCart(product));
   }
 }

@@ -1,0 +1,30 @@
+<div class="cart">
+  <div class="cart-header">
+    <div class="cart-header_title">
+      <div class="cart-header_title__name">My order</div>
+      <div *ngIf="(products$ | async)?.length" class="cart-header_title__quantity">{{ (products$ | async)?.length }}</div>
+    </div>
+    <div class="cart-header_button" *ngIf="(products$ | async)?.length" (click)="openDialog();closeDialog()">Clear all</div>
+  </div>
+  <div *ngIf="(products$ | async)?.length;else emptyCart">
+    <div class="cart-items">
+      <div class="cart-items_item" *ngFor="let item of products$ | async" >
+        <app-cart-item [cartItem]="item"></app-cart-item>
+      </div>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-footer_title">
+        <div class="cart-footer_title__name" >Total price</div>
+        <div class="cart-footer_title__price">Currency  {{ totalPrice$ | async }}</div>
+      </div>
+      <button class="cart-footer_button"  (click)="confirmOrder()">Order</button>
+    </div>
+  </div>
+</div>
+
+<ng-template #emptyCart>
+  <div class="empty-cart_content">
+    <img class="empty-cart_content__image" src="../../../../assets/box.png" width="200px" height="200px" />
+    <div class="empty-cart_content__text">No products added</div>
+  </div>
+</ng-template>

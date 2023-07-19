@@ -6,7 +6,7 @@ import { ProductInterface } from '@core/interfaces/product.interface';
 @Injectable({
   providedIn: 'root'
 })
-export class BasketService {
+export class CartService {
   constructor(
     private readonly apiService: ApiService,
   ) {

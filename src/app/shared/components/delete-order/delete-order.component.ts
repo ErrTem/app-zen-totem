@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
-import { RemoveAllProductsFromBasket } from '@core/ngxs/basket.actions';
+import { RemoveAllProductsFromCart } from '@core/ngxs/cart.actions';
 
 @Component({
   selector: 'app-delete-order',
@@ -15,6 +15,6 @@ export class DeleteOrderComponent {
   //todo fix in template
   // <div class="buttons_delete" [mat-dialog-close]="true" (click)="removeAllProductsFromCart()">Delete</div>
   removeAllProductsFromCart() {
-    this.store.dispatch(new RemoveAllProductsFromBasket());
+    this.store.dispatch(new RemoveAllProductsFromCart());
   }
 }

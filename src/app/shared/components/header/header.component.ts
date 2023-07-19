@@ -9,9 +9,9 @@ import { UserInfoInterface } from '@core/interfaces/user.interface';
 import { NotificationService } from '@core/services';
 import { AuthService } from "@core/services/auth.service";
 import { ClearUserInfo } from "@core/ngxs/profile.actions";
-import { BasketState } from '@core/ngxs/basket.state';
+import { CartState } from '@core/ngxs/cart.state';
 import { MatDialog } from '@angular/material/dialog';
-import { BasketComponent } from '@shared/components';
+import { CartComponent } from '@shared/components';
 
 @Component({
   selector: 'app-header',
@@ -26,8 +26,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private successSubscription!: Subscription;
 
   @Select(ProfileState.getUserInfo) userInfo$!: Observable<UserInfoInterface>;
-  @Select(BasketState.getTotalPrice) totalPrice$!: Observable<number>;
-  @Select(BasketState.getTotalQuantity) totalQuantity$!: Observable<number>;
+  @Select(CartState.getTotalPrice) totalPrice$!: Observable<number>;
+  @Select(CartState.getTotalQuantity) totalQuantity$!: Observable<number>;
 
   public isCustomerButtonClicked: boolean = false;
   public customerNameAbbreviation: string | undefined = '';
@@ -65,8 +65,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   public openDialog(): void {
-    const dialogRef = this.dialog.open(BasketComponent, {
-      panelClass: 'app-basket-dialog',
+    const dialogRef = this.dialog.open(CartComponent, {
+      panelClass: 'app-cart-dialog',
       position: {
         top: '0',
         right: '0',

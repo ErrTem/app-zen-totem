@@ -1,11 +1,11 @@
 @import '../../../sass/constants'
 @import '../../../sass/mixins'
 
-.app-basket-dialog
+.app-cart-dialog
   height: 100vh
   width: 500px
 
-  .basket-header
+  .cart-header
     @include flex(row, center, space-between)
     height: 56px
     border-bottom: 0.5px solid $color-default
@@ -24,14 +24,14 @@
         cursor: pointer
 
 
-  .basket-items
+  .cart-items
     @include flex(column, center, flex-start)
     padding: 0 32px
 
     &_item
       border-bottom: 0.5px solid $color-default-complimentary
 
-  .basket-footer
+  .cart-footer
     @include flex(column, flex-end, center)
     border-top: 0.5px solid $color-default
     padding: 22px 32px 32px
@@ -60,7 +60,7 @@
       &:hover
         cursor: pointer
 
-  .empty-basket_content
+  .empty-cart_content
     @include flex(column, center, center)
     text-align: center
     margin-top: 30vh

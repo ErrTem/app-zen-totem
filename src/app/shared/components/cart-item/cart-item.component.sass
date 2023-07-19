@@ -1,14 +1,14 @@
 @import 'src/app/sass/constants'
 @import 'src/app/sass/mixins'
 
-.basket-item_wrapper
+.cart-item_wrapper
   @include flex(column, flex-start, space-between)
   padding: 24.25px 0 12.25px
 
   &.opacity
     opacity: 0.4
 
-  .basket-item
+  .cart-item
     @include flex(row, flex-start, space-between)
     min-width: 448px
     width: 100%
@@ -37,7 +37,7 @@
 
       @include flex(row, center, flex-end)
 
-      .basket-item_quantity
+      .cart-item_quantity
         @include flex(row, center, space-between)
         height: 24px
         border-radius: 2px
@@ -48,11 +48,11 @@
           background-color: $color-default
           color: $white
 
-        &:hover .basket-item_quantity__minus
+        &:hover .cart-item_quantity__minus
           display: block
           padding-bottom: 8px
 
-        &:hover .basket-item_quantity__plus
+        &:hover .cart-item_quantity__plus
           display: block
 
         &__minus, &__plus

@@ -9,11 +9,11 @@ import { SnackBarComponent } from '@shared/components';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Store } from '@ngxs/store';
 import {
-  AddProductToBasket,
+  AddProductToCart,
   DecreaseProductQuantity,
   IncreaseProductQuantity,
-  RemoveProductFromBasket
-} from '@core/ngxs/basket.actions';
+  RemoveProductFromCart
+} from '@core/ngxs/cart.actions';
 
 @Component({
   selector: 'app-product-card',
@@ -38,16 +38,16 @@ export class ProductCardComponent {
     this.showSnackBar('Removed from basket');
     product.quantity! > 1
       ? this.store.dispatch(new DecreaseProductQuantity(product))
-      : this.store.dispatch(new RemoveProductFromBasket(product));
+      : this.store.dispatch(new RemoveProductFromCart(product));
   }
 
-  public increaseProductQuantity(basketItem: CartItem): void {
-    this.store.dispatch(new IncreaseProductQuantity(basketItem));
+  public increaseProductQuantity(product: CartItem): void {
+    this.store.dispatch(new IncreaseProductQuantity(product));
     this.showSnackBar('Added to basket');
   }
 
-  public addProductToBasket(product: CartItem): void {
-    this.store.dispatch(new AddProductToBasket(product));
+  public AddProductToCart(product: CartItem): void {
+    this.store.dispatch(new AddProductToCart(product));
     this.showSnackBar('Added to basket');
   }
 
