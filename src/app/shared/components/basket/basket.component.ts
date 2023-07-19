@@ -48,7 +48,6 @@ export class BasketComponent  {
       this.router.navigate(['login']);
     } else {
       this.store.dispatch(new RemoveAllProductsFromBasket())
-      console.log('success')
     }
   }
   public closeDialog(): void {

@@ -59,6 +59,7 @@ export class ProductsState {
 
     if (productIndex !== -1) {
       updatedProducts[productIndex].quantity = quantity;
+
       patchState({
         Products: updatedProducts,
       });

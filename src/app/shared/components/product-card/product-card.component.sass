@@ -48,32 +48,15 @@
   .bottom_update-count-container
     @include flex(row, center, space-between)
 
-    &__minus
+    &__stepper
       @include flex(row, center, center)
-      @include size(20px, 20px)
+      @include size(25px, 25px)
       background-color: $color-default
-      border-radius: 100px
+      border-radius: 25px
       border: none
-
-      .minus
-        cursor: pointer
-        padding-bottom: 5px
-
-        path
-          fill: $color-default
+      cursor: pointer
 
     &__number
-      margin: 0 2px
-
-    &__plus
-      @include flex(row, center, center)
-      @include size(20px, 20px)
-      background-color: $color-default
-      border-radius: 100px
-      border: none
-
-      .plus
-        cursor: pointer
-
-        path
-          fill: $color-default
+      font-weight: $bold
+      font-size: $medium
+      margin: 0 5px

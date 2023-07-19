@@ -25,7 +25,4 @@ export class HomeComponent implements OnInit {
       this.products = data;
     });
   }
-
-  public addToBasket(product: CartItem) {
-  }
 }

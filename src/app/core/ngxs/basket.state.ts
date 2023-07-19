@@ -56,15 +56,9 @@ export class BasketState {
   ): void {
     const state = getState();
     const updatedProducts = [...state.basketInfo.products];
-    const existingProduct = updatedProducts.find(item => item.id === product.id);
+    updatedProducts.push({...product, quantity: 1});
 
-    if (existingProduct) {
-      existingProduct.quantity++;
-    } else {
-      updatedProducts.push({...product, quantity: 1});
-    }
-
-    dispatch(new UpdateProductQuantity(product.id, product.quantity));
+    dispatch(new UpdateProductQuantity(product.id, 1));
 
     const totalPrice = updatedProducts.reduce((total, item) => total + item.price * item.quantity, 0);
     const totalQuantity = updatedProducts.reduce((total, item) => total + item.quantity, 0);
@@ -75,7 +69,7 @@ export class BasketState {
       basketTotalPrice: totalPrice,
       basketTotalQuantity: totalQuantity
     };
-    console.log('AddProductToBasket');
+
     patchState({
       basketInfo: updatedBasket
     });
@@ -100,7 +94,7 @@ export class BasketState {
       basketTotalPrice: totalPrice,
       basketTotalQuantity: totalQuantity
     };
-    console.log('RemoveProductFromBasket');
+
     patchState({
       basketInfo: updatedBasket
     });
@@ -127,9 +121,9 @@ export class BasketState {
 
     if (existingProduct) {
       existingProduct.quantity++;
+      const quantity = existingProduct.quantity;
+      dispatch(new UpdateProductQuantity(product.id, quantity));
     }
-
-    dispatch(new UpdateProductQuantity(product.id, product.quantity));
 
     const totalPrice = updatedProducts.reduce((total, item) => total + item.price * item.quantity, 0);
     const totalQuantity = updatedProducts.reduce((total, item) => total + item.quantity, 0);
@@ -140,7 +134,7 @@ export class BasketState {
       basketTotalPrice: totalPrice,
       basketTotalQuantity: totalQuantity
     };
-    console.log('IncreaseProductQuantity');
+
     patchState({
       basketInfo: updatedBasket
     });
@@ -155,16 +149,12 @@ export class BasketState {
     const updatedProducts = [...state.basketInfo.products];
     const existingProduct = updatedProducts.find(item => item.id === product.id);
 
-    if (existingProduct && existingProduct.quantity > 1) {
-      existingProduct.quantity--;
-    } else {
-      const productIndex = updatedProducts.findIndex(item => item.id === product.id);
-      if (productIndex !== -1) {
-        updatedProducts.splice(productIndex, 1);
-      }
-    }
 
-    dispatch(new UpdateProductQuantity(product.id, product.quantity));
+    if (existingProduct) {
+      existingProduct.quantity--;
+      const quantity = existingProduct.quantity;
+      dispatch(new UpdateProductQuantity(product.id, quantity));
+    }
 
     const totalPrice = updatedProducts.reduce((total, item) => total + item.price * item.quantity, 0);
     const totalQuantity = updatedProducts.reduce((total, item) => total + item.quantity, 0);
@@ -175,7 +165,7 @@ export class BasketState {
       basketTotalPrice: totalPrice,
       basketTotalQuantity: totalQuantity
     };
-    console.log('DecreaseProductQuantity');
+
     patchState({
       basketInfo: updatedBasket
     });

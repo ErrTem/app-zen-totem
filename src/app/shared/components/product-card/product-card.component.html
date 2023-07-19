@@ -5,7 +5,7 @@
   >
     <mat-card-title class="product-card__title">{{
       product.title
-    }}</mat-card-title>
+      }}</mat-card-title>
     <img
       mat-card-image
       class="product-card__image"
@@ -23,7 +23,7 @@
         class="product-card__actions-button"
         mat-raised-button
         color="primary"
-        (click)="showSnackBar(); addProductToBasket(product)"
+        (click)="addProductToBasket(product)"
         *ngIf="product.quantity === 0 else updateCountButton"
         type="button"
       >
@@ -34,14 +34,13 @@
     <ng-template #updateCountButton >
       <div class="bottom_update-count-container">
         <button
-          class="bottom_update-count-container__minus"
+          class="bottom_update-count-container__stepper"
           (click)="decreaseProductQuantity(product)"
         >
           <img
-            class="minus"
             src="assets/minus.png"
-            width="10px"
-            height="10px"
+            width="15px"
+            height="15px"
           >
         </button>
         <div
@@ -50,14 +49,13 @@
           {{product.quantity}}
         </div>
         <button
-          class="bottom_update-count-container__plus"
+          class="bottom_update-count-container__stepper"
           (click)="increaseProductQuantity(product)"
         >
           <img
-            class="plus"
             src="assets/plus.png"
-            width="10px"
-            height="10px"
+            width="15px"
+            height="15px"
           >
         </button>
       </div>

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
@@ -35,6 +35,7 @@ export class ProductCardComponent {
   }
 
   public decreaseProductQuantity(product: CartItem): void {
+    this.showSnackBar('Removed from basket');
     product.quantity! > 1
       ? this.store.dispatch(new DecreaseProductQuantity(product))
       : this.store.dispatch(new RemoveProductFromBasket(product));
@@ -42,16 +43,21 @@ export class ProductCardComponent {
 
   public increaseProductQuantity(basketItem: CartItem): void {
     this.store.dispatch(new IncreaseProductQuantity(basketItem));
+    this.showSnackBar('Added to basket');
   }
 
   public addProductToBasket(product: CartItem): void {
     this.store.dispatch(new AddProductToBasket(product));
+    this.showSnackBar('Added to basket');
   }
 
-  public showSnackBar() {
+  public showSnackBar(message: string) {
     this.snackBar.openFromComponent(SnackBarComponent, {
       duration: this.durationInSeconds,
       panelClass: 'snackbar-awesome',
+      data: {
+        message: message
+      }
     });
   }
 }
