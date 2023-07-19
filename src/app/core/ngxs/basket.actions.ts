@@ -1,31 +1,31 @@
-import { ProductInterface } from '@core/interfaces/product.interface';
+import { CartItem } from '@core/interfaces/product.interface';
 
 export class AddProductToBasket {
-  static readonly type = '[Product] Add';
+  static readonly type = '[Basket] Add';
 
-  constructor(public product: ProductInterface) {}
+  constructor(public product: CartItem) {}
 }
 
 export class RemoveProductFromBasket {
-  static readonly type = '[Product] Remove';
+  static readonly type = '[Basket] Remove';
 
-  constructor(public product: ProductInterface) {}
+  constructor(public product: CartItem) {}
 }
 
 export class RemoveAllProductsFromBasket {
-  static readonly type = '[Product] RemoveAll';
+  static readonly type = '[Basket] RemoveAll';
 
   constructor() {}
 }
 
 export class IncreaseProductQuantity {
-  static readonly type = '[Product] IncreaseProductQuantity';
+  static readonly type = '[Basket] IncreaseProductQuantity';
 
-  constructor(public product: ProductInterface) {}
+  constructor(public product: CartItem) {}
 }
 
 export class DecreaseProductQuantity {
-  static readonly type = '[Product] DecreaseProductQuantity';
+  static readonly type = '[Basket] DecreaseProductQuantity';
 
-  constructor(public product: ProductInterface) {}
+  constructor(public product: CartItem) {}
 }

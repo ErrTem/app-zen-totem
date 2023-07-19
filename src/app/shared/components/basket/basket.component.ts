@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { BasketState } from '@core/ngxs/basket.state';
-import { ProductInterface } from '@core/interfaces/product.interface';
+import { CartItem, ProductInterface } from '@core/interfaces/product.interface';
 import { getModalConfig } from '@shared/utils/getModalConfig';
 import { DeleteOrderComponent } from '@shared/components';
 import { AuthService } from '@core/services';
@@ -20,7 +20,7 @@ import { RemoveAllProductsFromBasket } from '@core/ngxs/basket.actions';
 })
 export class BasketComponent  {
 
-  @Select(BasketState.getProducts) products$!: Observable<ProductInterface[]>;
+  @Select(BasketState.getProducts) products$!: Observable<CartItem[]>;
   @Select(BasketState.getTotalPrice) totalPrice$!: Observable<number>;
 
   constructor(

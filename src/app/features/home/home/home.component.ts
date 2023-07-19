@@ -1,6 +1,9 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { PRODUCT_SERVICE_TOKEN, ProductService } from '@core/services';
-import { ProductInterface } from '@core/interfaces/product.interface';
+import { Component, OnInit } from '@angular/core';
+import { CartItem } from '@core/interfaces/product.interface';
+import { GetAllProducts } from '@core/ngxs/products.actions';
+import { Select, Store } from '@ngxs/store';
+import { ProductsState } from '@core/ngxs/products.state';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -8,17 +11,21 @@ import { ProductInterface } from '@core/interfaces/product.interface';
   styleUrls: ['./home.component.sass'],
 })
 export class HomeComponent implements OnInit {
-  public products: ProductInterface[] = [];
+  @Select(ProductsState.getAllProducts) products$!: Observable<CartItem[]>;
+  public products: CartItem[] = [];
 
   constructor(
-    @Inject(PRODUCT_SERVICE_TOKEN) private readonly productService: ProductService,
-  ) {}
+    private readonly store: Store,
+  ) {
+  }
 
   ngOnInit(): void {
-    this.productService.getAllProducts().subscribe((products) => {
-      this.products = products;
+    this.store.dispatch(new GetAllProducts())
+    this.products$.subscribe((data: CartItem[]) => {
+      this.products = data;
     });
   }
 
-  public addToBasket(product: ProductInterface) {}
+  public addToBasket(product: CartItem) {
+  }
 }

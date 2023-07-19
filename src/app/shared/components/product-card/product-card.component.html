@@ -23,7 +23,7 @@
         class="product-card__actions-button"
         mat-raised-button
         color="primary"
-        (click)="showSnackBar(); addProductToCart(product)"
+        (click)="showSnackBar(); addProductToBasket(product)"
         *ngIf="product.quantity === 0 else updateCountButton"
         type="button"
       >

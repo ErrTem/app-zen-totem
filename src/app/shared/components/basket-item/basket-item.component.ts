@@ -1,7 +1,7 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { Store } from '@ngxs/store';
 
-import { ProductInterface } from '@core/interfaces/product.interface';
+import { CartItem, ProductInterface } from '@core/interfaces/product.interface';
 import { DecreaseProductQuantity, IncreaseProductQuantity, RemoveProductFromBasket } from '@core/ngxs/basket.actions';
 
 @Component({
@@ -11,24 +11,24 @@ import { DecreaseProductQuantity, IncreaseProductQuantity, RemoveProductFromBask
   encapsulation: ViewEncapsulation.None,
 })
 export class BasketItemComponent {
-  @Input() basketItem!: ProductInterface;
+  @Input() basketItem!: CartItem;
 
   constructor(
     private readonly store: Store,
     ) {
   }
 
-  public decreaseProductQuantity(cartItem: ProductInterface):void {
+  public decreaseProductQuantity(cartItem: CartItem):void {
     cartItem.quantity! > 1
       ? this.store.dispatch(new DecreaseProductQuantity(cartItem))
       : this.store.dispatch(new RemoveProductFromBasket(cartItem));
   }
 
-  public increaseProductQuantity(cartItem: ProductInterface): void {
+  public increaseProductQuantity(cartItem: CartItem): void {
     this.store.dispatch(new IncreaseProductQuantity(cartItem));
   }
 
-  public removeProductFromCart(product: ProductInterface): void {
+  public removeProductFromCart(product: CartItem): void {
     this.store.dispatch(new RemoveProductFromBasket(product));
   }
 }

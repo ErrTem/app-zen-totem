@@ -1,6 +1,8 @@
 import { Injectable, InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { ApiService } from '@core/services/api.service';
+import { ProductInterface } from '@core/interfaces/product.interface';
 
 export const PRODUCT_SERVICE_TOKEN = new InjectionToken<ProductService>('product_service_token');
 
@@ -9,14 +11,15 @@ export const PRODUCT_SERVICE_TOKEN = new InjectionToken<ProductService>('product
 })
 export class ProductService {
 
-  private apiProductUrl = 'https://fakestoreapi.com/products';
-
   constructor(
-    private readonly http: HttpClient,
+    private readonly apiService: ApiService,
     ) { }
 
-  //todo why any?
-  public getAllProducts(): Observable<any> {
-    return this.http.get(this.apiProductUrl);
+  public getAllProducts(): Observable<ProductInterface[]> {
+    return this.apiService.get(`products`);
+  }
+
+  public getProductById(id: string): Observable<ProductInterface> {
+    return this.apiService.get(`products/${id}`);
   }
 }

@@ -3,19 +3,17 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ProductInterface } from '@core/interfaces/product.interface';
+import { CartItem } from '@core/interfaces/product.interface';
 import { MatButtonModule } from '@angular/material/button';
 import { SnackBarComponent } from '@shared/components';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { Select, Store } from '@ngxs/store';
+import { Store } from '@ngxs/store';
 import {
   AddProductToBasket,
   DecreaseProductQuantity,
   IncreaseProductQuantity,
   RemoveProductFromBasket
 } from '@core/ngxs/basket.actions';
-import { BasketState } from '@core/ngxs/basket.state';
-import { first, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-product-card',
@@ -27,8 +25,7 @@ import { first, Observable } from 'rxjs';
 export class ProductCardComponent {
   private readonly durationInSeconds = 1000;
 
-  @Select(BasketState.getProducts) productCartData$!: Observable<ProductInterface[]>;
-  @Input() products!: ProductInterface[];
+  @Input() products!: CartItem[];
 
   constructor(
     private readonly snackBar: MatSnackBar,
@@ -37,23 +34,18 @@ export class ProductCardComponent {
   ) {
   }
 
-  public decreaseProductQuantity(product: ProductInterface): void {
+  public decreaseProductQuantity(product: CartItem): void {
     product.quantity! > 1
       ? this.store.dispatch(new DecreaseProductQuantity(product))
       : this.store.dispatch(new RemoveProductFromBasket(product));
   }
 
-  public increaseProductQuantity(basketItem: ProductInterface): void {
+  public increaseProductQuantity(basketItem: CartItem): void {
     this.store.dispatch(new IncreaseProductQuantity(basketItem));
   }
 
-  public addProductToCart(product: ProductInterface): void {
-    this.productCartData$.pipe(first()).subscribe(res => {
-      if (res === undefined || res.length === 0 ) {
-        this.store.dispatch(new AddProductToBasket(product));
-        return;
-      }
-    });
+  public addProductToBasket(product: CartItem): void {
+    this.store.dispatch(new AddProductToBasket(product));
   }
 
   public showSnackBar() {
