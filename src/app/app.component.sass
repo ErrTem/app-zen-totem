@@ -1,21 +1,21 @@
-app-container
+.app-container
   display: flex
   flex-direction: column
   height: 100vh
 
-.content-container
-  display: flex
-  flex-grow: 1
+  .header-container
+    height: 95px
+    position: fixed
+    top: 0
+    left: 50%
+    transform: translateX(-50%)
+    z-index: 2
+    width: 75%
+    border-radius: 15px
 
-.router-content
-  flex-grow: 1
+  .content-container
+    display: flex
+    flex-grow: 1
 
-.header-container
-  position: fixed
-  top: 0
-  left: 50%
-  transform: translateX(-50%)
-  z-index: 99
-
-  width: 75%
-  border-radius: 15px
+    .router-content
+      flex-grow: 1

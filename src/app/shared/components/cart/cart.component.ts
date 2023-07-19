@@ -1,6 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { ComponentType } from '@angular/cdk/overlay';
 import { Router } from '@angular/router';
 
 import { Select, Store } from '@ngxs/store';

@@ -12,7 +12,6 @@ import { ClearUserInfo } from "@core/ngxs/profile.actions";
 import { CartState } from '@core/ngxs/cart.state';
 import { MatDialog } from '@angular/material/dialog';
 import { CartComponent } from '@shared/components';
-import { RemoveAllProductsFromCart } from '@core/ngxs/cart.actions';
 
 @Component({
   selector: 'app-header',
@@ -91,12 +90,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.successMessage = null;
   }
 
+  login() {
+    this.router.navigate(['login']);
+  }
+
   ngOnDestroy(): void {
     this.errorSubscription.unsubscribe();
     this.successSubscription.unsubscribe();
-  }
-
-  login() {
-    this.router.navigate(['login']);
   }
 }

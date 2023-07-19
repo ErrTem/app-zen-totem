@@ -1,6 +1,4 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
-import { RemoveAllProductsFromCart } from '@core/ngxs/cart.actions';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -9,6 +7,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
     styleUrls: ['./delete-order.component.sass']
   }
 )
+
 export class DeleteOrderComponent {
   @Output() deleteClicked: EventEmitter<void> = new EventEmitter<void>();
 
