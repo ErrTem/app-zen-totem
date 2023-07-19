@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { CartState } from '@core/ngxs/cart.state';
-import { CartItem, ProductInterface } from '@core/interfaces/product.interface';
+import { CartItem } from '@core/interfaces/product.interface';
 import { getModalConfig } from '@shared/utils/getModalConfig';
 import { DeleteOrderComponent } from '@shared/components';
 import { AuthService } from '@core/services';
@@ -32,14 +32,15 @@ export class CartComponent {
   ) {
   }
 
-  public openDialog(
-    component: ComponentType<DeleteOrderComponent> = DeleteOrderComponent
-  ): void {
-    this.dialog.closeAll();
-    this.dialog.open(
-      component,
-      getModalConfig(500, 200, 'app-delete-dialog', {isCart: true})
+  public openDialog(): void {
+    const dialogRef = this.dialog.open(
+      DeleteOrderComponent, getModalConfig(500, 200, 'app-delete-dialog', {isCart: true})
     );
+
+    dialogRef.componentInstance.deleteClicked.subscribe(() => {
+      this.store.dispatch(new RemoveAllProductsFromCart());
+      this.dialog.closeAll();
+    });
   }
 
   public confirmOrder(): void {

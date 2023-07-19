@@ -40,7 +40,7 @@ export class ProductsState {
         tap(
           (data: ProductInterface[]) => {
             const productsWithQuantity = data.map(product => ({...product, quantity: 0}))
-
+            console.log('GetAllProducts');
             setState({
               Products: productsWithQuantity,
             });

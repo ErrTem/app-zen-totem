@@ -3,7 +3,7 @@
     <div class="cart-header_title">
       <div class="cart-header_title__name">My order</div>
     </div>
-    <div class="cart-header_button" *ngIf="(products$ | async)?.length" (click)="openDialog();closeDialog()">Clear all</div>
+    <div class="cart-header_button" *ngIf="(products$ | async)?.length" (click)="openDialog()">Clear all</div>
   </div>
   <div *ngIf="(products$ | async)?.length;else emptyCart">
     <div class="cart-items">

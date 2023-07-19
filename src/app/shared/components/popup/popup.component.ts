@@ -12,4 +12,6 @@ export class PopupComponent {
   @Input() icon: string = "";
   @Input() destination: string = "";
 
+
+
 }

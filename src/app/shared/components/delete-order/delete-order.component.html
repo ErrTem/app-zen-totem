@@ -2,7 +2,7 @@
   title="Delete all items?"
   subtitle="The cart will be cleared. All items will be removed.">
   <div class="buttons">
-    <div class="buttons_cancel" mat-dialog-close>Cancel</div>
-    <div class="buttons_delete" (click)="removeAllProductsFromCart()">Delete</div>
+    <div class="buttons_cancel" (click)="closeDialog()">Cancel</div>
+    <div class="buttons_delete" (click)="removeAllProducts()">Delete</div>
   </div>
 </app-popup>

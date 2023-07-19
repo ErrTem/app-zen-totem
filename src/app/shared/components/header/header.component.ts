@@ -12,6 +12,7 @@ import { ClearUserInfo } from "@core/ngxs/profile.actions";
 import { CartState } from '@core/ngxs/cart.state';
 import { MatDialog } from '@angular/material/dialog';
 import { CartComponent } from '@shared/components';
+import { RemoveAllProductsFromCart } from '@core/ngxs/cart.actions';
 
 @Component({
   selector: 'app-header',
@@ -72,9 +73,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         right: '0',
       },
     });
-    dialogRef.afterClosed().subscribe(() => {
-      console.log('Dialog closed');
-    });
+
   }
 
   public logout(): void {

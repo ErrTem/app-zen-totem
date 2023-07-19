@@ -102,7 +102,7 @@ export class CartState {
 
   @Action(RemoveAllProductsFromCart)
   RemoveAllProductsFromCart({patchState, dispatch}: StateContext<CartStateModel>): void {
-
+    console.log('RemoveAllProductsFromCart');
     dispatch(new GetAllProducts());
 
     patchState({

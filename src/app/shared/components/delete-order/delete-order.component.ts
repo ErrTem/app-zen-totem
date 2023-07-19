@@ -1,20 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { RemoveAllProductsFromCart } from '@core/ngxs/cart.actions';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-delete-order',
-  templateUrl: './delete-order.component.html',
-  styleUrls: ['./delete-order.component.sass']
-}
+    selector: 'app-delete-order',
+    templateUrl: './delete-order.component.html',
+    styleUrls: ['./delete-order.component.sass']
+  }
 )
 export class DeleteOrderComponent {
+  @Output() deleteClicked: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor(private store: Store) { }
+  constructor(
+    private readonly dialog: MatDialog,
+    private readonly dialogRef: MatDialogRef<DeleteOrderComponent>
+  ) {
+  }
 
-  //todo fix in template
-  // <div class="buttons_delete" [mat-dialog-close]="true" (click)="removeAllProductsFromCart()">Delete</div>
-  removeAllProductsFromCart() {
-    this.store.dispatch(new RemoveAllProductsFromCart());
+  public removeAllProducts() {
+    this.deleteClicked.emit()
+    this.dialogRef.close();
+  }
+
+  public closeDialog(): void {
+    this.dialog.closeAll();
   }
 }

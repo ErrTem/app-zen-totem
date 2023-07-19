@@ -2,23 +2,28 @@
 @import 'src/app/sass/mixins'
 
 .wrapper
-  @include flex(column, center, flex-start)
-  gap: 16px
+  @include flex(column, space-between, flex-start)
+  padding: 20px
+
 
   .header
     @include flex(row, flex-start, space-between)
     width: 100%
+    margin-bottom: 30px
 
     &__text
       @include flex(column, center, flex-start)
-      gap: 4px
 
       &_title
-        margin: 0
+        font-weight: $bold
+        font-size: $large
+        margin-bottom: 10px
         width: 100%
 
       &_subtitle
         margin: 0
+        font-weight: $normal
+        font-size: $default
 
     &__action_close
       cursor: pointer
