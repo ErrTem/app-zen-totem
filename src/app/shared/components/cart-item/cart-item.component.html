@@ -19,7 +19,7 @@
         <img src="assets/plus.png" width="20px" height="20px">
       </div>
 
-      <div class="cart-item_price__text">${{ cartItem.price }}</div>
+      <div class="cart-item_price__text">${{ (cartItem.price * cartItem.quantity) | number:'1.2-2'  }}</div>
 
       <div class="cart-item_price__trash">
         <img

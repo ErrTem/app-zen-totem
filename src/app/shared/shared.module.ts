@@ -13,6 +13,7 @@ import {
 } from './components';
 import { MaterialModule } from '@shared/UI-kit/material/material.module';
 import { CoreModule } from '@core/core.module';
+import { LimitTotalPricePipe } from '@shared/pipes/limit-total-price.pipe';
 
 const COMPONENTS = [
   CartComponent,
@@ -24,6 +25,7 @@ const COMPONENTS = [
   SidebarComponent,
   SliderComponent,
   SnackBarComponent,
+  LimitTotalPricePipe,
 ];
 
 @NgModule({

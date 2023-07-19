@@ -14,7 +14,7 @@
     <div class="cart-footer">
       <div class="cart-footer_title">
         <div class="cart-footer_title__name" >Total price</div>
-        <div class="cart-footer_title__price">Currency  ${{ totalPrice$ | async }}</div>
+        <div class="cart-footer_title__price">Currency  ${{ totalPrice$ | async | number:'1.2-2'  }}</div>
       </div>
       <button class="cart-footer_button"  (click)="confirmOrder()">Order</button>
     </div>

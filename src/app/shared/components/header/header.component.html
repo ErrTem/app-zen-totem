@@ -37,7 +37,7 @@
             class="menu-button__text"
             *ngIf="totalPrice$ | async as totalPrice; else emptyCart"
           >
-            $ {{ totalPrice | number:'1.2-2' }}
+            $ {{ totalPrice | limitTotalPrice | number:'1.2-2' }}
           </div>
           <ng-template #emptyCart>
             <div class="menu-button__text">
