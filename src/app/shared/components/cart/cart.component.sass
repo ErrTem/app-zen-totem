@@ -7,7 +7,7 @@
 
   .cart-header
     @include flex(row, center, space-between)
-    height: 56px
+    height: 95px
     border-bottom: 0.5px solid $color-default
     padding: 0 32px
 
@@ -29,12 +29,11 @@
     padding: 0 32px
 
     &_item
-      border-bottom: 0.5px solid $color-default-complimentary
+      border-bottom: 0.5px solid $dark-grey
 
   .cart-footer
     @include flex(column, flex-end, center)
-    border-top: 0.5px solid $color-default
-    padding: 22px 32px 32px
+    padding: 20px
     width: 436px
 
     &_title
@@ -42,23 +41,26 @@
       width: 100%
       margin-bottom: 16px
 
-      &__name
-
       &__price
+        font-weight: $bold
+        font-size: $medium
 
     &_button
       background-color: $color-default
       color: $white
       width: 448px
       border: none
-      border-radius: 2px
+      border-radius: 4px
       align-self: stretch
       flex-grow: 0
       text-align: center
       padding: 12px 0
+      transition: background-color 0.3s
 
       &:hover
         cursor: pointer
+        background-color: $color-error
+        transition: background-color 0.3s
 
   .empty-cart_content
     @include flex(column, center, center)

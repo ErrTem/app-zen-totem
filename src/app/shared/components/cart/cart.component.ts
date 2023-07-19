@@ -50,6 +50,7 @@ export class CartComponent {
       this.store.dispatch(new RemoveAllProductsFromCart())
     }
   }
+
   public closeDialog(): void {
     this.dialogRef.close();
   }

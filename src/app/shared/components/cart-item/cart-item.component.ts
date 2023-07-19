@@ -1,8 +1,16 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { Store } from '@ngxs/store';
 
-import { CartItem, ProductInterface } from '@core/interfaces/product.interface';
-import { DecreaseProductQuantity, IncreaseProductQuantity, RemoveProductFromCart } from '@core/ngxs/cart.actions';
+import { CartItem } from '@core/interfaces/product.interface';
+import {
+  AddProductToCart,
+  DecreaseProductQuantity,
+  IncreaseProductQuantity,
+  RemoveProductFromCart
+} from '@core/ngxs/cart.actions';
+import { SnackBarComponent } from '@shared/components';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-cart-item',
@@ -11,24 +19,45 @@ import { DecreaseProductQuantity, IncreaseProductQuantity, RemoveProductFromCart
   encapsulation: ViewEncapsulation.None,
 })
 export class CartItemComponent {
+  private readonly durationInSeconds = 1000;
   @Input() cartItem!: CartItem;
 
   constructor(
+    private readonly snackBar: MatSnackBar,
+    private readonly dialog: MatDialog,
     private readonly store: Store,
-    ) {
+  ) {
   }
 
-  public decreaseProductQuantity(cartItem: CartItem):void {
-    cartItem.quantity! > 1
-      ? this.store.dispatch(new DecreaseProductQuantity(cartItem))
-      : this.store.dispatch(new RemoveProductFromCart(cartItem));
+  public decreaseProductQuantity(product: CartItem): void {
+    this.showSnackBar('Removed from basket');
+    product.quantity! > 1
+      ? this.store.dispatch(new DecreaseProductQuantity(product))
+      : this.store.dispatch(new RemoveProductFromCart(product));
   }
 
-  public increaseProductQuantity(cartItem: CartItem): void {
-    this.store.dispatch(new IncreaseProductQuantity(cartItem));
+  public increaseProductQuantity(product: CartItem): void {
+    this.store.dispatch(new IncreaseProductQuantity(product));
+    this.showSnackBar('Added to basket');
+  }
+
+  public AddProductToCart(product: CartItem): void {
+    this.store.dispatch(new AddProductToCart(product));
+    this.showSnackBar('Added to basket');
   }
 
   public removeProductFromCart(product: CartItem): void {
     this.store.dispatch(new RemoveProductFromCart(product));
+    this.showSnackBar('Removed from basket');
+  }
+
+  public showSnackBar(message: string) {
+    this.snackBar.openFromComponent(SnackBarComponent, {
+      duration: this.durationInSeconds,
+      panelClass: 'snackbar-awesome',
+      data: {
+        message: message
+      }
+    });
   }
 }

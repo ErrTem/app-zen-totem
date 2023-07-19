@@ -2,7 +2,6 @@
   <div class="cart-header">
     <div class="cart-header_title">
       <div class="cart-header_title__name">My order</div>
-      <div *ngIf="(products$ | async)?.length" class="cart-header_title__quantity">{{ (products$ | async)?.length }}</div>
     </div>
     <div class="cart-header_button" *ngIf="(products$ | async)?.length" (click)="openDialog();closeDialog()">Clear all</div>
   </div>
@@ -15,7 +14,7 @@
     <div class="cart-footer">
       <div class="cart-footer_title">
         <div class="cart-footer_title__name" >Total price</div>
-        <div class="cart-footer_title__price">Currency  {{ totalPrice$ | async }}</div>
+        <div class="cart-footer_title__price">Currency  ${{ totalPrice$ | async }}</div>
       </div>
       <button class="cart-footer_button"  (click)="confirmOrder()">Order</button>
     </div>

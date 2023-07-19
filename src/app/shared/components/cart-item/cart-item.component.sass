@@ -2,26 +2,19 @@
 @import 'src/app/sass/mixins'
 
 .cart-item_wrapper
-  @include flex(column, flex-start, space-between)
-  padding: 24.25px 0 12.25px
-
-  &.opacity
-    opacity: 0.4
+  @include flex(column, center, center)
+  padding: 12px
 
   .cart-item
-    @include flex(row, flex-start, space-between)
-    min-width: 448px
+    @include flex(row, center, center)
     width: 100%
-
-    &.opacity
-      opacity: 0.4
 
     &_content
       @include flex(row, center, space-between)
 
       &__image
-        width: 56px
-        height: 56px
+        width: 100px
+        height: 100px
         margin-right: 12px
 
         img
@@ -29,48 +22,32 @@
           height: 100%
 
       &__description
-        @include flex(column, flex-start, center)
-        width: 186px
+        @include flex(row, flex-start, center)
+        width: 180px
 
-        .description_weight
-          color: $color-text-grey
+    &_price
+      @include flex(row, center, space-between)
 
-      @include flex(row, center, flex-end)
-
-      .cart-item_quantity
-        @include flex(row, center, space-between)
-        height: 24px
-        border-radius: 2px
-        padding: 0 4px
-        margin-right: 12px
+      &__stepper
+        @include size(20px, 20px)
+        @include flex(row, center, center)
+        padding: 2px
+        cursor: pointer
+        text-align: center
+        border-radius: 25px
+        transition: background-color 0.3s
 
         &:hover
-          background-color: $color-default
+          background-color: $color-error
           color: $white
+          transition: background-color 0.3s
 
-        &:hover .cart-item_quantity__minus
-          display: block
-          padding-bottom: 8px
-
-        &:hover .cart-item_quantity__plus
-          display: block
-
-        &__minus, &__plus
-          //display: hidden
-          width: 26px
-          cursor: pointer
-          text-align: center
+      &__number
+        margin: 5px
+        font-weight: $bold
 
       &__text
-        margin-right: 17px
+        margin: 5px
 
-      &__icon.trash
+      &__trash
         cursor: pointer
-
-  .out-of-stock-notification
-    padding: 4px 8px
-    text-align: left
-    background-color: $color-secondary
-    color: $color-default
-    width: 448px
-    margin-top: 16px
