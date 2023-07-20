@@ -13,6 +13,12 @@ import { Observable } from 'rxjs';
 export class HomeComponent implements OnInit {
   @Select(ProductsState.getAllProducts) products$!: Observable<CartItem[]>;
   public products: CartItem[] = [];
+  public categories: string[] = [
+    "electronics",
+    "jewelery",
+    "men's clothing",
+    "women's clothing"
+  ];
 
   constructor(
     private readonly store: Store,
@@ -21,6 +27,20 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(new GetAllProducts())
+    this.products$.subscribe((data: CartItem[]) => {
+      this.products = data;
+    });
+  }
+
+  public sortCategory(category: string): void {
+    this.products$.subscribe((data: CartItem[]) => {
+      this.products = data.filter((product: CartItem) =>
+        product.category === category
+      )
+    })
+  }
+
+  public resetAllCategories(): void {
     this.products$.subscribe((data: CartItem[]) => {
       this.products = data;
     });

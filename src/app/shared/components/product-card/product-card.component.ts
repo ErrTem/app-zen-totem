@@ -7,7 +7,6 @@ import { CartItem } from '@core/interfaces/product.interface';
 import { MatButtonModule } from '@angular/material/button';
 import { SnackBarComponent } from '@shared/components';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { Store } from '@ngxs/store';
 
 import { RouterLink } from '@angular/router';
 import { CartService } from '@core/services';
@@ -20,7 +19,7 @@ import { CartService } from '@core/services';
   styleUrls: ['./product-card.component.sass'],
 })
 export class ProductCardComponent {
-  private readonly durationInSeconds = 1000;
+  private readonly durationInSeconds = 1000;//todo create global constant
 
   @Input() products!: CartItem[];
 
@@ -33,7 +32,7 @@ export class ProductCardComponent {
 
   public decreaseProductQuantity(product: CartItem): void {
     this.cartService.decreaseProductQuantity(product);
-    this.showSnackBar('Removed from basket');
+    this.showSnackBar('Removed from basket'); //todo make service and call from there
   }
 
   public increaseProductQuantity(product: CartItem): void {

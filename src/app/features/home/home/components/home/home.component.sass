@@ -11,6 +11,16 @@
     margin-top: -95px
 
   .search-bar
-    @include size(75vw, 50px)
+    @include flex(row, center, space-around )
+    @include size(70vw, 50px)
     @include shadow
-    margin: 0 20px
+    margin-top: 20px
+    padding: 5px
+
+    &__categories-button
+      font-weight: $medium
+      font-size: $large
+
+    &__reset-button
+      font-weight: $medium
+      font-size: $large

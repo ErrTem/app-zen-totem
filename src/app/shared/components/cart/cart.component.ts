@@ -30,7 +30,7 @@ export class CartComponent {
     private readonly dialogRef: MatDialogRef<CartComponent>
   ) {
   }
-
+  //todo add notification for actions
   public openDialog(): void {
     const dialogRef = this.dialog.open(
       DeleteOrderComponent, getModalConfig(500, 200, 'app-delete-dialog', {isCart: true})

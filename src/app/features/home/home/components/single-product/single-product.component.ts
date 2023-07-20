@@ -17,10 +17,11 @@ export class SingleProductComponent implements OnInit {
     private readonly route: ActivatedRoute,
   ) {
   }
+  //todo fix css
 
   ngOnInit(): void {
     this.dialogId = this.route.snapshot.paramMap.get('dialogId') || '';
     this.product = this.data;
-
   }
+  //todo add @Output to handle add to cart
 }

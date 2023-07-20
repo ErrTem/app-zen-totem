@@ -2,8 +2,14 @@
   <app-slider></app-slider>
   <router-outlet></router-outlet>
   <div class="search-bar">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus enim ex
-    minima similique voluptate. Alias amet consequuntur eius quam tenetur.
+    <div class="search-bar__categories" *ngFor="let category of categories">
+      <button mat-button class="search-bar__categories-button" (click)="sortCategory(category)" >
+        {{category | titlecase}}
+      </button>
+    </div>
+    <button mat-button class="search-bar__reset-button" (click)="resetAllCategories()">
+      Reset All Categories
+    </button>
   </div>
   <app-product-card [products]="products"></app-product-card>
 </div>
