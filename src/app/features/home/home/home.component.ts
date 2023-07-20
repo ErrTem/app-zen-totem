@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
     private readonly store: Store,
     private readonly router: Router,
     private readonly dialog: MatDialog,
-    private route: ActivatedRoute
+    private activatedRoute: ActivatedRoute
   ) {
   }
 
@@ -31,6 +31,17 @@ export class HomeComponent implements OnInit {
       this.products = data;
     });
 
+    // this.activatedRoute.params.subscribe(params => {
+    //   const dialogParam = params['dialog']; // Get the 'dialog' route parameter
+    //   if (dialogParam === 'open') {
+    //     this.openDialog();
+    //   }
+    // });
+    // this.activatedRoute.params.subscribe(params => {
+    //   if (this.activatedRoute.snapshot.paramMap.get('dialog')) {
+    //     this.openDialog()
+    //   }
+    // });
   }
 
   public openDialog(): void {
@@ -38,7 +49,7 @@ export class HomeComponent implements OnInit {
       data: {},
     })
     dialogRef.afterClosed().subscribe(result => {
-      this.router.navigate(['../'], {relativeTo: this.route});
+      this.router.navigate(['../'], {relativeTo: this.activatedRoute});
     });
   }
 }
