@@ -1,15 +1,9 @@
 <div class="home-container">
   <app-slider></app-slider>
-  <button
-    (click)="openDialog()"
-    routerLink="dialog"
-  >
-    Open Dialog
-  </button>
+  <router-outlet></router-outlet>
   <div class="search-bar">
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus enim ex
     minima similique voluptate. Alias amet consequuntur eius quam tenetur.
   </div>
-
   <app-product-card [products]="products"></app-product-card>
 </div>

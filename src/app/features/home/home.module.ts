@@ -1,18 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './home/components/home/home.component';
 import { SharedModule } from '@shared/shared.module';
 import { ProductCardComponent } from '@shared/components';
 import { PRODUCT_SERVICE_TOKEN, ProductService } from '@core/services';
 import { CoreModule } from '@core/core.module';
 import { HomeRoutingModule } from '@features/home/home-routing.module';
-import { HostComponent } from '@features/host/host/host.component';
+import { SingleProductComponent } from '@features/home/home/components/single-product/single-product.component';
+import { LoaderComponent } from '@features/home/home/components/loader/loader.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    HostComponent,
+    SingleProductComponent,
+    LoaderComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,8 @@ import { HostComponent } from '@features/host/host/host.component';
   }],
   exports: [
     HomeComponent,
-    HostComponent,
+    SingleProductComponent,
+    LoaderComponent
   ],
 })
 

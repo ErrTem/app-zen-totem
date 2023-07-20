@@ -4,10 +4,10 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-host',
-  templateUrl: './host.component.html',
-  styleUrls: ['./host.component.sass']
+  templateUrl: './single-product.component.html',
+  styleUrls: ['./single-product.component.sass']
 })
-export class HostComponent implements OnInit {
+export class SingleProductComponent implements OnInit {
   public dialogId!: string;
 
   constructor(

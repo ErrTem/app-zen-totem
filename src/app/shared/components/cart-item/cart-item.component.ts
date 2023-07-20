@@ -11,6 +11,7 @@ import {
 import { SnackBarComponent } from '@shared/components';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
+import { CartService } from '@core/services';
 
 @Component({
   selector: 'app-cart-item',
@@ -25,29 +26,28 @@ export class CartItemComponent {
   constructor(
     private readonly snackBar: MatSnackBar,
     private readonly dialog: MatDialog,
-    private readonly store: Store,
+    private readonly cartService: CartService,
   ) {
   }
 
+
   public decreaseProductQuantity(product: CartItem): void {
+    this.cartService.decreaseProductQuantity(product);
     this.showSnackBar('Removed from basket');
-    product.quantity! > 1
-      ? this.store.dispatch(new DecreaseProductQuantity(product))
-      : this.store.dispatch(new RemoveProductFromCart(product));
   }
 
   public increaseProductQuantity(product: CartItem): void {
-    this.store.dispatch(new IncreaseProductQuantity(product));
+    this.cartService.increaseProductQuantity(product);
     this.showSnackBar('Added to basket');
   }
 
-  public AddProductToCart(product: CartItem): void {
-    this.store.dispatch(new AddProductToCart(product));
+  public addProductToCart(product: CartItem): void {
+    this.cartService.addProductToCart(product);
     this.showSnackBar('Added to basket');
   }
 
   public removeProductFromCart(product: CartItem): void {
-    this.store.dispatch(new RemoveProductFromCart(product));
+    this.cartService.removeProductFromCart(product);
     this.showSnackBar('Removed from basket');
   }
 

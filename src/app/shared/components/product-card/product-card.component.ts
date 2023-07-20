@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
@@ -8,17 +8,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { SnackBarComponent } from '@shared/components';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Store } from '@ngxs/store';
-import {
-  AddProductToCart,
-  DecreaseProductQuantity,
-  IncreaseProductQuantity,
-  RemoveProductFromCart
-} from '@core/ngxs/cart.actions';
+
+import { RouterLink } from '@angular/router';
+import { CartService } from '@core/services';
 
 @Component({
   selector: 'app-product-card',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatMenuModule, MatButtonModule, MatDialogModule],
+  imports: [CommonModule, MatCardModule, MatMenuModule, MatButtonModule, MatDialogModule, RouterLink],
   templateUrl: './product-card.component.html',
   styleUrls: ['./product-card.component.sass'],
 })
@@ -30,24 +27,22 @@ export class ProductCardComponent {
   constructor(
     private readonly snackBar: MatSnackBar,
     private readonly dialog: MatDialog,
-    private readonly store: Store,
+    private readonly cartService: CartService,
   ) {
   }
 
   public decreaseProductQuantity(product: CartItem): void {
+    this.cartService.decreaseProductQuantity(product);
     this.showSnackBar('Removed from basket');
-    product.quantity! > 1
-      ? this.store.dispatch(new DecreaseProductQuantity(product))
-      : this.store.dispatch(new RemoveProductFromCart(product));
   }
 
   public increaseProductQuantity(product: CartItem): void {
-    this.store.dispatch(new IncreaseProductQuantity(product));
+    this.cartService.increaseProductQuantity(product);
     this.showSnackBar('Added to basket');
   }
 
-  public AddProductToCart(product: CartItem): void {
-    this.store.dispatch(new AddProductToCart(product));
+  public addProductToCart(product: CartItem): void {
+    this.cartService.addProductToCart(product);
     this.showSnackBar('Added to basket');
   }
 

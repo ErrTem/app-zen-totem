@@ -9,6 +9,7 @@
     <img
       mat-card-image
       class="product-card__image"
+      routerLink="dialog"
       src="{{ product.image }}"
     />
 
@@ -23,7 +24,7 @@
         class="product-card__actions-button"
         mat-raised-button
         color="primary"
-        (click)="AddProductToCart(product)"
+        (click)="addProductToCart(product)"
         *ngIf="product.quantity === 0 else updateCountButton"
         type="button"
       >

@@ -1,0 +1,58 @@
+.product-card
+  @include flex(column, stretch, space-between)
+  padding: 20px
+  position: relative
+  overflow: hidden
+
+  &__title
+    margin-bottom: 20px
+    font-size: $medium
+    font-weight: $bold
+
+  &__image
+    @include size(300px, 300px)
+    align-self: center
+    cursor: pointer
+
+  &__description
+    color: $dark-grey
+    margin: 10px 0
+    overflow: hidden
+    text-overflow: ellipsis
+    display: -webkit-box
+    -webkit-line-clamp: 3
+    /* Limit to 3 lines */
+    -webkit-box-orient: vertical
+    transition: -webkit-line-clamp 0.3s
+
+  &__actions
+    @include flex(row, center, space-between)
+
+  &__actions-price
+    font-weight: $bold
+
+  &__actions-button
+    white-space: nowrap
+    font-weight: $medium
+    font-size: $medium
+
+.bottom_update-count-container
+  @include flex(row, center, space-between)
+
+  &__stepper
+    @include flex(row, center, center)
+    @include size(25px, 25px)
+    background-color: $color-default
+    border-radius: 25px
+    border: none
+    cursor: pointer
+    transition: background-color 0.3s
+
+    &:hover
+      background-color: $color-error
+      transition: background-color 0.3s
+
+  &__number
+    font-weight: $bold
+    font-size: $medium
+    margin: 0 5px

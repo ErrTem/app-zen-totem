@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from '@features/home/home/home.component';
-import { HostComponent } from '@features/host/host/host.component';
+import { HomeComponent } from '@features/home/home/components/home/home.component';
+import { SingleProductComponent } from '@features/home/home/components/single-product/single-product.component';
+import { LoaderComponent } from '@features/home/home/components/loader/loader.component';
 
 const routes: Routes = [
   {
@@ -10,7 +11,7 @@ const routes: Routes = [
     children: [
       {
         path: 'dialog',
-        component: HostComponent
+        component: LoaderComponent
       }
     ]
   }
@@ -22,3 +23,4 @@ const routes: Routes = [
 })
 export class HomeRoutingModule {
 }
+//todo   entryComponents: [HomeComponent, LoaderComponent] что такое и зачем нужно?

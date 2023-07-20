@@ -35,4 +35,3 @@ const FEATURES_MODULES = [
 })
 export class AppModule {
 }
-//     NoopAnimationsModule deleted from imports
