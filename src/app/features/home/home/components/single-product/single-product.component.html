@@ -1,1 +1,61 @@
-mat tbou ebal
+<mat-card
+  class="product-card"
+>
+  <mat-card-title class="product-card__title">{{
+    product.title
+    }}</mat-card-title>
+  <img
+    mat-card-image
+    class="product-card__image"
+    routerLink="dialog"
+    src="{{ product.image }}"
+  />
+
+  <mat-card-content class="product-card__content">
+    <div class="product-card__description">{{ product.description }}</div>
+  </mat-card-content>
+  <mat-card-actions class="product-card__actions">
+    <div class="product-card__actions-price">
+      Price: <span>{{ product.price | currency }}</span>
+    </div>
+    <button
+      class="product-card__actions-button"
+      mat-raised-button
+      color="primary"
+
+      *ngIf="product.quantity === 0 else updateCountButton"
+      type="button"
+    >
+      Add to basket
+    </button>
+  </mat-card-actions>
+
+  <ng-template #updateCountButton>
+    <div class="bottom_update-count-container">
+      <button
+        class="bottom_update-count-container__stepper"
+      >
+        <img
+          src="assets/minus.png"
+          width="15px"
+          height="15px"
+        >
+      </button>
+      <div
+        class="bottom_update-count-container__number"
+      >
+        {{product.quantity}}
+      </div>
+      <button
+        class="bottom_update-count-container__stepper"
+      >
+        <img
+          src="assets/plus.png"
+          width="15px"
+          height="15px"
+        >
+      </button>
+    </div>
+  </ng-template>
+</mat-card>
+

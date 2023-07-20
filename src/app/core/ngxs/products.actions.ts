@@ -4,8 +4,14 @@ export class GetAllProducts {
   constructor() {}
 }
 
-export class GetProduct {
-  static readonly type = '[Product] GetProduct';
+export class GetProductById {
+  static readonly type = '[Product] GetProductById';
+
+  constructor(public id: number) {}
+}
+//todo refactor id to strings
+export class GetProductFromServer {
+  static readonly type = '[Product] GetProductFromServer';
 
   constructor(public id: number) {}
 }

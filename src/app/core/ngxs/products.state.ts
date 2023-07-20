@@ -2,7 +2,12 @@ import { Action, Selector, State, StateContext, StateToken } from '@ngxs/store';
 import { Injectable } from "@angular/core";
 import { CartItem, ProductInterface } from '@core/interfaces/product.interface';
 import { Observable, tap } from 'rxjs';
-import { GetAllProducts, GetProduct, UpdateProductQuantity } from '@core/ngxs/products.actions';
+import {
+  GetAllProducts,
+  GetProductById,
+  GetProductFromServer,
+  UpdateProductQuantity
+} from '@core/ngxs/products.actions';
 import { ProductService } from '@core/services';
 
 export interface ProductsStateModel {
@@ -25,10 +30,24 @@ export class ProductsState {
     private readonly productService: ProductService,
   ) {
   }
+//todo why dont work and need to specify ud:number?
+  @Selector()
+  static getProductById(state: ProductsStateModel, id: string): CartItem | null {
+    return state.Products.find(item => item.id === Number(id)) || null;
+  }
 
   @Selector()
   static getAllProducts(state: ProductsStateModel): ProductInterface[] {
     return state.Products;
+  }
+
+  @Action(GetProductById)
+  getProductById(
+    { getState }: StateContext<ProductsStateModel>,
+    { id }: GetProductById
+  ): CartItem | null {
+    const { Products } = getState();
+    return Products.find(item => item.id === id) || null;
   }
 
   @Action(GetAllProducts)
@@ -48,10 +67,10 @@ export class ProductsState {
         ))
   }
 
-  @Action(GetProduct)
-  getProduct(
+  @Action(GetProductFromServer)
+  getProductFromServer(
     { getState }: StateContext<ProductsStateModel>,
-    {id}: GetProduct
+    {id}: GetProductFromServer
   ): Observable<ProductInterface> {
     const { Products } = getState();
     const quantity = Products.find(item => item.id === id)?.quantity || 0;
