@@ -7,10 +7,12 @@ import { ProductCardComponent } from '@shared/components';
 import { PRODUCT_SERVICE_TOKEN, ProductService } from '@core/services';
 import { CoreModule } from '@core/core.module';
 import { HomeRoutingModule } from '@features/home/home-routing.module';
+import { HostComponent } from '@features/host/host/host.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
+    HostComponent,
   ],
   imports: [
     CommonModule,
@@ -25,6 +27,7 @@ import { HomeRoutingModule } from '@features/home/home-routing.module';
   }],
   exports: [
     HomeComponent,
+    HostComponent,
   ],
 })
 
