@@ -7,7 +7,6 @@ import {
   HeaderComponent,
   LoginFormComponent,
   PopupComponent,
-  SidebarComponent,
   SliderComponent,
   SnackBarComponent
 } from './components';
@@ -22,7 +21,6 @@ const COMPONENTS = [
   HeaderComponent,
   LoginFormComponent,
   PopupComponent,
-  SidebarComponent,
   SliderComponent,
   SnackBarComponent,
   LimitTotalPricePipe,

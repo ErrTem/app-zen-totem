@@ -10,6 +10,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 import { RouterLink } from '@angular/router';
 import { CartService } from '@core/services';
+import { SNACKBAR_DURATION } from '@shared/constants/snackbar-duration';
 
 @Component({
   selector: 'app-product-card',
@@ -19,8 +20,6 @@ import { CartService } from '@core/services';
   styleUrls: ['./product-card.component.sass'],
 })
 export class ProductCardComponent {
-  private readonly durationInSeconds = 1000;//todo create global constant
-
   @Input() products!: CartItem[];
 
   constructor(
@@ -47,7 +46,7 @@ export class ProductCardComponent {
 
   public showSnackBar(message: string) {
     this.snackBar.openFromComponent(SnackBarComponent, {
-      duration: this.durationInSeconds,
+      duration: SNACKBAR_DURATION,
       panelClass: 'snackbar-awesome',
       data: {
         message: message

@@ -1,7 +1,0 @@
-<div class="sidebar" *ngIf="isLoggedIn()">
-  <ul>
-    <li *ngFor="let menuItem of menuItems" routerLinkActive="active">
-      <a [routerLink]="menuItem.link" >{{ menuItem.label }}</a>
-    </li>
-  </ul>
-</div>
