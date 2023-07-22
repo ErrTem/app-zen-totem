@@ -7,13 +7,13 @@ export class GetAllProducts {
 export class GetProductById {
   static readonly type = '[Product] GetProductById';
 
-  constructor(public id: number) {}
+  constructor(public id: string) {}
 }
-//todo refactor id to strings
+
 export class GetProductFromServer {
   static readonly type = '[Product] GetProductFromServer';
 
-  constructor(public id: number) {}
+  constructor(public id: string) {}
 }
 
 export class UpdateProductQuantity {

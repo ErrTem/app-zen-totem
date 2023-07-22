@@ -11,7 +11,6 @@ import { ProductsState } from '@core/ngxs/products.state';
   ],
   declarations: [],
   exports: [],
-  //todo maybe exports
 })
 export class CoreNgxsModule {
 }

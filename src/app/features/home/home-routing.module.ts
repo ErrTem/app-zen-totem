@@ -23,4 +23,3 @@ const routes: Routes = [
 })
 export class HomeRoutingModule {
 }
-//todo   entryComponents: [HomeComponent, LoaderComponent] что такое и зачем нужно?

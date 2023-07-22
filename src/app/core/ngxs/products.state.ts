@@ -47,7 +47,7 @@ export class ProductsState {
     { id }: GetProductById
   ): CartItem | null {
     const { Products } = getState();
-    return Products.find(item => item.id === id) || null;
+    return Products.find(item => item.id === Number(id)) || null;
   }
 
   @Action(GetAllProducts)
@@ -73,7 +73,7 @@ export class ProductsState {
     {id}: GetProductFromServer
   ): Observable<ProductInterface> {
     const { Products } = getState();
-    const quantity = Products.find(item => item.id === id)?.quantity || 0;
+    const quantity = Products.find(item => item.id === Number(id))?.quantity || 0;
 
     return this.productService.getProductById(String(id))
       .pipe(
