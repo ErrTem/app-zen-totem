@@ -10,7 +10,7 @@ import { EMPTY_STRING } from "@shared/constants/empty-string";
   styleUrls: ['./login-form.component.sass']
 })
 export class LoginFormComponent implements OnInit {
-  public userForm!: FormGroup; //todo typification
+  public userForm!: FormGroup;
 
   @Output() public loginSubmit : EventEmitter<UserInfoInterface> = new EventEmitter<UserInfoInterface>();
   constructor(
