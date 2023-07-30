@@ -95,7 +95,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.errorSubscription.unsubscribe();
-    this.successSubscription.unsubscribe();
+    this.errorSubscription?.unsubscribe(); //todo '?' need for spec file correct working
+    this.successSubscription?.unsubscribe();
   }
 }
