@@ -18,7 +18,13 @@
         "plugin:import/warnings",
         "plugin:import/typescript"
       ],
+      "parserOptions": {
+        "project": "./tsconfig.json"
+      },
       "rules": {
+        "angular-eslint/no-spec-dupes": "off",
+        "angular-eslint/no-unused-tests": "off",
+        "angular/no-spec-test-files": "off",
         "no-console": "warn",
         "space-before-blocks": ["error", "always"],
         "semi": ["error", "always"],
