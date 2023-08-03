@@ -22,8 +22,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   public errorMessage: string | null = null;
   public successMessage: string | null = null;
-  private errorSubscription!: Subscription;
-  private successSubscription!: Subscription;
+  public errorSubscription!: Subscription;
+  public successSubscription!: Subscription;
 
   @Select(ProfileState.getUserInfo) userInfo$!: Observable<UserInfoInterface>;
   @Select(CartState.getTotalPrice) totalPrice$!: Observable<number>;
