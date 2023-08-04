@@ -26,7 +26,7 @@ describe('HeaderComponent', () => {
 
   beforeEach(async () => {
     notificationServiceMock.error$ = of(null); // Mock as an observable
-    notificationServiceMock.success$ = of(null); // Mock as an observable
+    notificationServiceMock.success$ = of(null);
 
     // Mock the Select decorators using store.select
     storeMock.select.withArgs(ProfileState.getUserInfo).and.returnValue(of({firstName: 'John', lastName: 'Doe'}));
