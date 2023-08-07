@@ -22,7 +22,7 @@
       class="product-card__actions-button"
       mat-raised-button
       color="primary"
-
+      (click)="onAddProductToCart(product)"
       *ngIf="product.quantity === 0 else updateCountButton"
       type="button"
     >
@@ -34,6 +34,7 @@
     <div class="bottom_update-count-container">
       <button
         class="bottom_update-count-container__stepper"
+        (click)="onDecreaseProductQuantity(product)"
       >
         <img
           src="assets/minus.png"
@@ -48,6 +49,7 @@
       </div>
       <button
         class="bottom_update-count-container__stepper"
+        (click)="onIncreaseProductQuantity(product)"
       >
         <img
           src="assets/plus.png"

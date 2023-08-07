@@ -8,12 +8,13 @@
   overflow: hidden
 
   &__title
+    align-self: center
     margin-bottom: 20px
     font-size: $medium
     font-weight: $bold
 
   &__image
-    @include size(300px, 300px)
+    @include size(400px, 400px)
     align-self: center
     cursor: pointer
 
@@ -22,11 +23,7 @@
     margin: 10px 0
     overflow: hidden
     text-overflow: ellipsis
-    display: -webkit-box
-    -webkit-line-clamp: 3
-    /* Limit to 3 lines */
-    -webkit-box-orient: vertical
-    transition: -webkit-line-clamp 0.3s
+
 
   &__actions
     @include flex(row, center, space-between)

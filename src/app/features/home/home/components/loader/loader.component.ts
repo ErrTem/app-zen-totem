@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SingleProductComponent } from '@features/home/home/components/single-product/single-product.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -8,6 +8,7 @@ import { Select } from '@ngxs/store';
 import { ProductsState } from '@core/ngxs/products.state';
 import { SnackBarComponent } from '@shared/components';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CartService } from '@core/services';
 
 @Component({
   template: ''
@@ -25,6 +26,7 @@ export class LoaderComponent implements OnInit {
     private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute,
     private readonly snackBar: MatSnackBar,
+    private readonly cartService: CartService,
   ) {
   }
 
@@ -43,9 +45,22 @@ export class LoaderComponent implements OnInit {
     if (this.product) {
       const dialogRef = this.dialog.open(SingleProductComponent, {
         width: '500px',
-        height: '700px',
+        height: 'auto',
         data: this.product
       });
+
+      dialogRef.componentInstance.addProductToCart.subscribe((product: CartItem) => {
+        this.cartService.addProductToCart(product);
+      });
+
+      dialogRef.componentInstance.decreaseProductQuantity.subscribe((product: CartItem) => {
+        this.cartService.decreaseProductQuantity(product);
+      })
+
+      dialogRef.componentInstance.increaseProductQuantity.subscribe((product: CartItem) => {
+        this.cartService.increaseProductQuantity(product);
+      })
+
       dialogRef.afterClosed().subscribe(result => {
         this.router.navigate(['../'], {relativeTo: this.activatedRoute});
       });

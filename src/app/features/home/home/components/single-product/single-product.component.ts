@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CartItem } from '@core/interfaces/product.interface';
@@ -9,6 +9,10 @@ import { CartItem } from '@core/interfaces/product.interface';
   styleUrls: ['./single-product.component.sass']
 })
 export class SingleProductComponent implements OnInit {
+  @Output() increaseProductQuantity: EventEmitter<CartItem> = new EventEmitter<CartItem>();
+  @Output() decreaseProductQuantity: EventEmitter<CartItem> = new EventEmitter<CartItem>();
+  @Output() addProductToCart: EventEmitter<CartItem> = new EventEmitter<CartItem>();
+
   public dialogId!: string;
   public product!: CartItem;
 
@@ -17,11 +21,21 @@ export class SingleProductComponent implements OnInit {
     private readonly route: ActivatedRoute,
   ) {
   }
-  //todo fix css
-
+  //todo global notification service, and make popup onEvent from here
   ngOnInit(): void {
     this.dialogId = this.route.snapshot.paramMap.get('dialogId') || '';
     this.product = this.data;
   }
-  //todo add @Output to handle add to cart
+
+  public onAddProductToCart(product: CartItem): void {
+    this.addProductToCart.emit(product);
+  }
+
+  public onDecreaseProductQuantity(product: CartItem): void {
+    this.decreaseProductQuantity.emit(product);
+  }
+
+  public onIncreaseProductQuantity(product: CartItem): void {
+    this.increaseProductQuantity.emit(product);
+  }
 }
