@@ -4,8 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, Observable, tap, throwError } from 'rxjs';
 
 import { UserInfoInterface } from '@core/interfaces/user.interface';
-import { NotificationService } from '@core/services/index';
-import { ProductInterface } from '@core/interfaces/product.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +14,6 @@ export class ProfileService {
 
   constructor(
     private readonly http: HttpClient,
-    private readonly notificationService: NotificationService,
   ) {
   }
 
@@ -24,10 +21,10 @@ export class ProfileService {
     return this.http.get<UserInfoInterface>(`${this.apiUrl}/users`)
       .pipe(
         tap(() => {
-          this.notificationService.notifySuccess('success: Profile data updated successfully');
+          //todo add notificationService.notifyError
         }),
         catchError(error => {
-          this.notificationService.notifyError('error: An error occurred');
+          //todo add notificationService.notifyError
 
           return throwError(error);
         }),
@@ -38,10 +35,10 @@ export class ProfileService {
     return this.http.put(`${this.apiUrl}/posts/1`, userInfo)
       .pipe(
         tap(() => {
-          this.notificationService.notifySuccess('success: Profile data updated successfully');
+          //todo add notificationService.notifyError
         }),
         catchError(error => {
-          this.notificationService.notifyError('error: An error occurred');
+          //todo add notificationService.notifyError
 
           return throwError(error);
         }),

@@ -8,7 +8,6 @@ import { UserInfoInterface } from '@core/interfaces/user.interface';
 import { ProfileState } from '@core/ngxs/profile.state';
 import { emailValidationPattern } from '@shared/constants/validations/email-validation';
 import { ProfileService } from '@core/services/profile.service';
-import { NotificationService } from "@core/services";
 import { SetUserInfo } from "@core/ngxs/profile.actions";
 import { USER_INFO } from "@shared/constants/localstorage-names";
 import { EMPTY_STRING } from "@shared/constants/empty-string";
@@ -26,7 +25,6 @@ export class ProfileComponent implements OnInit {
     private readonly formBuilder: FormBuilder,
     private readonly store: Store,
     private readonly profileService: ProfileService,
-    private readonly notificationService: NotificationService,
   ) { }
 
   @Select (ProfileState.getUserInfo) userInfo$!: Observable<UserInfoInterface>;
@@ -40,8 +38,7 @@ export class ProfileComponent implements OnInit {
     this.profileForm.reset();
 
     if (userInfo.firstName.length === 1 ) {
-      // simulate error from API
-      this.notificationService.notifyError('error: An error occurred');
+      // todo add notificationService.notifyError
     } else {
       this.profileService.updateUserInfo(userInfo, 1)
         .subscribe(data => {

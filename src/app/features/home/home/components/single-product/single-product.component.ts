@@ -22,6 +22,7 @@ export class SingleProductComponent implements OnInit {
   ) {
   }
   //todo global notification service, and make popup onEvent from here
+  //todo add Resolver to fetch data when starts on route product/id
   ngOnInit(): void {
     this.dialogId = this.route.snapshot.paramMap.get('dialogId') || '';
     this.product = this.data;

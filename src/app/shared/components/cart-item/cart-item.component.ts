@@ -4,7 +4,7 @@ import { CartItem } from '@core/interfaces/product.interface';
 import { SnackBarComponent } from '@shared/components';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
-import { CartService } from '@core/services';
+import { CartService, NotificationService } from '@core/services';
 import { SNACKBAR_DURATION } from '@shared/constants/snackbar-duration';
 
 @Component({
@@ -20,6 +20,7 @@ export class CartItemComponent {
     private readonly snackBar: MatSnackBar,
     private readonly dialog: MatDialog,
     private readonly cartService: CartService,
+    private readonly notificationService: NotificationService,
   ) {
   }
 
@@ -44,13 +45,7 @@ export class CartItemComponent {
     this.showSnackBar('Removed from basket');
   }
 
-  public showSnackBar(message: string) {
-    this.snackBar.openFromComponent(SnackBarComponent, {
-      duration: SNACKBAR_DURATION,
-      panelClass: 'snackbar-awesome',
-      data: {
-        message: message
-      }
-    });
+  public showSnackBar(message: string): void {
+    this.notificationService.showSnackBar(message)
   }
 }

@@ -8,7 +8,7 @@ import { Select } from '@ngxs/store';
 import { ProductsState } from '@core/ngxs/products.state';
 import { SnackBarComponent } from '@shared/components';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { CartService } from '@core/services';
+import { CartService, NotificationService } from '@core/services';
 
 @Component({
   template: ''
@@ -27,6 +27,7 @@ export class LoaderComponent implements OnInit {
     private readonly activatedRoute: ActivatedRoute,
     private readonly snackBar: MatSnackBar,
     private readonly cartService: CartService,
+    private readonly notificationService: NotificationService,
   ) {
   }
 
@@ -51,32 +52,31 @@ export class LoaderComponent implements OnInit {
 
       dialogRef.componentInstance.addProductToCart.subscribe((product: CartItem) => {
         this.cartService.addProductToCart(product);
+        this.showSnackBar('Added to basket');
       });
 
       dialogRef.componentInstance.decreaseProductQuantity.subscribe((product: CartItem) => {
         this.cartService.decreaseProductQuantity(product);
+        this.showSnackBar('Removed from basket');
       })
 
       dialogRef.componentInstance.increaseProductQuantity.subscribe((product: CartItem) => {
         this.cartService.increaseProductQuantity(product);
+        this.showSnackBar('Added to basket');
       })
 
-      dialogRef.afterClosed().subscribe(result => {
-        this.router.navigate(['../'], {relativeTo: this.activatedRoute});
-      });
+      dialogRef.afterClosed().subscribe(() => this.navigateBack());
     } else {
-      this.showSnackBar();
-      this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+      this.showSnackBar('No such file exists');
+      this.navigateBack();
     }
   }
 
-  public showSnackBar() {
-    this.snackBar.openFromComponent(SnackBarComponent, {
-      duration: this.durationInSeconds,
-      panelClass: 'snackbar-awesome',
-      data: {
-        message: 'No such file exists'
-      }
-    });
+  private navigateBack(): void {
+    this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+  }
+
+  private showSnackBar(message: string): void {
+    this.notificationService.showSnackBar(message);
   }
 }

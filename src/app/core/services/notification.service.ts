@@ -1,25 +1,25 @@
 import { Injectable } from '@angular/core';
-import { Subject } from "rxjs";
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackBarComponent } from '@shared/components';
+import { SNACKBAR_DURATION } from '@shared/constants/snackbar-duration';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotificationService {
 
-  private errorSubject = new Subject<string>();
-  private successSubject = new Subject<string>();
-
-  constructor() {
+  constructor(
+    private readonly snackBar: MatSnackBar,
+  ) {
   }
-
-  error$ = this.errorSubject.asObservable();
-  success$ = this.successSubject.asObservable();
-
-  notifyError(message: string): void {
-    this.errorSubject.next(message);
-  }
-
-  notifySuccess(message: string): void {
-    this.successSubject.next(message);
+//todo ad behaviour for errors; styles for success/errors; call messages from here as a constants;
+  public showSnackBar(message: string) {
+    this.snackBar.openFromComponent(SnackBarComponent, {
+      duration: SNACKBAR_DURATION,
+      panelClass: 'snackbar-awesome',
+      data: {
+        message: message
+      }
+    });
   }
 }
