@@ -15,6 +15,10 @@ const routes: Routes = [
     loadChildren: () => import('./features/profile/profile.module').then(m => m.ProfileModule),
   },
   {
+    path: 'speakers',
+    loadChildren: () => import('./features/event-speakers/event-speakers.module').then(m => m.EventSpeakersModule),
+  },
+  {
     path: '**',
     redirectTo: 'home',
   },
