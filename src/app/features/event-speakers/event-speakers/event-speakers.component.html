@@ -1,5 +1,17 @@
-<div *ngFor="let person of displayedPeople" class="person-card">
-  <img [src]="person.picture" alt="{{ person.name }} Avatar" class="avatar">
-  <h2>{{ person.name }}</h2>
-  <p>{{ person.company }}</p>
+<div class="person-container" fxLayout="row" fxLayoutWrap fxLayoutGap="16px">
+  <mat-card
+    *ngFor="let person of displayedPeople"
+    class="person-card"
+    fxFlex="calc(33.33% - 16px)"
+  >
+    <img [src]="person.picture" alt="{{ person.name }} Avatar" class="avatar" />
+    <mat-card-content class="info">
+      <h2>{{ person.name }}</h2>
+      <p>{{ person.company }}</p>
+      <p>{{ person.email }}</p>
+      <p>{{ person.phone }}</p>
+      <p>{{ person.address }}</p>
+      <p>{{ person.about }}</p>
+    </mat-card-content>
+  </mat-card>
 </div>
