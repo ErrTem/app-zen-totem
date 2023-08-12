@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { BackendPersonInterface } from '@core/interfaces';
 import { BackendService } from '@core/services/backend.service';
 import { CHUNK_SIZE } from '@shared/constants';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-event-speakers',
@@ -9,16 +10,29 @@ import { CHUNK_SIZE } from '@shared/constants';
   styleUrls: ['./event-speakers.component.sass'],
 })
 export class EventSpeakersComponent implements OnInit {
-  allPeople: BackendPersonInterface[] = [];
-  displayedPeople: BackendPersonInterface[] = [];
-  currentChunkIndex = 0;
+  public allPeople: BackendPersonInterface[] = [];
+  public displayedPeople: BackendPersonInterface[] = [];
+  public currentChunkIndex = 0;
 
-  constructor(private readonly backendService: BackendService) {}
+  public title = [
+    { cols: 1 },
+    { cols: 2 },
+  ];
+
+  constructor(
+    private readonly backendService: BackendService,
+    private readonly breakpointObserver: BreakpointObserver,
+  ) {}
 
   ngOnInit(): void {
     this.fetchData();
   }
-
+  public colspanForScreen(): number {
+    if (this.breakpointObserver.isMatched(Breakpoints.Small)) {
+      return 1; // On small screens, show 1 column
+    }
+    return 2; // On larger screens, show 2 columns
+  }
   fetchData() {
     this.backendService.getPeople().subscribe((data) => {
       this.allPeople = data;
