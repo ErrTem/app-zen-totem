@@ -29,10 +29,6 @@ export class EventSpeakersComponent implements OnInit {
     });
   }
 
-  public getLightenedColor(color: string, amount: number): string {
-    const originalColor = this.colorMap[color.toLowerCase()] || color;
-  }
-
   loadNextChunk() {
     const startIndex = this.currentChunkIndex * CHUNK_SIZE;
     const endIndex = startIndex + CHUNK_SIZE;

@@ -2,7 +2,7 @@
   <mat-card class="speaker-card" *ngFor="let person of displayedPeople">
     <mat-card-content class="speaker-card__content">
 
-      <div class="speaker-card__left" [ngStyle]="{'background-color': getLightenedColor(person.eyeColor}">
+      <div class="speaker-card__left" [ngStyle]="{'background-color': person.eyeColor}">
         <mat-card-title class="speaker-card__name">{{ person.name }}</mat-card-title>
         <div class="speaker-card__image-container">
           <img class="speaker-card__image" mat-card-image src="{{ person.picture }}" alt="Speaker Picture"/>
