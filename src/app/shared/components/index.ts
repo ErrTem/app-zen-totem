@@ -6,5 +6,6 @@ export * from './header/header.component';
 export * from './login-form/login-form.component'
 export * from './popup/popup.component';
 export * from './product-card/product-card.component';
+export * from './rating/rating.component';
 export * from './slider/slider.component';
 export * from './snack-bar/snack-bar.component';

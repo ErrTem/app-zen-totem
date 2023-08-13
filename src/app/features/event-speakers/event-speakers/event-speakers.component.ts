@@ -13,6 +13,7 @@ export class EventSpeakersComponent implements OnInit {
   public displayedPeople: BackendPersonInterface[] = [];
   public currentChunkIndex = 0;
   public starRating = 0;
+  public selectedRating: number = 0;
 
   constructor(
     private readonly backendService: BackendService,
@@ -53,4 +54,9 @@ export class EventSpeakersComponent implements OnInit {
       this.loadNextChunk();
     }
   }
+
+  onRatingUpdated(rating: number): void {
+    this.selectedRating = rating;
+  }
+
 }

@@ -15,6 +15,7 @@ import { CoreModule } from '@core/core.module';
 import { LimitTotalPricePipe } from '@shared/pipes/limit-total-price.pipe';
 import { NameAbbreviationPipe } from '@shared/pipes/name-abbreviation.pipe';
 import { SplitEmailPipe } from '@shared/pipes/split-email.pipe';
+import { RatingComponent } from '@shared/components';
 
 const COMPONENTS = [
   CartComponent,
@@ -28,6 +29,7 @@ const COMPONENTS = [
   LimitTotalPricePipe,
   NameAbbreviationPipe,
   SplitEmailPipe,
+  RatingComponent,
 ];
 
 @NgModule({

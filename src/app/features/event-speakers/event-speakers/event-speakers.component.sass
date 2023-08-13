@@ -64,23 +64,20 @@
       text-align: center
 
   .speaker-card__right
-    @include flex(column, stretch, space-between)
+    @include flex(column, center, space-between)
     padding: 10px
     flex-shrink: 2
 
     .speaker-card__about
+      padding-right: 40px
       text-align: center
-
-    .speaker-card__buttons
-      @include flex(row, center, space-between)
-
-    .speaker-card__button-rate
-      color: $color-error
-      font-size: 50px
-
 
     .speaker-card__button-follow
       @include size(40px, 40px)
+      position: absolute
+      z-index: 2
+      top: 10px
+      right: 5px
       border: none
       background-color: transparent
       background-image: url('../../../../assets/speakers/wish-list.png')
@@ -91,7 +88,6 @@
 
       &:hover
         background-image: url('../../../../assets/speakers/wish-list-raised.png')
-
 
 .active
   background-color: green

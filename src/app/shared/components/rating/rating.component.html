@@ -1,0 +1,13 @@
+<div class="rating-container">
+  <button
+    mat-icon-button
+    color="primary"
+    *ngFor="let i of ratingArr"
+    [id]="'star_' + i"
+    (click)="onClick(i + 1)"
+    [matTooltip]="(i + 1).toString()"
+    matTooltipPosition="above"
+  >
+    <mat-icon aria-label="star">{{ showIcon(i) }}</mat-icon>
+  </button>
+</div>

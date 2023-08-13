@@ -18,12 +18,10 @@
       </div>
 
       <div class="speaker-card__right">
+        <button class="speaker-card__button-follow"></button>
         <div class="speaker-card__about">{{ person.about }}</div>
-        <div class="speaker-card__buttons">
-          <button class="speaker-card__button-follow"></button>
-        </div>
+        <app-rating [rating]="selectedRating" [starCount]="5" (ratingUpdated)="onRatingUpdated($event)"></app-rating>
       </div>
-
     </mat-card-content>
   </mat-card>
 </div>
