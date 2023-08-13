@@ -2,7 +2,6 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { BackendPersonInterface } from '@core/interfaces';
 import { BackendService } from '@core/services/backend.service';
 import { CHUNK_SIZE } from '@shared/constants';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-event-speakers',
@@ -14,30 +13,24 @@ export class EventSpeakersComponent implements OnInit {
   public displayedPeople: BackendPersonInterface[] = [];
   public currentChunkIndex = 0;
 
-  public title = [
-    { cols: 1 },
-    { cols: 2 },
-  ];
-
   constructor(
     private readonly backendService: BackendService,
-    private readonly breakpointObserver: BreakpointObserver,
-  ) {}
-
+  ) {
+  }
+//todo add for .email whitespace wrap
   ngOnInit(): void {
     this.fetchData();
   }
-  public colspanForScreen(): number {
-    if (this.breakpointObserver.isMatched(Breakpoints.Small)) {
-      return 1; // On small screens, show 1 column
-    }
-    return 2; // On larger screens, show 2 columns
-  }
+
   fetchData() {
     this.backendService.getPeople().subscribe((data) => {
       this.allPeople = data;
       this.loadNextChunk();
     });
+  }
+
+  public getLightenedColor(color: string, amount: number): string {
+    const originalColor = this.colorMap[color.toLowerCase()] || color;
   }
 
   loadNextChunk() {

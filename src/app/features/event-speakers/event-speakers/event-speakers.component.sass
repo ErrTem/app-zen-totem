@@ -2,58 +2,57 @@
 @import '../../../sass/mixins'
 
 .speakers-container
+  margin: auto
   margin-top: 40px
   display: grid
   grid-template-columns: repeat(auto-fit, minmax(550px, 1fr))
-  grid-gap: 20px
+  grid-gap: 40px
+  max-width: 70vw
 
-  .speaker-card
+.speaker-card
+  background-color: $light-grey
+
+  &:hover
+    transform: translateY(-5px)
+
+  &__content
+    @include flex(row, stretch, stretch)
+
+  .mat-mdc-card-content
+    padding: 0
+
+  .speaker-card__left
+    @include flex(column, center, center)
+    margin-right: 20px
+    flex-shrink: 0
+
+    .speaker-card__name
+      font-size: $large
+      font-weight: $large
+
+    .speaker-card__image-container
+      @include size(64px, 64px)
+      margin: 10px 0
+      border: 1px solid black
+      border-radius: 32px
+
+    .speaker-card__details
+      @include flex(column, center, space-between)
+      margin: 10px
+
+    .speaker-card__info
+      margin: 3px
+
+  .speaker-card__right
     @include flex(column, stretch, space-between)
-    padding: 20px
-    position: relative
-    overflow: hidden
+    flex-shrink: 2
 
-    &:hover
-      transform: translateY(-5px)
+    .speaker-card__about
+      text-align: center
 
+    .speaker-card__buttons
+      @include flex(row, center, space-between)
 
-    .speaker-card__content
-      display: flex
-      flex-direction: column
-      padding: 20px
-
-      .speaker-card__left-block
-        flex: 1
-
-        .speaker-card__top-section
-          margin-bottom: 10px
-
-
-        .speaker-card__user-picture
-          max-width: 100px
-          height: auto
-          margin-bottom: 10px
-
-
-        .speaker-card__info
-          margin: 5px 0
-
-
-
-      .speaker-card__right-block
-        flex: 2
-        padding: 20px
-
-        .speaker-card__buttons
-          display: flex
-          align-items: center
-          margin-top: 10px
-
-          button
-            margin-right: 10px
-
-
-
-
-
-
+      &-button
+        &:first-child
+          margin-right: 10px

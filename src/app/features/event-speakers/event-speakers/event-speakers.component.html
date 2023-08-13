@@ -1,34 +1,28 @@
 <div class="speakers-container">
   <mat-card class="speaker-card" *ngFor="let person of displayedPeople">
     <mat-card-content class="speaker-card__content">
-      <div class="speaker-card__left-block">
-        <div class="speaker-card__top-section">
-          <mat-card-title class="speaker-card__name">{{ person.name }}</mat-card-title>
+
+      <div class="speaker-card__left" [ngStyle]="{'background-color': getLightenedColor(person.eyeColor}">
+        <mat-card-title class="speaker-card__name">{{ person.name }}</mat-card-title>
+        <div class="speaker-card__image-container">
+          <img class="speaker-card__image" mat-card-image src="{{ person.picture }}" alt="Speaker Picture"/>
         </div>
-        <div class="speaker-card__middle-section">
-          <img [src]="person.picture" alt="User Picture" class="speaker-card__user-picture" />
-          <p class="speaker-card__info">{{ person.email }}</p>
-          <p class="speaker-card__info">{{ person.phone }}</p>
-          <p class="speaker-card__info">{{ person.address }}</p>
-          <p class="speaker-card__info">Age: {{ person.age }}</p>
+        <div class="speaker-card__details">
+          <div class="speaker-card__info">{{ person.gender }}, {{ person.age }} y.o.</div>
+          <div class="speaker-card__info">Company: {{ person.company }}</div>
+          <div class="speaker-card__info">{{ person.email }}</div>
+          <div class="speaker-card__info">{{ person.phone }}</div>
         </div>
       </div>
-      <div class="speaker-card__right-block">
-        <p>{{ person.about }}</p>
+
+      <div class="speaker-card__right">
+        <div class="speaker-card__about">{{ person.about }}</div>
         <div class="speaker-card__buttons">
-          <button mat-raised-button color="primary">Subscribe</button>
-          <mat-form-field>
-            <mat-label>Rate</mat-label>
-            <mat-select>
-              <mat-option value="1">1</mat-option>
-              <mat-option value="2">2</mat-option>
-              <mat-option value="3">3</mat-option>
-              <mat-option value="4">4</mat-option>
-              <mat-option value="5">5</mat-option>
-            </mat-select>
-          </mat-form-field>
+          <button class="speaker-card__button mat-button" mat-raised-button color="primary">Subscribe</button>
+          <button class="speaker-card__button mat-button" mat-raised-button color="primary">Follow</button>
         </div>
       </div>
+
     </mat-card-content>
   </mat-card>
 </div>
