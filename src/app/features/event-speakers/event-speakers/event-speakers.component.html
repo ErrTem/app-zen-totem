@@ -2,15 +2,17 @@
   <mat-card class="speaker-card" *ngFor="let person of displayedPeople">
     <mat-card-content class="speaker-card__content">
 
-      <div class="speaker-card__left" [ngStyle]="{'background-color': person.eyeColor}">
+      <div class="speaker-card__left">
         <mat-card-title class="speaker-card__name">{{ person.name }}</mat-card-title>
         <div class="speaker-card__image-container">
-          <img class="speaker-card__image" mat-card-image src="{{ person.picture }}" alt="Speaker Picture"/>
+          <div class="speaker-card__image-indicator"
+               [ngClass]="{'active': person.isActive, 'inactive': !person.isActive}"></div>
+          <div class="speaker-card__image-abbreviation" mat-card-image>{{ person.name | nameAbbreviationPipe }}</div>
         </div>
         <div class="speaker-card__details">
           <div class="speaker-card__info">{{ person.gender }}, {{ person.age }} y.o.</div>
           <div class="speaker-card__info">Company: {{ person.company }}</div>
-          <div class="speaker-card__info">{{ person.email }}</div>
+          <div class="speaker-card__email" [innerHTML]="person.email | splitEmail"></div>
           <div class="speaker-card__info">{{ person.phone }}</div>
         </div>
       </div>
@@ -18,8 +20,7 @@
       <div class="speaker-card__right">
         <div class="speaker-card__about">{{ person.about }}</div>
         <div class="speaker-card__buttons">
-          <button class="speaker-card__button mat-button" mat-raised-button color="primary">Subscribe</button>
-          <button class="speaker-card__button mat-button" mat-raised-button color="primary">Follow</button>
+          <button class="speaker-card__button-follow"></button>
         </div>
       </div>
 

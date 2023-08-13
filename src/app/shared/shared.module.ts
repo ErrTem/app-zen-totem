@@ -13,6 +13,8 @@ import {
 import { MaterialModule } from '@shared/UI-kit/material/material.module';
 import { CoreModule } from '@core/core.module';
 import { LimitTotalPricePipe } from '@shared/pipes/limit-total-price.pipe';
+import { NameAbbreviationPipe } from '@shared/pipes/name-abbreviation.pipe';
+import { SplitEmailPipe } from '@shared/pipes/split-email.pipe';
 
 const COMPONENTS = [
   CartComponent,
@@ -24,6 +26,8 @@ const COMPONENTS = [
   SliderComponent,
   SnackBarComponent,
   LimitTotalPricePipe,
+  NameAbbreviationPipe,
+  SplitEmailPipe,
 ];
 
 @NgModule({

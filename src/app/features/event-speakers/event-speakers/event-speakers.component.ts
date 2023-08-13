@@ -12,11 +12,13 @@ export class EventSpeakersComponent implements OnInit {
   public allPeople: BackendPersonInterface[] = [];
   public displayedPeople: BackendPersonInterface[] = [];
   public currentChunkIndex = 0;
+  public starRating = 0;
 
   constructor(
     private readonly backendService: BackendService,
   ) {
   }
+
 //todo add for .email whitespace wrap
   ngOnInit(): void {
     this.fetchData();
