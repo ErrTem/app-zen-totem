@@ -12,7 +12,6 @@ export class EventSpeakersComponent implements OnInit {
   public allPeople: BackendPersonInterface[] = [];
   public displayedPeople: BackendPersonInterface[] = [];
   public currentChunkIndex = 0;
-  public starRating = 0;
   public selectedRating: number = 0;
 
   constructor(
@@ -20,19 +19,18 @@ export class EventSpeakersComponent implements OnInit {
   ) {
   }
 
-//todo add for .email whitespace wrap
   ngOnInit(): void {
     this.fetchData();
   }
 
-  fetchData() {
+  public fetchData() {
     this.backendService.getPeople().subscribe((data) => {
       this.allPeople = data;
       this.loadNextChunk();
     });
   }
 
-  loadNextChunk() {
+  public loadNextChunk() {
     const startIndex = this.currentChunkIndex * CHUNK_SIZE;
     const endIndex = startIndex + CHUNK_SIZE;
 
@@ -42,6 +40,25 @@ export class EventSpeakersComponent implements OnInit {
       );
       this.currentChunkIndex++;
     }
+  }
+
+  public addToFavorites(person: BackendPersonInterface): void {
+    this.backendService.addToFavorites(person);
+  }
+
+  public getFollowButtonBackground(person: BackendPersonInterface): string {
+    return this.backendService.isInFavorites(person)
+      ? 'url("../../../../assets/speakers/wish-list-add.png")'
+      : 'url("../../../../assets/speakers/wish-list.png")';
+  }
+
+  public onRatingUpdated(rating: number, person: BackendPersonInterface): void {
+    this.selectedRating = rating;
+    this.backendService.updateRating(person, rating);
+  }
+
+  public getRatingForPerson(person: BackendPersonInterface): number {
+    return this.backendService.getRating(person);
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -54,9 +71,4 @@ export class EventSpeakersComponent implements OnInit {
       this.loadNextChunk();
     }
   }
-
-  onRatingUpdated(rating: number): void {
-    this.selectedRating = rating;
-  }
-
 }

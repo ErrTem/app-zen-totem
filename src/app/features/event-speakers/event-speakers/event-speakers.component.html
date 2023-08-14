@@ -18,9 +18,17 @@
       </div>
 
       <div class="speaker-card__right">
-        <button class="speaker-card__button-follow"></button>
+        <button
+          class="speaker-card__button-follow"
+          (click)="addToFavorites(person)"
+          [ngStyle]="{'background-image': getFollowButtonBackground(person)}"
+        ></button>
         <div class="speaker-card__about">{{ person.about }}</div>
-        <app-rating [rating]="selectedRating" [starCount]="5" (ratingUpdated)="onRatingUpdated($event)"></app-rating>
+        <app-rating
+          [rating]="getRatingForPerson(person)"
+          [starCount]="5"
+          (ratingUpdated)="onRatingUpdated($event, person)"
+        ></app-rating>
       </div>
     </mat-card-content>
   </mat-card>

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-rating',
@@ -15,7 +15,7 @@ export class RatingComponent {
 
   public onClick(rating: number): void {
     this.ratingUpdated.emit(rating);
-    console.log(rating);
+    this.rating = rating;
   }
 
   get ratingArr(): number[] {

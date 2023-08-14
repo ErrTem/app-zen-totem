@@ -10,7 +10,7 @@ export class AuthService {
   private loggedInRole: string | null = null;
   private userInfo: any | null = null;
 
-  constructor()  {
+  constructor() {
     // if user info
     this.loadUserInfo();
   }
@@ -39,6 +39,7 @@ export class AuthService {
   public setUserInfo(userInfo: UserInfoInterface): void {
     this.userInfo = userInfo;
     localStorage.setItem(USER_INFO, JSON.stringify(userInfo));
+
   }
 
   public getUserInfo(): any | null {
@@ -52,7 +53,6 @@ export class AuthService {
   public userLogout(): void {
     this.loggedInRole = null;
     this.userInfo = null;
-    localStorage.removeItem(USER_ROLE);
-    localStorage.removeItem(USER_INFO);
+    localStorage.clear()
   }
 }
