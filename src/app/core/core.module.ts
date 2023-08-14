@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxGlideModule } from 'ngx-glide';
 import { RouterModule } from '@angular/router';
 import { CoreNgxsModule } from '@core/ngxs/ngxs.module';
@@ -10,6 +10,7 @@ const CORE_MODULES = [
   NgxGlideModule,
   RouterModule,
   NgOptimizedImage,
+  FormsModule,
 ];
 
 @NgModule({

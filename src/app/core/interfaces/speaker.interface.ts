@@ -1,7 +1,7 @@
-import { BackendFriendInterface } from '@core/interfaces/backend-friend.interface';
+import { SpeakerFriendInterface } from '@core/interfaces/speaker-friend.interface';
 
 //todo backend team should guarantee that i will have all fields not empty
-export interface BackendPersonInterface {
+export interface SpeakerInterface {
   _id: string;
   index: number;
   guid: string;
@@ -21,7 +21,7 @@ export interface BackendPersonInterface {
   latitude: number;
   longitude: number;
   tags: string[];
-  friends: BackendFriendInterface [];
+  friends: SpeakerFriendInterface [];
   greeting: string;
   favoriteFruit: string;
 }

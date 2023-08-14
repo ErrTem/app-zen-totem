@@ -1,5 +1,5 @@
 import { Injectable, InjectionToken } from '@angular/core';
-import { BackendPersonInterface } from '@core/interfaces';
+import { SpeakerInterface } from '@core/interfaces';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { FEATURED_USERS, RATED_USERS } from '@shared/constants';
@@ -8,7 +8,7 @@ export const BACKEND_SERVICE_TOKEN = new InjectionToken<BackendService>(
   'backend_service_token'
 );
 
-export interface RatedPersonInterface {
+export interface RatedSpeakerInterface {
   _id: string;
   rating: number;
 }
@@ -25,18 +25,18 @@ export class BackendService {
   ) {
   }
 
-  public getPeople(): Observable<BackendPersonInterface[]> {
-    return this.http.get<BackendPersonInterface[]>('assets/data/people.json');
+  public getSpeakers(): Observable<SpeakerInterface[]> {
+    return this.http.get<SpeakerInterface[]>('assets/data/speakers.json');
   }
 
   //WORK WITH FEATURED USERS
-  public addToFavorites(person: BackendPersonInterface): void {
+  public addToFavorites(speaker: SpeakerInterface): void {
     const favorites = this.getFavorites();
-    if (!this.isInFavorites(person)) {
-      favorites.push(person._id);
+    if (!this.isInFavorites(speaker)) {
+      favorites.push(speaker._id);
       localStorage.setItem(FEATURED_USERS, JSON.stringify(favorites));
     } else {
-      const updatedFavorites = favorites.filter(id => id !== person._id);
+      const updatedFavorites = favorites.filter(id => id !== speaker._id);
       localStorage.setItem(FEATURED_USERS, JSON.stringify(updatedFavorites));
     }
   }
@@ -45,33 +45,33 @@ export class BackendService {
     return [...JSON.parse(localStorage.getItem(FEATURED_USERS) || '[]')];
   }
 
-  public isInFavorites(person: BackendPersonInterface): boolean {
+  public isInFavorites(speaker: SpeakerInterface): boolean {
     const favorites = this.getFavorites();
-    return favorites.includes(person._id);
+    return favorites.includes(speaker._id);
   }
 
   //WORK WITH RATING
-  public updateRating(person: BackendPersonInterface, rating: number): void {
-    const ratedPeople = this.getRatedPeople();
-    const existingRatedPersonIndex = ratedPeople.findIndex((p) => p._id === person._id);
+  public updateRating(speaker: SpeakerInterface, rating: number): void {
+    const ratedSpeaker = this.getRatedSpeaker();
+    const existingRatedPersonIndex = ratedSpeaker.findIndex((p) => p._id === speaker._id);
 
     if (existingRatedPersonIndex === -1) {
-      const newRatedPerson: RatedPersonInterface = {_id: person._id, rating};
-      ratedPeople.push(newRatedPerson);
+      const newRatedPerson: RatedSpeakerInterface = {_id: speaker._id, rating};
+      ratedSpeaker.push(newRatedPerson);
     } else {
-      ratedPeople[existingRatedPersonIndex].rating = rating;
+      ratedSpeaker[existingRatedPersonIndex].rating = rating;
     }
 
-    localStorage.setItem(RATED_USERS, JSON.stringify(ratedPeople));
+    localStorage.setItem(RATED_USERS, JSON.stringify(ratedSpeaker));
   }
 
-  public getRatedPeople(): RatedPersonInterface[] {
+  public getRatedSpeaker(): RatedSpeakerInterface[] {
     return [...JSON.parse(localStorage.getItem(RATED_USERS) || '[]')];
   }
 
-  public getRating(person: BackendPersonInterface): number {
-    const ratedPeople = this.getRatedPeople();
-    const ratedPerson = ratedPeople.find((p) => p._id === person._id);
+  public getRating(speaker: SpeakerInterface): number {
+    const ratedSpeaker = this.getRatedSpeaker();
+    const ratedPerson = ratedSpeaker.find((p) => p._id === speaker._id);
     return ratedPerson ? ratedPerson.rating : 0;
   }
 }

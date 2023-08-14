@@ -1,7 +1,11 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { BackendPersonInterface } from '@core/interfaces';
+import { SpeakerInterface } from '@core/interfaces';
 import { BackendService } from '@core/services/backend.service';
 import { CHUNK_SIZE } from '@shared/constants';
+import { Select, Store } from '@ngxs/store';
+import { GetSpeakersFromServer } from '@core/ngxs/speakers.actions';
+import { SpeakersState } from '@core/ngxs/speakers.state';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-event-speakers',
@@ -9,56 +13,55 @@ import { CHUNK_SIZE } from '@shared/constants';
   styleUrls: ['./event-speakers.component.sass'],
 })
 export class EventSpeakersComponent implements OnInit {
-  public allPeople: BackendPersonInterface[] = [];
-  public displayedPeople: BackendPersonInterface[] = [];
+  @Select(SpeakersState.getAllSpeakers) speakers$!: Observable<SpeakerInterface[]>;
+  public speakers: SpeakerInterface[] = [];
+  public displayedSpeakers: SpeakerInterface[] = [];
   public currentChunkIndex = 0;
   public selectedRating: number = 0;
 
   constructor(
     private readonly backendService: BackendService,
+    private readonly store: Store,
   ) {
   }
 
   ngOnInit(): void {
-    this.fetchData();
-  }
-
-  public fetchData() {
-    this.backendService.getPeople().subscribe((data) => {
-      this.allPeople = data;
+    this.store.dispatch(new GetSpeakersFromServer());
+    this.speakers$.subscribe((data: SpeakerInterface[]) => {
+      this.speakers = data;
       this.loadNextChunk();
-    });
+    })
   }
 
   public loadNextChunk() {
     const startIndex = this.currentChunkIndex * CHUNK_SIZE;
     const endIndex = startIndex + CHUNK_SIZE;
 
-    if (startIndex < this.allPeople.length) {
-      this.displayedPeople = this.displayedPeople.concat(
-        this.allPeople.slice(startIndex, endIndex)
+    if (startIndex < this.speakers.length) {
+      this.displayedSpeakers = this.displayedSpeakers.concat(
+        this.speakers.slice(startIndex, endIndex)
       );
       this.currentChunkIndex++;
     }
   }
 
-  public addToFavorites(person: BackendPersonInterface): void {
-    this.backendService.addToFavorites(person);
+  public addToFavorites(speaker: SpeakerInterface): void {
+    this.backendService.addToFavorites(speaker);
   }
 
-  public getFollowButtonBackground(person: BackendPersonInterface): string {
-    return this.backendService.isInFavorites(person)
+  public getFollowButtonBackground(speaker: SpeakerInterface): string {
+    return this.backendService.isInFavorites(speaker)
       ? 'url("../../../../assets/speakers/wish-list-add.png")'
       : 'url("../../../../assets/speakers/wish-list.png")';
   }
 
-  public onRatingUpdated(rating: number, person: BackendPersonInterface): void {
+  public onRatingUpdated(rating: number, speaker: SpeakerInterface): void {
     this.selectedRating = rating;
-    this.backendService.updateRating(person, rating);
+    this.backendService.updateRating(speaker, rating);
   }
 
-  public getRatingForPerson(person: BackendPersonInterface): number {
-    return this.backendService.getRating(person);
+  public getRatingForSpeaker(speaker: SpeakerInterface): number {
+    return this.backendService.getRating(speaker);
   }
 
   @HostListener('window:scroll', ['$event'])
