@@ -11,7 +11,13 @@
   <div class="header__right">
 
     <div class="header__right__search">
-      <input type="text" class="search-box" placeholder="search brand, product">
+      <input
+        type="text"
+        class="search-box"
+        placeholder="search something..."
+        [(ngModel)]="searchQuery"
+        (input)="onSearch()"
+      >
       <button
         class="search-btn button-header"
       >

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Router } from "@angular/router";
 
@@ -11,6 +11,7 @@ import { ClearUserInfo } from "@core/ngxs/profile.actions";
 import { CartState } from '@core/ngxs/cart.state';
 import { MatDialog } from '@angular/material/dialog';
 import { CartComponent } from '@shared/components';
+import { SetSearchQuery } from '@core/ngxs/speakers.actions';
 
 @Component({
   selector: 'app-header',
@@ -25,6 +26,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public isCustomerButtonClicked: boolean = false;
   public customerNameAbbreviation: string = '';
   private userInfoSubscription!: Subscription;
+  public searchQuery: string = '';
 
   constructor(
     private readonly authService: AuthService,
@@ -50,6 +52,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
         right: '0',
       },
     });
+  }
+
+  public onSearch() {
+    this.store.dispatch(new SetSearchQuery(this.searchQuery));
+    console.log(this.searchQuery);
   }
 
   public logout(): void {

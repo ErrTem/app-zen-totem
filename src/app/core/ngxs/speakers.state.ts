@@ -3,10 +3,11 @@ import { Injectable } from "@angular/core";
 import { Observable, tap } from 'rxjs';
 import { SpeakerInterface } from '@core/interfaces';
 import { BackendService } from '@core/services/backend.service';
-import { GetSpeakersFromServer } from '@core/ngxs/speakers.actions';
+import { GetSpeakersFromServer, SetSearchQuery } from '@core/ngxs/speakers.actions';
 
 export interface SpeakersStateModel {
   Speakers: SpeakerInterface[];
+  searchQuery: string;
 }
 
 export const SPEAKERS_STATE_MODEL = new StateToken<SpeakersStateModel>('Speakers');
@@ -15,6 +16,7 @@ export const SPEAKERS_STATE_MODEL = new StateToken<SpeakersStateModel>('Speakers
   name: 'SPEAKERS_STATE_MODEL',
   defaults: {
     Speakers: [],
+    searchQuery: '',
   }
 })
 
@@ -31,9 +33,24 @@ export class SpeakersState {
     return state.Speakers;
   }
 
+  @Selector()
+  static getQuery(state: SpeakersStateModel): string {
+    return state.searchQuery;
+  }
+
+  @Action(SetSearchQuery)
+  setSearchQuery(
+    {patchState}: StateContext<SpeakersStateModel>,
+    {payload}: SetSearchQuery
+  ) {
+    patchState({
+      searchQuery: payload,
+    });
+  }
+
   @Action(GetSpeakersFromServer)
   getSpeakersFromServer(
-    {setState}: StateContext<SpeakersStateModel>,
+    {patchState}: StateContext<SpeakersStateModel>,
   ): Observable<SpeakerInterface[]> {
 
     return this.backendService.getSpeakers()
@@ -41,7 +58,7 @@ export class SpeakersState {
         tap(
           (data: SpeakerInterface[]) => {
 
-            setState({
+            patchState({
               Speakers: data,
             });
           }

@@ -3,3 +3,9 @@ export class GetSpeakersFromServer {
 
   constructor() {}
 }
+
+export class SetSearchQuery {
+  static readonly type = '[Search] Set Search Query';
+
+  constructor(public payload: string) {}
+}

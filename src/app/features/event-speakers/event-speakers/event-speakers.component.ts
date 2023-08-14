@@ -19,6 +19,7 @@ export class EventSpeakersComponent implements OnInit {
   public currentChunkIndex = 0;
   public selectedRating: number = 0;
 
+  //todo add notification service
   constructor(
     private readonly backendService: BackendService,
     private readonly store: Store,
