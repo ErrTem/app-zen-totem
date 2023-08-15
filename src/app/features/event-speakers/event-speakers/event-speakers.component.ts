@@ -1,20 +1,18 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  HostListener,
-  OnChanges,
-  OnInit,
-} from '@angular/core';
+import { Component, HostListener, OnInit, } from '@angular/core';
 import { SpeakerInterface } from '@core/interfaces';
-import { BackendService } from '@core/services/backend.service';
-import { CHUNK_SIZE } from '@shared/constants';
+import { BackendService, RatedSpeakerInterface } from '@core/services/backend.service';
 import { Select, Store } from '@ngxs/store';
 import {
   GetSpeakersFromServer,
-  UpdateChunkIndex,
+  ResetFilters,
+  FilterFavorites,
+  SortMostPopular,
+  SortMostUnpopular,
+  UpdateChunkIndex
 } from '@core/ngxs/speakers.actions';
 import { SpeakersState } from '@core/ngxs/speakers.state';
 import { Observable } from 'rxjs';
+import { NotificationService } from '@core/services';
 
 @Component({
   selector: 'app-event-speakers',
@@ -22,29 +20,31 @@ import { Observable } from 'rxjs';
   styleUrls: ['./event-speakers.component.sass'],
 })
 export class EventSpeakersComponent implements OnInit {
-  @Select(SpeakersState.getFilteredSpeakers) speakers$!: Observable<
-    SpeakerInterface[]
-  >;
+  @Select(SpeakersState.getFilteredSpeakers) speakers$!: Observable<SpeakerInterface[]>;
   public currentChunkIndex = 0;
   public selectedRating: number = 0;
+  public isLoading = false;
 
-  //todo add notification service
   constructor(
     private readonly backendService: BackendService,
-    private readonly store: Store
-  ) {}
+    private readonly store: Store,
+    private readonly notificationService: NotificationService,
+  ) {
+  }
 
   ngOnInit(): void {
     this.store.dispatch(new GetSpeakersFromServer());
-    this.speakers$.subscribe((data: SpeakerInterface[]) => {});
+    this.speakers$.subscribe();
   }
 
   public loadNextChunk() {
+    this.isLoading = true;
     this.store.dispatch(new UpdateChunkIndex());
   }
 
   public addToFavorites(speaker: SpeakerInterface): void {
     this.backendService.addToFavorites(speaker);
+    this.showSnackBar(`You added ${speaker.name} to favorites 👍`);
   }
 
   public getFollowButtonBackground(speaker: SpeakerInterface): string {
@@ -56,10 +56,15 @@ export class EventSpeakersComponent implements OnInit {
   public onRatingUpdated(rating: number, speaker: SpeakerInterface): void {
     this.selectedRating = rating;
     this.backendService.updateRating(speaker, rating);
+    this.showSnackBar(`You rated ${speaker.name} with ${rating}/5 ⭐`);
   }
 
   public getRatingForSpeaker(speaker: SpeakerInterface): number {
     return this.backendService.getRating(speaker);
+  }
+
+  public showSnackBar(message: string): void {
+    this.notificationService.showSnackBar(message)
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -71,5 +76,24 @@ export class EventSpeakersComponent implements OnInit {
     if (scrollPosition + windowHeight >= documentHeight - 300) {
       this.loadNextChunk();
     }
+  }
+
+  public sortMostPopular(): void {
+    const ratedSpeakers: RatedSpeakerInterface[] = this.backendService.getRatedSpeaker();
+    this.store.dispatch(new SortMostPopular(ratedSpeakers));
+  }
+
+  public sortMostUnpopular(): void {
+    const ratedSpeakers: RatedSpeakerInterface[] = this.backendService.getRatedSpeaker();
+    this.store.dispatch(new SortMostUnpopular(ratedSpeakers));
+  }
+
+  public filterFavorites(): void {
+    const favorites: string[] = this.backendService.getFavorites();
+    this.store.dispatch(new FilterFavorites(favorites));
+  }
+
+  public resetFilters(): void {
+    this.store.dispatch(new ResetFilters());
   }
 }

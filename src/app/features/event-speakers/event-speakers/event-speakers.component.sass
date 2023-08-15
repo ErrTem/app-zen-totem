@@ -100,3 +100,18 @@
   background-color: red
 
 
+.search-bar
+  background-color: $light-grey
+  @include flex(row, center, space-around )
+  @include size(70vw, 50px)
+  @include shadow
+  margin-top: 20px
+  padding: 5px
+
+  &__categories-button
+    font-weight: $medium
+    font-size: $large
+
+  &__reset-button
+    font-weight: $medium
+    font-size: $large

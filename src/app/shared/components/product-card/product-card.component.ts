@@ -35,7 +35,7 @@ export class ProductCardComponent {
 
   public increaseProductQuantity(product: CartItem): void {
     this.cartService.increaseProductQuantity(product);
-    this.showSnackBar('Added to basket');
+    this.showSnackBar('Added to basket ');
   }
 
   public addProductToCart(product: CartItem): void {
