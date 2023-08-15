@@ -43,10 +43,6 @@ export class EventSpeakersComponent implements OnInit {
     this.store.dispatch(new UpdateChunkIndex());
   }
 
-  public loadMore(): void {
-    this.store.dispatch(new UpdateChunkIndex());
-  }
-
   public addToFavorites(speaker: SpeakerInterface): void {
     this.backendService.addToFavorites(speaker);
   }

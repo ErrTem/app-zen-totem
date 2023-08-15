@@ -25,6 +25,7 @@ export class BackendService {
   ) {
   }
 
+//todo need backend to piecewise loading
   public getSpeakers(): Observable<SpeakerInterface[]> {
     return this.http.get<SpeakerInterface[]>('assets/data/speakers.json');
   }

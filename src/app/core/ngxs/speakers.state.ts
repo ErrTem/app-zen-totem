@@ -9,12 +9,13 @@ import {
   UpdateChunkIndex,
 } from '@core/ngxs/speakers.actions';
 import { CHUNK_SIZE } from '@shared/constants';
-
+//todo backend should return totalCountOfPersons
 export interface SpeakersStateModel {
   Speakers: SpeakerInterface[];
   searchQuery: string;
   filteredSpeakers: SpeakerInterface[];
   chunkIndex: number;
+  totalCountOfPages: number;
 }
 
 export const SPEAKERS_STATE_MODEL = new StateToken<SpeakersStateModel>(
@@ -28,6 +29,7 @@ export const SPEAKERS_STATE_MODEL = new StateToken<SpeakersStateModel>(
     searchQuery: '',
     filteredSpeakers: [],
     chunkIndex: 1,
+    totalCountOfPages: 3,
   },
 })
 @Injectable()
@@ -69,13 +71,15 @@ export class SpeakersState {
 
   @Action(UpdateChunkIndex)
   updateChunkIndex({ patchState, getState }: StateContext<SpeakersStateModel>) {
-    const { chunkIndex } = getState();
+    const { chunkIndex, totalCountOfPages } = getState();
     const updateChunkIndex = chunkIndex + 1;
 
-    console.log(updateChunkIndex);
-    patchState({
-      chunkIndex: updateChunkIndex,
-    });
+    if (chunkIndex <= totalCountOfPages) {
+      patchState({
+        chunkIndex: updateChunkIndex,
+      });
+    }
+
   }
 
   @Action(GetSpeakersFromServer)
