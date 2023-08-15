@@ -8,6 +8,7 @@ import { GetSpeakersFromServer, SetSearchQuery } from '@core/ngxs/speakers.actio
 export interface SpeakersStateModel {
   Speakers: SpeakerInterface[];
   searchQuery: string;
+  filteredSpeakers: SpeakerInterface[];
 }
 
 export const SPEAKERS_STATE_MODEL = new StateToken<SpeakersStateModel>('Speakers');
@@ -17,6 +18,7 @@ export const SPEAKERS_STATE_MODEL = new StateToken<SpeakersStateModel>('Speakers
   defaults: {
     Speakers: [],
     searchQuery: '',
+    filteredSpeakers: [],
   }
 })
 
@@ -29,8 +31,8 @@ export class SpeakersState {
   }
 
   @Selector()
-  static getAllSpeakers(state: SpeakersStateModel): SpeakerInterface[] {
-    return state.Speakers;
+  static getFilteredSpeakers(state: SpeakersStateModel): SpeakerInterface[] {
+    return state.filteredSpeakers;
   }
 
   @Selector()
@@ -40,12 +42,26 @@ export class SpeakersState {
 
   @Action(SetSearchQuery)
   setSearchQuery(
-    {patchState}: StateContext<SpeakersStateModel>,
+    {patchState, getState}: StateContext<SpeakersStateModel>,
     {payload}: SetSearchQuery
   ) {
-    patchState({
-      searchQuery: payload,
-    });
+    if (!payload) {
+      patchState({
+        searchQuery: '',
+      })
+    } else {
+
+      const {Speakers} = getState();
+      let filteredSpeakers = [...Speakers];
+      filteredSpeakers = filteredSpeakers.filter(speaker =>
+        speaker.name.toLowerCase().includes(payload.toLowerCase())
+      );
+
+      patchState({
+        searchQuery: payload,
+        filteredSpeakers: filteredSpeakers,
+      });
+    }
   }
 
   @Action(GetSpeakersFromServer)
@@ -60,6 +76,7 @@ export class SpeakersState {
 
             patchState({
               Speakers: data,
+              filteredSpeakers: data,
             });
           }
         ))

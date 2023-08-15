@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener, OnChanges, OnInit } from '@angular/core';
 import { SpeakerInterface } from '@core/interfaces';
 import { BackendService } from '@core/services/backend.service';
 import { CHUNK_SIZE } from '@shared/constants';
@@ -13,9 +13,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./event-speakers.component.sass'],
 })
 export class EventSpeakersComponent implements OnInit {
-  @Select(SpeakersState.getAllSpeakers) speakers$!: Observable<SpeakerInterface[]>;
-  public speakers: SpeakerInterface[] = [];
-  public displayedSpeakers: SpeakerInterface[] = [];
+  @Select(SpeakersState.getFilteredSpeakers) speakers$!: Observable<SpeakerInterface[]>;
   public currentChunkIndex = 0;
   public selectedRating: number = 0;
 
@@ -29,21 +27,11 @@ export class EventSpeakersComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(new GetSpeakersFromServer());
     this.speakers$.subscribe((data: SpeakerInterface[]) => {
-      this.speakers = data;
       this.loadNextChunk();
     })
   }
 
   public loadNextChunk() {
-    const startIndex = this.currentChunkIndex * CHUNK_SIZE;
-    const endIndex = startIndex + CHUNK_SIZE;
-
-    if (startIndex < this.speakers.length) {
-      this.displayedSpeakers = this.displayedSpeakers.concat(
-        this.speakers.slice(startIndex, endIndex)
-      );
-      this.currentChunkIndex++;
-    }
   }
 
   public addToFavorites(speaker: SpeakerInterface): void {

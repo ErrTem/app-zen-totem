@@ -56,7 +56,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   public onSearch() {
     this.store.dispatch(new SetSearchQuery(this.searchQuery));
-    console.log(this.searchQuery);
   }
 
   public logout(): void {
