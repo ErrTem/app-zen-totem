@@ -9,3 +9,9 @@ export class SetSearchQuery {
 
   constructor(public payload: string) {}
 }
+
+export class UpdateChunkIndex {
+  static readonly type = '[Speakers] Update Chunk Index';
+
+  constructor() {}
+}
