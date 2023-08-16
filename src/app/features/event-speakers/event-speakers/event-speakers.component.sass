@@ -20,93 +20,101 @@
     font-size: $large
 
 .speakers-container
-  margin: auto
   display: grid
   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr))
   grid-gap: 40px
   max-width: 70vw
+  @media only screen and (max-width: $WIDTH_BREAKPOINT_M)
+    max-width: 90vw
+    grid-template-columns: 1fr
 
-.speaker-card
-  background-color: $light-grey
-  @media (max-width: 650px)
-    width: 300px
+  .speaker-card
+    background-color: $light-grey
+    @media only screen and (max-width: $WIDTH_BREAKPOINT_M)
+      max-width: 220px
+      justify-self: center
 
-  &:hover
-    transform: translateY(-5px)
+    &:hover
+      transform: translateY(-5px)
 
-  &__content
-    @include flex(row, stretch, stretch)
-    @media (max-width: 650px)
+    &__content
+      @include flex(row, stretch, stretch)
+      @media only screen and (max-width: $WIDTH_BREAKPOINT_M)
+        @include flex(column, center, center)
+        width: 220px
+
+    .mat-mdc-card-content
+      padding: 0
+
+    .speaker-card__left
       @include flex(column, center, center)
-      width: 300px
-
-  .mat-mdc-card-content
-    padding: 0
-
-  .speaker-card__left
-    @include flex(column, center, center)
-    width: 200px
-    border-radius: 4px 0 0 4px
-    padding: 10px
-    flex-shrink: 0
-    background-color: $color-default
+      width: 200px
+      border-radius: 4px 0 0 4px
+      padding: 10px
+      flex-shrink: 0
+      background-color: $color-default
+      @media only screen and (max-width: $WIDTH_BREAKPOINT_M)
+        border-radius: 4px 4px 0 0
 
 
-    .speaker-card__name
-      font-size: $large
-      font-weight: $large
+      .speaker-card__name
+        font-size: $large
+        font-weight: $large
 
-    .speaker-card__image-container
-      @include size(64px, 64px)
-      margin: 10px 0
-      border: 1px solid $color-default-complimentary
-      border-radius: 32px
-      background-color: $light-grey
+      .speaker-card__image-container
+        @include size(64px, 64px)
+        margin: 10px 0
+        border: 1px solid $color-default-complimentary
+        border-radius: 32px
+        background-color: $light-grey
 
-    .speaker-card__image-indicator
-      position: absolute
-      width: 16px
-      height: 16px
-      border-radius: 50%
-      z-index: 1
+      .speaker-card__image-indicator
+        position: absolute
+        width: 16px
+        height: 16px
+        border-radius: 50%
+        z-index: 1
 
-    .speaker-card__image-abbreviation
-      @include flex(row, center, center)
-      font-size: $large
-      font-weight: $bold
-      height: 100%
+      .speaker-card__image-abbreviation
+        @include flex(row, center, center)
+        font-size: $large
+        font-weight: $bold
+        height: 100%
 
-    .speaker-card__details
+      .speaker-card__details
+        @include flex(column, center, space-between)
+
+      .speaker-card__info
+        margin: 3px
+
+      .speaker-card__email
+        margin: 5px
+        text-align: center
+
+    .speaker-card__right
       @include flex(column, center, space-between)
+      width: 400px
+      padding: 10px
+      flex-shrink: 2
+      @media only screen and (max-width: $WIDTH_BREAKPOINT_M)
+        width: 220px
 
-    .speaker-card__info
-      margin: 3px
+      .speaker-card__about
+        padding: 10px 40px 0 20px
+        text-align: center
 
-    .speaker-card__email
-      margin: 5px
-      text-align: center
-
-  .speaker-card__right
-    @include flex(column, center, space-between)
-    padding: 10px
-    flex-shrink: 2
-
-    .speaker-card__about
-      padding: 10px 40px 0 20px
-      text-align: center
-
-    .speaker-card__button-follow
-      @include size(40px, 40px)
-      position: absolute
-      z-index: 2
-      top: 10px
-      right: 5px
-      border: none
-      background-color: transparent
-      background-size: cover
-      background-position: center
-      background-repeat: no-repeat
-      transition: background-image 0.2s ease-in-out
+      .speaker-card__button-follow
+        @include size(40px, 40px)
+        position: absolute
+        z-index: 2
+        top: 10px
+        right: 5px
+        border: none
+        background-color: transparent
+        background-size: cover
+        background-position: center
+        background-repeat: no-repeat
+        transition: background-image 0.2s ease-in-out
 
 .speaker-card__empty
   font-size: $large

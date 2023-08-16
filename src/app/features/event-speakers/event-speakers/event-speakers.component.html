@@ -1,68 +1,68 @@
 <div class="search-bar">
-    <button mat-button class="search-bar__categories-button" (click)="sortMostPopular()">
-      Most popular
-    </button>
-    <button mat-button class="search-bar__categories-button" (click)="sortMostUnpopular()">
-      Most unpopular
-    </button>
-    <button mat-button class="search-bar__categories-button" (click)="filterFavorites()">
-      Favorites
-    </button>
-    <button mat-button class="search-bar__categories-button" (click)="resetFilters()">
-      Reset filter
-    </button>
+  <button mat-button class="search-bar__categories-button" (click)="sortMostPopular()">
+    Most popular
+  </button>
+  <button mat-button class="search-bar__categories-button" (click)="sortMostUnpopular()">
+    Most unpopular
+  </button>
+  <button mat-button class="search-bar__categories-button" (click)="filterFavorites()">
+    Favorites
+  </button>
+  <button mat-button class="search-bar__categories-button" (click)="resetFilters()">
+    Reset filter
+  </button>
 </div>
 
 <div class="speakers-container">
   <ng-container *ngIf="(speakers$ | async)?.length; else emptyCart">
-    <mat-card class="speaker-card" *ngFor="let speaker of speakers$ | async">
-      <mat-card-content class="speaker-card__content">
-        <div class="speaker-card__left">
-          <mat-card-title class="speaker-card__name">{{
-            speaker.name
-            }}</mat-card-title>
-          <div class="speaker-card__image-container">
-            <div
-              class="speaker-card__image-indicator"
-              [ngClass]="{
+      <mat-card class="speaker-card" *ngFor="let speaker of speakers$ | async">
+        <mat-card-content class="speaker-card__content">
+          <div class="speaker-card__left">
+            <mat-card-title class="speaker-card__name">{{
+              speaker.name
+              }}</mat-card-title>
+            <div class="speaker-card__image-container">
+              <div
+                class="speaker-card__image-indicator"
+                [ngClass]="{
                 active: speaker.isActive,
                 inactive: !speaker.isActive
               }"
-            ></div>
-            <div class="speaker-card__image-abbreviation" mat-card-image>
-              {{ speaker.name | nameAbbreviationPipe }}
+              ></div>
+              <div class="speaker-card__image-abbreviation" mat-card-image>
+                {{ speaker.name | nameAbbreviationPipe }}
+              </div>
+            </div>
+            <div class="speaker-card__details">
+              <div class="speaker-card__info">
+                {{ speaker.gender }}, {{ speaker.age }} y.o.
+              </div>
+              <div class="speaker-card__info">Company: {{ speaker.company }}</div>
+              <div
+                class="speaker-card__email"
+                [innerHTML]="speaker.email | splitEmail"
+              ></div>
+              <div class="speaker-card__info">{{ speaker.phone }}</div>
             </div>
           </div>
-          <div class="speaker-card__details">
-            <div class="speaker-card__info">
-              {{ speaker.gender }}, {{ speaker.age }} y.o.
-            </div>
-            <div class="speaker-card__info">Company: {{ speaker.company }}</div>
-            <div
-              class="speaker-card__email"
-              [innerHTML]="speaker.email | splitEmail"
-            ></div>
-            <div class="speaker-card__info">{{ speaker.phone }}</div>
-          </div>
-        </div>
 
-        <div class="speaker-card__right">
-          <button
-            class="speaker-card__button-follow"
-            (click)="addToFavorites(speaker)"
-            [ngStyle]="{
+          <div class="speaker-card__right">
+            <button
+              class="speaker-card__button-follow"
+              (click)="addToFavorites(speaker)"
+              [ngStyle]="{
               'background-image': getFollowButtonBackground(speaker)
             }"
-          ></button>
-          <div class="speaker-card__about">{{ speaker.about }}</div>
-          <app-rating
-            [rating]="getRatingForSpeaker(speaker)"
-            [starCount]="5"
-            (ratingUpdated)="onRatingUpdated($event, speaker)"
-          ></app-rating>
-        </div>
-      </mat-card-content>
-    </mat-card>
+            ></button>
+            <div class="speaker-card__about">{{ speaker.about }}</div>
+            <app-rating
+              [rating]="getRatingForSpeaker(speaker)"
+              [starCount]="5"
+              (ratingUpdated)="onRatingUpdated($event, speaker)"
+            ></app-rating>
+          </div>
+        </mat-card-content>
+      </mat-card>
   </ng-container>
 </div>
 
