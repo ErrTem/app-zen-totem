@@ -4,19 +4,30 @@ import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule),
+    loadChildren: () =>
+      import('./features/home/home.module').then((m) => m.HomeModule),
   },
   {
     path: 'login',
-    loadChildren: () => import('./features/login/login.module').then(m => m.LoginModule),
+    loadChildren: () =>
+      import('./features/login/login.module').then((m) => m.LoginModule),
   },
   {
     path: 'profile',
-    loadChildren: () => import('./features/profile/profile.module').then(m => m.ProfileModule),
+    loadChildren: () =>
+      import('./features/profile/profile.module').then((m) => m.ProfileModule),
   },
   {
     path: 'speakers',
-    loadChildren: () => import('./features/event-speakers/event-speakers.module').then(m => m.EventSpeakersModule),
+    loadChildren: () =>
+      import('./features/event-speakers/event-speakers.module').then(
+        (m) => m.EventSpeakersModule
+      ),
+  },
+  {
+    path: 'iex',
+    loadChildren: () =>
+      import('./features/iex/iex.module').then((m) => m.IexModule),
   },
   {
     path: '**',
@@ -25,12 +36,11 @@ const routes: Routes = [
 ];
 
 const extraOptions: ExtraOptions = {
-  onSameUrlNavigation: 'reload'
-}
+  onSameUrlNavigation: 'reload',
+};
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, extraOptions)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}

@@ -10,17 +10,12 @@ import { HomeModule } from '@features/home/home.module';
 import { ProfileModule } from '@features/profile/profile.module';
 import { LoginModule } from '@features/login/login.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { IexModule } from '@features/iex/iex.module';
 
-const FEATURES_MODULES = [
-  HomeModule,
-  LoginModule,
-  ProfileModule
-];
+const FEATURES_MODULES = [HomeModule, LoginModule, ProfileModule, IexModule];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -31,7 +26,6 @@ const FEATURES_MODULES = [
     ...FEATURES_MODULES,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
