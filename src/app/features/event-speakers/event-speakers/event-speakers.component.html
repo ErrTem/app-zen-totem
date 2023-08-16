@@ -15,6 +15,7 @@
 
 <div class="speakers-container">
   <ng-container *ngIf="(speakers$ | async)?.length; else emptyCart">
+    <div class="grid-container">
       <mat-card class="speaker-card" *ngFor="let speaker of speakers$ | async">
         <mat-card-content class="speaker-card__content">
           <div class="speaker-card__left">
@@ -63,6 +64,7 @@
           </div>
         </mat-card-content>
       </mat-card>
+    </div>
   </ng-container>
 </div>
 

@@ -2,119 +2,138 @@
 @import '../../../sass/mixins'
 
 .search-bar
-  @include flex(row, center, space-around)
-  @include size(70vw, 50px)
+  @include size(70vw, auto)
   @include shadow
-  min-width: 600px
+  min-width: 70vw
   margin: 20px auto
   padding: 5px
   background-color: $light-grey
   white-space: nowrap
+  display: grid
+  grid-template-columns: repeat(4, 1fr)
+  grid-gap: 10px
 
-  &__categories-button
-    font-weight: $medium
-    font-size: $large
-
+  &__categories-button,
   &__reset-button
+    width: 100%
     font-weight: $medium
     font-size: $large
+    display: flex
+    align-items: center
+    justify-content: center
+
+  @media only screen and (max-width: $WIDTH_BREAKPOINT_TABLET)
+    grid-template-columns: repeat(2, 1fr)
+
+  @media only screen and (max-width: $WIDTH_BREAKPOINT_S)
+    grid-template-columns: repeat(1, 1fr)
+
 
 .speakers-container
-  display: grid
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr))
-  grid-gap: 40px
-  max-width: 70vw
-  @media only screen and (max-width: $WIDTH_BREAKPOINT_M)
-    max-width: 90vw
-    grid-template-columns: 1fr
+  @include flex(column, center, center)
+  margin-bottom: 60px
 
-  .speaker-card
-    background-color: $light-grey
+  .grid-container
+    display: grid
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr))
+    grid-gap: 40px
+    max-width: 70vw
+
     @media only screen and (max-width: $WIDTH_BREAKPOINT_M)
-      max-width: 220px
-      justify-self: center
+      max-width: 90vw
+      grid-template-columns: 1fr
 
-    &:hover
-      transform: translateY(-5px)
-
-    &__content
-      @include flex(row, stretch, stretch)
+    .speaker-card
+      background-color: $light-grey
       @media only screen and (max-width: $WIDTH_BREAKPOINT_M)
-        @include flex(column, center, center)
-        width: 220px
+        max-width: 220px
+        justify-self: center
+        align-self: stretch
 
-    .mat-mdc-card-content
-      padding: 0
+      &:hover
+        transform: translateY(-5px)
 
-    .speaker-card__left
-      @include flex(column, center, center)
-      width: 200px
-      border-radius: 4px 0 0 4px
-      padding: 10px
-      flex-shrink: 0
-      background-color: $color-default
-      @media only screen and (max-width: $WIDTH_BREAKPOINT_M)
-        border-radius: 4px 4px 0 0
-
-
-      .speaker-card__name
-        font-size: $large
-        font-weight: $large
-
-      .speaker-card__image-container
-        @include size(64px, 64px)
-        margin: 10px 0
-        border: 1px solid $color-default-complimentary
-        border-radius: 32px
-        background-color: $light-grey
-
-      .speaker-card__image-indicator
-        position: absolute
-        width: 16px
-        height: 16px
-        border-radius: 50%
-        z-index: 1
-
-      .speaker-card__image-abbreviation
-        @include flex(row, center, center)
-        font-size: $large
-        font-weight: $bold
+      &__content
+        @include flex(row, stretch, stretch)
         height: 100%
+        @media only screen and (max-width: $WIDTH_BREAKPOINT_M)
+          @include flex(column, center, center)
+          width: 220px
 
-      .speaker-card__details
+      .mat-mdc-card-content
+        padding: 0
+
+      .speaker-card__left
+        @include flex(column, center, stretch)
+        min-width: 200px
+        max-width: 200px
+        border-radius: 4px 0 0 4px
+        padding: 10px
+        flex-shrink: 0
+        background-color: $color-default
+        @media only screen and (max-width: $WIDTH_BREAKPOINT_M)
+          border-radius: 4px 4px 0 0
+
+
+        .speaker-card__name
+          font-size: $large
+          font-weight: $large
+
+        .speaker-card__image-container
+          @include size(64px, 64px)
+          margin: 10px 0
+          border: 1px solid $color-default-complimentary
+          border-radius: 32px
+          background-color: $light-grey
+
+        .speaker-card__image-indicator
+          position: absolute
+          width: 16px
+          height: 16px
+          border-radius: 50%
+          z-index: 1
+
+        .speaker-card__image-abbreviation
+          @include flex(row, center, center)
+          font-size: $large
+          font-weight: $bold
+          height: 100%
+
+        .speaker-card__details
+          @include flex(column, center, space-between)
+
+        .speaker-card__info
+          margin: 3px
+
+        .speaker-card__email
+          margin: 5px
+          text-align: center
+
+      .speaker-card__right
         @include flex(column, center, space-between)
+        align-self: stretch
+        width: 400px
+        padding: 10px
+        flex-shrink: 2
+        @media only screen and (max-width: $WIDTH_BREAKPOINT_M)
+          width: 220px
 
-      .speaker-card__info
-        margin: 3px
+        .speaker-card__about
+          padding: 10px 40px 0 20px
+          text-align: center
 
-      .speaker-card__email
-        margin: 5px
-        text-align: center
-
-    .speaker-card__right
-      @include flex(column, center, space-between)
-      width: 400px
-      padding: 10px
-      flex-shrink: 2
-      @media only screen and (max-width: $WIDTH_BREAKPOINT_M)
-        width: 220px
-
-      .speaker-card__about
-        padding: 10px 40px 0 20px
-        text-align: center
-
-      .speaker-card__button-follow
-        @include size(40px, 40px)
-        position: absolute
-        z-index: 2
-        top: 10px
-        right: 5px
-        border: none
-        background-color: transparent
-        background-size: cover
-        background-position: center
-        background-repeat: no-repeat
-        transition: background-image 0.2s ease-in-out
+        .speaker-card__button-follow
+          @include size(40px, 40px)
+          position: absolute
+          z-index: 2
+          top: 10px
+          right: 5px
+          border: none
+          background-color: transparent
+          background-size: cover
+          background-position: center
+          background-repeat: no-repeat
+          transition: background-image 0.2s ease-in-out
 
 .speaker-card__empty
   font-size: $large
