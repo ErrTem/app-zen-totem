@@ -33,13 +33,14 @@ export class BackendService {
   //WORK WITH FEATURED USERS
   public addToFavorites(speaker: SpeakerInterface): void {
     const favorites = this.getFavorites();
-    if (!this.isInFavorites(speaker)) {
-      favorites.push(speaker._id);
-      localStorage.setItem(FEATURED_USERS, JSON.stringify(favorites));
-    } else {
-      const updatedFavorites = favorites.filter(id => id !== speaker._id);
-      localStorage.setItem(FEATURED_USERS, JSON.stringify(updatedFavorites));
-    }
+    favorites.push(speaker._id);
+    localStorage.setItem(FEATURED_USERS, JSON.stringify(favorites));
+  }
+
+  public removeFromFavorites(speaker: SpeakerInterface): void {
+    const favorites = this.getFavorites();
+    const updatedFavorites = favorites.filter(id => id !== speaker._id);
+    localStorage.setItem(FEATURED_USERS, JSON.stringify(updatedFavorites));
   }
 
   public getFavorites(): string[] {

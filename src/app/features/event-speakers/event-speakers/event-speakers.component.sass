@@ -1,22 +1,44 @@
 @import '../../../sass/constants'
 @import '../../../sass/mixins'
 
+.search-bar
+  @include flex(row, center, space-around)
+  @include size(70vw, 50px)
+  @include shadow
+  min-width: 600px
+  margin: 20px auto
+  padding: 5px
+  background-color: $light-grey
+  white-space: nowrap
+
+  &__categories-button
+    font-weight: $medium
+    font-size: $large
+
+  &__reset-button
+    font-weight: $medium
+    font-size: $large
+
 .speakers-container
   margin: auto
-  margin-top: 40px
   display: grid
-  grid-template-columns: repeat(auto-fit, minmax(550px, 1fr))
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr))
   grid-gap: 40px
   max-width: 70vw
 
 .speaker-card
   background-color: $light-grey
+  @media (max-width: 650px)
+    width: 300px
 
   &:hover
     transform: translateY(-5px)
 
   &__content
     @include flex(row, stretch, stretch)
+    @media (max-width: 650px)
+      @include flex(column, center, center)
+      width: 300px
 
   .mat-mdc-card-content
     padding: 0
@@ -28,6 +50,7 @@
     padding: 10px
     flex-shrink: 0
     background-color: $color-default
+
 
     .speaker-card__name
       font-size: $large
@@ -99,19 +122,3 @@
 .inactive
   background-color: red
 
-
-.search-bar
-  background-color: $light-grey
-  @include flex(row, center, space-around )
-  @include size(70vw, 50px)
-  @include shadow
-  margin-top: 20px
-  padding: 5px
-
-  &__categories-button
-    font-weight: $medium
-    font-size: $large
-
-  &__reset-button
-    font-weight: $medium
-    font-size: $large

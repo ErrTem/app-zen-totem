@@ -43,8 +43,15 @@ export class EventSpeakersComponent implements OnInit {
   }
 
   public addToFavorites(speaker: SpeakerInterface): void {
-    this.backendService.addToFavorites(speaker);
-    this.showSnackBar(`You added ${speaker.name} to favorites 👍`);
+    const isInFavorites = this.backendService.isInFavorites(speaker);
+
+    if (isInFavorites) {
+      this.backendService.removeFromFavorites(speaker);
+      this.showSnackBar(`You added ${speaker.name} to favorites 👍`);
+    } else {
+      this.backendService.addToFavorites(speaker);
+      this.showSnackBar(`You removed ${speaker.name} from favorites 👎`);
+    }
   }
 
   public getFollowButtonBackground(speaker: SpeakerInterface): string {
