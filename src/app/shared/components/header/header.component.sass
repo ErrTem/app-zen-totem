@@ -4,7 +4,8 @@
 header
   @include flex(row, center, space-between)
   @include shadow
-  min-width: 760px
+  width: 70vw
+  min-width: 200px
   padding: 15px
   border-radius: 0 0 15px 15px
   background-color: $color-default
@@ -59,6 +60,12 @@ header
       width: 400px
       display: flex
       margin: 0 20px 0 90px
+      @media only screen and (max-width: $WIDTH_BREAKPOINT_TABLET_L)
+        width: 200px
+      @media only screen and (max-width: $WIDTH_BREAKPOINT_M)
+        width: 150px
+      @media only screen and (max-width: $WIDTH_BREAKPOINT_S)
+        width: 100px
 
       .search-box
         @include size(88%, 18px)
@@ -69,6 +76,8 @@ header
         background: whitesmoke
         color: #a9a9a9
         outline: none
+        @media only screen and (max-width: $WIDTH_BREAKPOINT_TABLET_L)
+          border-radius: 10px
 
       .search-btn
         @include size(12%, 40px)
@@ -81,6 +90,9 @@ header
         text-transform: capitalize
         font-size: 15px
         border-radius: 0 10px 10px 0
+        @media only screen and (max-width: $WIDTH_BREAKPOINT_TABLET_L)
+          display: none
+
 
     &__cart
       .default-button
@@ -101,6 +113,9 @@ header
       img
         margin-right: 10px
 
+      @media only screen and (max-width: $WIDTH_BREAKPOINT_TABLET_S)
+        display: none
+
     &__user
       .button-user
         @include flex(row, center, center)
@@ -112,6 +127,8 @@ header
         background-color: $color-links
         border: 1px solid $color-default-complimentary
         border-radius: 50px
+        @media only screen and (max-width: $WIDTH_BREAKPOINT_M)
+          margin: 0
 
         &:hover
           background-color: $color-error
