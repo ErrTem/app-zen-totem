@@ -1,4 +1,4 @@
-<div class="iex-container">
+<button (click)="test()">test</button><div class="iex-container">
   <div *ngFor="let stock of stocks$ | async">
     <div>{{stock.id}}</div>
     <div>{{stock.description}}</div>
@@ -6,6 +6,14 @@
     <div>{{stock.created}}</div>
     <div>{{stock.lastUpdated}}</div>
   </div>
+
   <button (click)="prevPage()">Previous</button>
   <button (click)="nextPage()">Next</button>
+  <div class="pagination">
+    <button *ngFor="let pageNum of pageNumbers"
+            (click)="goToPage(pageNum)"
+            [class.active]="currentPage === pageNum">
+      {{ pageNum }}
+    </button>
+  </div>
 </div>

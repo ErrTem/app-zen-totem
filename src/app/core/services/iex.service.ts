@@ -13,8 +13,8 @@ export const IEX_SERVICE_TOKEN = new InjectionToken<IexService>(
   providedIn: 'root',
 })
 export class IexService {
-  private apiKey = 'sk_111fa2d83ebf40cdb833cd318406ccc6';
-
+  private apiKey = 'sk_25e3e17508f24890a26d0d7ae60b84bb';
+  public types = 'quote,news,chart';
   constructor(
     private readonly http: HttpClient,
   ) {
@@ -22,6 +22,13 @@ export class IexService {
 
   public getStock() {
     const url = `${BASE_IEX_URL}/time-series?token=${this.apiKey}`;
+    return this.http.get<FinancialDatasetInterface[]>(url);
+  }
+
+  public test() {
+    const startIdx = 0;
+    const endIdx = 20;
+    const url = `${BASE_IEX_URL}/stock/market/batch?types=chart&range=${startIdx}&last=${endIdx}&token=${this.apiKey}`;
     return this.http.get<FinancialDatasetInterface[]>(url);
   }
 
