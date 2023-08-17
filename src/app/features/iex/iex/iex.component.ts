@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { IexService } from '@core/services/iex.service';
+import { Select, Store } from '@ngxs/store';
+import { FetchStocks } from '@core/ngxs/iex/iex.actions';
+import { FinancialDatasetInterface } from '@core/interfaces';
+import { IexState } from '@core/ngxs/iex/iex.state';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-iex',
@@ -7,18 +12,27 @@ import { IexService } from '@core/services/iex.service';
   styleUrls: ['./iex.component.sass'],
 })
 export class IexComponent implements OnInit {
-  constructor(private readonly iexService: IexService) {}
-  ngOnInit(): void {
-    this.fetchStockQuote();
+  @Select(IexState.getStocks) stocks$!: Observable<FinancialDatasetInterface[]>;
+
+  constructor(
+    private readonly iexService: IexService,
+    private readonly store: Store,
+    ) {
   }
-  public fetchStockQuote() {
-    this.iexService.getStockQuote().subscribe(
-      (data) => {
-        console.log('Stock Quote:', data);
-      },
-      (error) => {
-        console.error('Error:', error);
-      }
-    );
+
+  ngOnInit(): void {
+    this.fetchStocks();
+  }
+
+  public fetchStocks(): void {
+    this.store.dispatch(new FetchStocks());
+  }
+
+  public nextPage(): void {
+    // Update state to fetch next page
+  }
+
+  public prevPage(): void {
+    // Update state to fetch previous page
   }
 }

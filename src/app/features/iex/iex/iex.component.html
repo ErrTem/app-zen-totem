@@ -1,1 +1,11 @@
-<p>iex works!</p>
+<div class="iex-container">
+  <div *ngFor="let stock of stocks$ | async">
+    <div>{{stock.id}}</div>
+    <div>{{stock.description}}</div>
+    <div>{{stock.weight}}</div>
+    <div>{{stock.created}}</div>
+    <div>{{stock.lastUpdated}}</div>
+  </div>
+  <button (click)="prevPage()">Previous</button>
+  <button (click)="nextPage()">Next</button>
+</div>
