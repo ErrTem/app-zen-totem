@@ -5,7 +5,7 @@ import { FetchStocks } from '@core/ngxs/iex/iex.actions';
 import { FinancialDatasetInterface } from '@core/interfaces';
 import { IexState } from '@core/ngxs/iex/iex.state';
 import { Observable } from 'rxjs';
-
+//todo add resolver
 @Component({
   selector: 'app-iex',
   templateUrl: './iex.component.html',

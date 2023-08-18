@@ -6,6 +6,7 @@ This project demonstrates my expertise in client-side rendering and frontend dev
 ### Key Features:
 - **Product List Page**: Browse through a vast collection of products from various categories.
 - **Product Detail Page**: Get detailed information about each product with a stunning user interface.
+- **Speakers Page**:  Showcases speakers, dynamically loaded on scroll. Saving rate and add your favorite speakers to localStorage, ensuring your data persists across page reloads. Filtering on rating and sort by favorites.
 - **Filters by Category**: Easily find products that match your preferences by filtering through categories.
 - **Persistent Shopping Cart**: Your shopping cart stays intact even if you leave and come back later.
 - **Cart & Order Management**: Efficiently manage your cart and orders with seamless user interactions.
@@ -16,7 +17,9 @@ This project demonstrates my expertise in client-side rendering and frontend dev
 - **Engaging Slider**: Experience a dynamic and interactive user interface.
 - **Standalone Components**: Benefit from reusable, modular, and maintainable code with custom standalone components, enhancing development efficiency.
 - **Custom Pipes**: Easily manipulate and format data, ensuring a delightful user experience.
+- **Modular Architecture**: Promotes scalability and maintainability, allowing for easy extension and updates as project evolves.
 - **Unit Tests**: Comprehensive unit tests to ensure the stability and reliability of the application's components and services.
+- **Adaptive Layout**: Enjoy a responsive design for speakers that offers a seamless experience across various devices, including mobile.
 ### Technology Stack:
 - **Angular 15**
 - **Angular CLI**
